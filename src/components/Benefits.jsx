@@ -58,51 +58,55 @@ const CARDS = [
     id: '01', title: 'Ghi nhớ dễ dàng',
     desc: 'Con thuộc bài cũ trong 5 phút thay vì 30 phút mỗi tối',
     stat: '+47% tốc độ học', Icon: IconBrain, highlight: false,
+    bgColor: '#F0F9F7', borderColor: '#2D8659', iconBg: '#D4F3ED', textColor: '#2D8659',
   },
   {
     id: '02', title: 'Hiểu sâu nhớ lâu',
     desc: 'Kiến thức ghi sâu trong não, không quên sau 1 tuần',
     stat: 'Nhớ 90% sau 30 ngày', Icon: IconBook, highlight: false,
+    bgColor: '#EEF5F9', borderColor: '#1B4D7C', iconBg: '#D9EBF7', textColor: '#1B4D7C',
   },
   {
     id: '03', title: 'Học nhẹ nhàng thoải mái',
     desc: 'Con thấy học là vui, không còn căng thẳng cuối tuần',
     stat: '8/10 phụ huynh khen', Icon: IconCloud, highlight: false,
+    bgColor: '#FFF5E6', borderColor: '#F77F00', iconBg: '#FFE8CC', textColor: '#F77F00',
   },
   {
     id: '04', title: 'Tăng tốc kết quả',
     desc: 'Điểm số tăng rõ rệt sau 2 tuần áp dụng',
     stat: '+1.5 điểm trung bình', Icon: IconTrending, highlight: false,
+    bgColor: '#F5E8F5', borderColor: '#D946A6', iconBg: '#F0D9F0', textColor: '#D946A6',
   },
   {
     id: '05', title: 'Tự tin mỗi ngày',
     desc: 'Con dám phát biểu, tự xung phong giải bài, không sợ sai trước bạn bè',
     stat: '9/10 con tự tin hơn rõ rệt', Icon: IconSun, highlight: true,
+    bgColor: '#FFF8E1', borderColor: '#F5B700', iconBg: '#FFECB3', textColor: '#C8102E',
   },
 ]
 
 /* ── Single card ── */
 function BenefitCard({ card, index, cardRef }) {
-  const { id, title, desc, stat, Icon, highlight } = card
+  const { id, title, desc, stat, Icon, highlight, bgColor, borderColor, iconBg, textColor } = card
   return (
     <div
       ref={cardRef}
-      className={`benefits-card relative rounded-2xl p-4 ${
-        highlight
-          ? 'benefits-card-highlight'
-          : 'hover:scale-[1.02] hover:shadow-[0_4px_16px_rgba(245,183,0,0.15)]'
+      className={`benefits-card relative rounded-2xl p-4 hover:scale-[1.02] transition-transform duration-200 ${
+        highlight ? 'benefits-card-highlight' : ''
       }`}
       style={{
         '--stagger-delay': `${index * 0.1}s`,
-        background: highlight ? '#FFF8E1' : '#FFFFFF',
-        border: highlight ? '2px solid #F5B700' : '1px solid #FDE68A',
+        background: bgColor,
+        border: `2px solid ${borderColor}`,
+        boxShadow: `0 4px 12px rgba(${parseInt(borderColor.slice(1, 3), 16)}, ${parseInt(borderColor.slice(3, 5), 16)}, ${parseInt(borderColor.slice(5, 7), 16)}, 0.12)`,
       }}
     >
       {/* Badge trên card 5 */}
       {highlight && (
         <span
           className="absolute -top-3 left-3 text-white font-bold px-2.5 py-0.5 rounded-full"
-          style={{ background: '#C8102E', fontSize: '10px' }}
+          style={{ background: textColor, fontSize: '10px' }}
         >
           ★ Thay đổi sâu nhất
         </span>
@@ -112,34 +116,33 @@ function BenefitCard({ card, index, cardRef }) {
       <div className="flex items-center gap-2.5 mb-2.5">
         <div
           className="w-10 h-10 flex items-center justify-center rounded-[10px] flex-shrink-0"
-          style={{ background: '#FFF8E1' }}
+          style={{ background: iconBg }}
         >
           <Icon />
         </div>
-        <span style={{ fontSize: '11px', color: '#B4B2A9', fontWeight: 500 }}>{id}</span>
+        <span style={{ fontSize: '11px', color: textColor, fontWeight: 600 }}>{id}</span>
       </div>
 
       {/* Title */}
       <p
-        className="font-semibold text-[#1F1B16] mb-1 leading-snug"
-        style={{ fontSize: highlight ? '15px' : '14px' }}
+        className="font-semibold mb-1 leading-snug"
+        style={{ fontSize: highlight ? '15px' : '14px', color: textColor }}
       >
         {title}
       </p>
 
       {/* Description */}
-      <p className="text-[#6B5D54] leading-relaxed mb-3" style={{ fontSize: '12px' }}>
+      <p className="leading-relaxed mb-3" style={{ fontSize: '12px', color: '#6B5D54' }}>
         {desc}
       </p>
 
       {/* Stat badge */}
       <span
-        className="inline-flex items-center px-2 py-0.5 rounded-full font-semibold"
+        className="inline-flex items-center px-2.5 py-1 rounded-full font-semibold"
         style={{
           fontSize: '10px',
-          background: highlight ? '#FFFFFF' : '#FFF8E1',
-          border: highlight ? '1px solid #FDE68A' : 'none',
-          color: highlight ? '#C8102E' : '#854F0B',
+          background: iconBg,
+          color: textColor,
         }}
       >
         {stat}
