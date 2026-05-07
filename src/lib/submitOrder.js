@@ -8,7 +8,7 @@ export async function submitOrder({ name, phone, address, quantity }) {
   const shipNote = quantity === 2 ? 'FREESHIP' : '+ 20K ship';
 
   const telegramMsg =
-    `🔔 *ĐƠN HÀNG MỚI - Book Hồng Hà*\n\n` +
+    `🔔 *ĐƠN HÀNG MỚI - OpenBook*\n\n` +
     `📋 Mã đơn: \`${orderId}\`\n` +
     `🕐 ${timestamp}\n\n` +
     `👤 *Khách:* ${name}\n` +

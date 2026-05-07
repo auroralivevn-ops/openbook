@@ -5,7 +5,7 @@ export default function BookInfo() {
 
         {/* HERO BLOCK */}
         <div className="text-center mb-5">
-          <div className="text-2xl font-medium text-[#C8102E] mb-1">Book Hồng Hà</div>
+          <div className="text-2xl font-medium text-[#C8102E] mb-1">OpenBook</div>
           <div className="text-sm text-[#6B5D54] italic mb-1.5">Nuôi dưỡng trí tuệ Việt từ tuổi thơ</div>
           <div className="text-xs text-[#B4B2A9]">12.247 phụ huynh đã tin chọn từ năm 2024</div>
         </div>
@@ -85,7 +85,7 @@ export default function BookInfo() {
 
         {/* COPYRIGHT */}
         <div className="text-center pt-3.5 border-t border-dashed border-[#FDE68A]">
-          <div className="text-[11px] text-[#B4B2A9]">© 2026 Book Hồng Hà · Hotline 0932 392 195</div>
+          <div className="text-[11px] text-[#B4B2A9]">© 2026 OpenBook · Hotline 0932 392 195</div>
         </div>
 
       </div>

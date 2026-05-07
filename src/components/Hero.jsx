@@ -144,7 +144,7 @@ export default function Hero() {
           <svg className="w-3.5 h-3.5 text-gray-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z" />
           </svg>
-          <span className="text-[11px] text-gray-400 truncate">Sách Học Ít Nhớ Nhiều - Book Hồng Hà</span>
+          <span className="text-[11px] text-gray-400 truncate">Sách Học Ít Nhớ Nhiều - OpenBook</span>
         </div>
 
         <button className="flex-shrink-0 w-8 h-8 flex items-center justify-center">
@@ -188,7 +188,7 @@ export default function Hero() {
               </svg>
             </div>
             <div className="min-w-0">
-              <p className="font-semibold text-gray-900 leading-none" style={{ fontSize: '12px' }}>Book Hồng Hà</p>
+              <p className="font-semibold text-gray-900 leading-none" style={{ fontSize: '12px' }}>OpenBook</p>
               <p className="text-gray-400 leading-none mt-0.5" style={{ fontSize: '10px' }}>
                 Bán được <span className="text-gray-600 font-medium">12.2K+</span> trong 30 ngày
               </p>
@@ -506,7 +506,7 @@ export default function Hero() {
             Mall
           </span>
           <h1 className="text-gray-900 leading-snug flex-1" style={{ fontSize: '13px', fontWeight: 500 }}>
-            Book Hồng Hà · Sách Học Ít Nhớ Nhiều – Kích hoạt trí não, đánh thức tiềm năng · NXB Tri Thức
+            OpenBook · Sách Học Ít Nhớ Nhiều – Kích hoạt trí não, đánh thức tiềm năng · NXB Tri Thức
           </h1>
           <button className="flex-shrink-0 mt-0.5">
             <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
