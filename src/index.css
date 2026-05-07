@@ -1,0 +1,183 @@
+/* Import font Be Vietnam Pro */
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800;900&display=swap');
+
+/* Tailwind directives */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Reset & base styles */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    font-family: 'Be Vietnam Pro', system-ui, sans-serif;
+    background-color: #FFF8EC;
+    color: #1F2937;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  /* Tối ưu cho mobile */
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+/* Custom utilities cho Book Hồng Hà */
+@layer utilities {
+  .text-shadow-soft {
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  }
+  
+  .text-shadow-strong {
+    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  }
+  
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* ═══════════════════════════════════════
+   FormCOD Premium Effects
+═══════════════════════════════════════ */
+
+/* Effect 3: Glow pulsing card */
+@keyframes glowPulse {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50%       { opacity: 0.7; transform: scale(1.03); }
+}
+
+.card-active-glow {
+  position: relative;
+}
+
+.card-active-glow::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  background: linear-gradient(135deg, #DC2626, #F77F00);
+  filter: blur(16px);
+  opacity: 0.5;
+  z-index: -1;
+  border-radius: 16px;
+  animation: glowPulse 2s ease-in-out infinite;
+}
+
+/* Effect 4: Magical underline inputs */
+.input-magic {
+  position: relative;
+  background: white;
+  border: 1px solid #E5E5E5;
+  border-radius: 10px;
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+}
+
+.input-magic::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0%;
+  height: 2px;
+  background: linear-gradient(90deg, #DC2626, #F77F00);
+  transition: all 0.4s ease;
+  transform: translateX(-50%);
+  border-radius: 2px;
+}
+
+.input-magic:focus-within::after {
+  width: 90%;
+}
+
+.input-magic:focus-within {
+  background: #FFFBF5;
+  border-color: #FCA5A5;
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.08);
+}
+
+.input-magic:focus-within .input-icon {
+  color: #DC2626;
+  transform: scale(1.1);
+}
+
+.input-icon {
+  transition: all 0.3s ease;
+}
+
+/* Effect 5: Floating particles */
+@keyframes float-particle-1 {
+  0%, 100% { transform: translate(0, 0);    opacity: 0.6; }
+  50%       { transform: translate(8px, -15px);  opacity: 1; }
+}
+
+@keyframes float-particle-2 {
+  0%, 100% { transform: translate(0, 0);     opacity: 0.5; }
+  50%       { transform: translate(-10px, -20px); opacity: 0.9; }
+}
+
+@keyframes float-particle-3 {
+  0%, 100% { transform: translate(0, 0);    opacity: 0.4; }
+  50%       { transform: translate(5px, -12px);  opacity: 0.8; }
+}
+
+@keyframes float-particle-4 {
+  0%, 100% { transform: translate(0, 0);     opacity: 0.5; }
+  50%       { transform: translate(-7px, -18px); opacity: 0.9; }
+}
+
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Popup animation */
+@keyframes popIn {
+  from { opacity: 0; transform: scale(0.8); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+/* ═══════════════════════════════════════
+   Benefits Section
+═══════════════════════════════════════ */
+.benefits-card {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.5s ease var(--stagger-delay, 0s),
+              transform 0.5s ease var(--stagger-delay, 0s),
+              box-shadow 0.2s ease;
+}
+
+.benefits-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes benefitsGlow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(245, 183, 0, 0); }
+  50%       { box-shadow: 0 0 20px 4px rgba(245, 183, 0, 0.25); }
+}
+
+.benefits-card-highlight {
+  animation: benefitsGlow 2s ease-in-out infinite;
+}
+
+@media (min-width: 640px) {
+  .benefits-row2 {
+    grid-template-columns: 1fr 1.4fr;
+  }
+}
