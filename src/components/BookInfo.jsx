@@ -7,7 +7,7 @@ export default function BookInfo() {
         <div className="text-center mb-5">
           <div className="text-2xl font-medium text-[#C8102E] mb-1">OpenBook</div>
           <div className="text-sm text-[#6B5D54] italic mb-1.5">Nuôi dưỡng trí tuệ Việt từ tuổi thơ</div>
-          <div className="text-xs text-[#B4B2A9]">12.247 phụ huynh đã tin chọn từ năm 2024</div>
+          <div className="text-xs text-[#B4B2A9]">158.254 phụ huynh đã tin chọn từ năm 2024</div>
         </div>
 
         {/* BANNER HOTLINE — full width, mobile flex-col, desktop flex-row */}
@@ -53,7 +53,7 @@ export default function BookInfo() {
             <div className="flex flex-wrap gap-1.5">
               <span className="bg-[#FFF8E1] text-[#854F0B] text-[11px] px-2.5 py-1 rounded-full font-medium">109 trang</span>
               <span className="bg-[#FFF8E1] text-[#854F0B] text-[11px] px-2.5 py-1 rounded-full font-medium">16 × 24 cm</span>
-              <span className="bg-[#FFF8E1] text-[#854F0B] text-[11px] px-2.5 py-1 rounded-full font-medium">NXB Tri Thức</span>
+              <span className="bg-[#FFF8E1] text-[#854F0B] text-[11px] px-2.5 py-1 rounded-full font-medium">NXB Văn Học</span>
               <span className="bg-[#FFF8E1] text-[#854F0B] text-[11px] px-2.5 py-1 rounded-full font-medium">4 - 13 tuổi</span>
             </div>
           </div>
@@ -67,7 +67,7 @@ export default function BookInfo() {
               <div className="text-[11px] text-[#C8102E] tracking-[0.12em] font-medium">Cam kết của chúng tôi</div>
             </div>
             {[
-              'Sách chính hãng NXB Tri Thức',
+              'Sách chính hãng NXB Văn Học',
               'Đổi trả miễn phí 7 ngày',
               'Hoàn tiền 100% nếu không hài lòng',
               'Tư vấn nhiệt tình từ A đến Z',

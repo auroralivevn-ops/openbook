@@ -1,4 +1,11 @@
 export default function DiscountCode() {
+  const copyCode = () => {
+    navigator.clipboard.writeText('BOOK20K').then(() => {
+      const btn = document.getElementById('copy-btn')
+      if (btn) { btn.textContent = '✓ Đã lưu'; setTimeout(() => { btn.textContent = 'Lưu' }, 1800) }
+    })
+  }
+
   return (
     <div className="bg-white px-3 pt-3 pb-4" style={{ borderBottom: '8px solid #f5f5f5' }}>
       <p
@@ -38,6 +45,8 @@ export default function DiscountCode() {
         </div>
 
         <button
+          id="copy-btn"
+          onClick={copyCode}
           className="flex-shrink-0 text-white font-semibold active:opacity-80 transition-opacity"
           style={{
             background: 'linear-gradient(135deg, #DB2777, #DC2626)',
@@ -46,6 +55,7 @@ export default function DiscountCode() {
             fontSize: '11px',
             boxShadow: '0 2px 6px rgba(219,39,119,0.3)',
             border: 'none',
+            cursor: 'pointer',
           }}
         >
           Lưu

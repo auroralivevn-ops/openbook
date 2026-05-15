@@ -176,7 +176,10 @@ export default function Benefits() {
   }, [])
 
   const scrollToForm = () => {
-    document.getElementById('form-cod')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    window.dispatchEvent(new CustomEvent('openbook:selectQty', { detail: 1 }))
+    setTimeout(() => {
+      document.getElementById('order-btn')?.scrollIntoView({ behavior: 'smooth', block: 'end' })
+    }, 50)
   }
 
   return (
@@ -243,7 +246,7 @@ export default function Benefits() {
             cursor: 'pointer',
           }}
         >
-          Xem giá ưu đãi 129K →
+          Xem giá ưu đãi 179K →
         </button>
       </div>
 

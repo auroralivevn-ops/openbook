@@ -42,7 +42,7 @@ const REVIEWS = [
   },
   {
     id: 6, name: 'Đặng Thanh Thủy', loc: 'Vinh', date: '15/03/2026', imgId: 20,
-    content: 'Con từ 6.5 lên 8.0 môn Toán chỉ trong 1 tháng. Mình cứ tưởng phải mua khóa học mấy triệu mới có hiệu quả như vậy. 129k đáng giá hơn nhiều khóa online.',
+    content: 'Con từ 6.5 lên 8.0 môn Toán chỉ trong 1 tháng. Mình cứ tưởng phải mua khóa học mấy triệu mới có hiệu quả như vậy. 179k đáng giá hơn nhiều khóa online.',
     tag: 'Tăng điểm rõ rệt',
   },
   {

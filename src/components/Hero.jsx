@@ -1,10 +1,10 @@
 import { useState, useEffect, useCallback, useRef } from 'react'
 import useEmblaCarousel from 'embla-carousel-react'
 import Autoplay from 'embla-carousel-autoplay'
-import sach1 from '../assets/sach-images/sach-1.png'
-import sach2 from '../assets/sach-images/sach-2.png'
-import sach3 from '../assets/sach-images/sach-3.png'
-import sach4 from '../assets/sach-images/sach-4.png'
+import sach1 from '../assets/sach-images/bia-hocit.png'
+import sach2 from '../assets/sach-images/bia-murphy.jpg'
+import sach3 from '../assets/sach-images/bia-dacnhantam.jpg'
+import sach4 from '../assets/sach-images/bia-kyluat.webp'
 import sach5 from '../assets/sach-images/sach-5.png'
 
 const YT = ['V1085v8Vmvc', 'KAg0BD2_5Dg']
@@ -88,6 +88,14 @@ export default function Hero() {
     return () => clearInterval(t)
   }, [])
 
+  // ── Selected quantity (để sticky bottom hiện đúng giá) ──
+  const [selectedQty, setSelectedQty] = useState(1)
+  useEffect(() => {
+    const handler = (e) => setSelectedQty(e.detail)
+    window.addEventListener('openbook:selectQty', handler)
+    return () => window.removeEventListener('openbook:selectQty', handler)
+  }, [])
+
   // ── Countdown (localStorage-persisted) ──
   const [countdown, setCountdown] = useState('23:59:59')
   useEffect(() => {
@@ -109,31 +117,37 @@ export default function Hero() {
     return () => clearInterval(id)
   }, [])
 
-  const scrollToForm = () => {
+  const scrollToForm = (qty = null) => {
     if (typeof window !== 'undefined' && window.fbq) {
       window.fbq('track', 'InitiateCheckout')
     }
     if (typeof window !== 'undefined' && window.gtag) {
       window.gtag('event', 'begin_checkout', {
         currency: 'VND',
-        value: 129000,
+        value: 179000,
         items: [{
           item_id: 'sach-hoc-it-nho-nhieu',
           item_name: 'Sách Học Ít Nhớ Nhiều',
-          quantity: 1,
-          price: 129000
+          quantity: qty || 1,
+          price: 179000
         }]
       })
     }
-    document.getElementById('form-cod')?.scrollIntoView({ behavior: 'smooth' })
+    if (qty !== null) {
+      window.dispatchEvent(new CustomEvent('openbook:selectQty', { detail: qty }))
+    }
+    setTimeout(() => {
+      document.getElementById('order-btn')?.scrollIntoView({ behavior: 'smooth', block: 'end' })
+    }, 50)
   }
 
   return (
     <>
       {/* ══════════════════════════════════════════════
-          1. HEADER — trắng, back arrow + search + icons
+          1. HEADER + BRAND ROW — sticky cả 2 cùng nhau
       ══════════════════════════════════════════════ */}
-      <header className="sticky top-0 z-50 h-11 bg-white flex items-center gap-2 px-3" style={{ borderBottom: '1px solid #f0f0f0' }}>
+      <div className="sticky top-0 z-50">
+      <header className="h-11 bg-white flex items-center gap-2 px-3" style={{ borderBottom: '1px solid #f0f0f0' }}>
         <button className="flex-shrink-0 w-8 h-8 flex items-center justify-center">
           <svg className="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -167,10 +181,7 @@ export default function Hero() {
         </button>
       </header>
 
-      {/* ══════════════════════════════════════════════
-          2. BRAND ROW + NOTIFICATION — 2 dòng
-             FIX: notification có dòng riêng, không bị cắt
-      ══════════════════════════════════════════════ */}
+      {/* BRAND ROW + NOTIFICATION */}
       <div className="bg-white" style={{ borderBottom: '1px solid #f3f3f3' }}>
         {/* Dòng trên: logo + tên + sold + badge tĩnh */}
         <div className="flex items-center justify-between px-3 pt-2 pb-1.5">
@@ -190,7 +201,7 @@ export default function Hero() {
             <div className="min-w-0">
               <p className="font-semibold text-gray-900 leading-none" style={{ fontSize: '12px' }}>OpenBook</p>
               <p className="text-gray-400 leading-none mt-0.5" style={{ fontSize: '10px' }}>
-                Bán được <span className="text-gray-600 font-medium">12.2K+</span> trong 30 ngày
+                Bán được <span className="text-gray-600 font-medium">158.254</span> trong 30 ngày
               </p>
             </div>
           </div>
@@ -220,6 +231,7 @@ export default function Hero() {
           </div>
         </div>
       </div>
+      </div>{/* end sticky wrapper */}
 
       {/* ══════════════════════════════════════════════
           3. CAROUSEL — gradient bình minh + glow vàng
@@ -335,7 +347,7 @@ export default function Hero() {
         style={{ background: '#FFF7E6', borderBottom: '1px solid #FDE68A' }}
       >
         {[
-          { icon: '🚚', label: 'Freeship 2 cuốn',  border: '#86EFAC' },
+          { icon: '🚚', label: 'Freeship toàn quốc', border: '#86EFAC' },
           { icon: '🔥', label: 'Giảm 37%',         border: '#FCA5A5' },
           { icon: '✅', label: 'COD toàn quốc',    border: '#86EFAC' },
           { icon: '🎁', label: 'Tặng bookmark',     border: '#FCD34D' },
@@ -410,16 +422,16 @@ export default function Hero() {
               >
                 -37%
               </span>
-              {/* Giá 129K gradient */}
+              {/* Giá 179K gradient */}
               <span
                 className="font-extrabold leading-none bg-gradient-to-r from-red-600 to-orange-500 bg-clip-text text-transparent"
                 style={{ fontSize: '24px' }}
               >
-                129.000đ
+                179.000đ
               </span>
               {/* Giá gốc sát bên phải 129K */}
               <span className="line-through leading-none" style={{ fontSize: '11px', color: '#888' }}>
-                205.000đ
+                250.000đ
               </span>
             </div>
 
@@ -437,18 +449,18 @@ export default function Hero() {
                     fontSize: '10px',
                   }}
                 >
-                  ✓ Tiết kiệm 76K
+                  ✓ Tiết kiệm 71K
                 </span>
                 {/* Trust info */}
                 <span style={{ fontSize: '10px', color: '#4A1B0C' }}>
-                  Chính hãng · Đổi trả miễn phí
+                  🚚 Freeship toàn quốc
                 </span>
               </div>
             </div>
 
             {/* Nút MUA NGAY */}
             <button
-              onClick={scrollToForm}
+              onClick={() => scrollToForm(1)}
               className="w-full flex items-center justify-center gap-2 font-bold text-white active:scale-[0.98] transition-transform mt-2.5"
               style={{
                 background: 'linear-gradient(90deg, #DC2626 0%, #F77F00 100%)',
@@ -459,7 +471,54 @@ export default function Hero() {
                 border: 'none',
               }}
             >
-              🛒 MUA NGAY · 129.000đ
+              🛒 MUA NGAY · 179.000đ
+            </button>
+            {/* Nút MUA 2 CUỐN */}
+            <button
+              onClick={() => scrollToForm(2)}
+              className="w-full flex items-center justify-center gap-2 font-bold text-white active:scale-[0.98] transition-transform mt-2"
+              style={{
+                background: 'linear-gradient(90deg, #DC2626 0%, #F77F00 100%)',
+                padding: '10px 0',
+                borderRadius: '8px',
+                fontSize: '14px',
+                boxShadow: '0 4px 12px rgba(220,38,38,0.3)',
+                border: 'none',
+              }}
+            >
+              📚📚 MUA 2 CUỐN · 250.000đ
+            </button>
+            {/* Nút COMBO 3 */}
+            <button
+              onClick={() => scrollToForm(3)}
+              className="w-full flex flex-col items-center justify-center active:scale-[0.98] transition-transform mt-2"
+              style={{
+                background: 'linear-gradient(90deg, #F77F00 0%, #EF4444 100%)',
+                padding: '9px 12px',
+                borderRadius: '8px',
+                boxShadow: '0 4px 12px rgba(247,127,0,0.3)',
+                border: 'none',
+                cursor: 'pointer',
+              }}
+            >
+              <span className="font-bold text-white" style={{ fontSize: '13px' }}>🔥 COMBO 3 CUỐN · 350.000đ</span>
+              <span className="text-white/80 mt-0.5" style={{ fontSize: '9px' }}>Học Ít Nhớ Nhiều · Định Luật Murphy · Đắc Nhân Tâm</span>
+            </button>
+            {/* Nút COMBO 4 */}
+            <button
+              onClick={() => scrollToForm(4)}
+              className="w-full flex flex-col items-center justify-center active:scale-[0.98] transition-transform mt-2"
+              style={{
+                background: 'linear-gradient(90deg, #7C3AED 0%, #DC2626 100%)',
+                padding: '9px 12px',
+                borderRadius: '8px',
+                boxShadow: '0 4px 12px rgba(124,58,237,0.3)',
+                border: 'none',
+                cursor: 'pointer',
+              }}
+            >
+              <span className="font-bold text-white" style={{ fontSize: '13px' }}>👑 COMBO 4 CUỐN · 450.000đ</span>
+              <span className="text-white/80 mt-0.5" style={{ fontSize: '9px' }}>+ Học Ít Nhớ Nhiều · Murphy · Đắc Nhân Tâm · Kỷ Luật Tự Giác</span>
             </button>
           </div>
         </div>
@@ -506,7 +565,7 @@ export default function Hero() {
             Mall
           </span>
           <h1 className="text-gray-900 leading-snug flex-1" style={{ fontSize: '13px', fontWeight: 500 }}>
-            OpenBook · Sách Học Ít Nhớ Nhiều – Kích hoạt trí não, đánh thức tiềm năng · NXB Tri Thức
+            OpenBook · Sách Học Ít Nhớ Nhiều – Kích hoạt trí não, đánh thức tiềm năng · NXB Văn Học
           </h1>
           <button className="flex-shrink-0 mt-0.5">
             <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -523,45 +582,101 @@ export default function Hero() {
           <span className="text-gray-300" style={{ fontSize: '11px' }}>|</span>
           <span className="text-gray-400" style={{ fontSize: '11px' }}>(4.092)</span>
           <span className="text-gray-300" style={{ fontSize: '11px' }}>|</span>
-          <span className="text-gray-500" style={{ fontSize: '11px' }}>Đã bán <span className="font-medium text-gray-700">12.247</span></span>
+          <span className="text-gray-500" style={{ fontSize: '11px' }}>Đã bán <span className="font-medium text-gray-700">158.254</span></span>
+        </div>
+
+        {/* Dải ảnh bìa 4 cuốn sách */}
+        <div className="mt-3 pt-3" style={{ borderTop: '1px dashed #FDE68A' }}>
+          <p className="font-semibold mb-2" style={{ fontSize: '10px', color: '#92400E' }}>📚 Bộ sách gồm 4 cuốn:</p>
+          <div className="flex gap-2">
+            {[
+              { src: sach1, name: 'Học Ít Nhớ Nhiều' },
+              { src: sach2, name: 'Định Luật Murphy' },
+              { src: sach3, name: 'Đắc Nhân Tâm Cho Trẻ' },
+              { src: sach4, name: 'Kỷ Luật Tự Giác' },
+            ].map((book, i) => (
+              <div key={i} className="flex-1 flex flex-col items-center gap-1">
+                <img
+                  src={book.src}
+                  alt={book.name}
+                  className="w-full rounded-md shadow-md object-cover"
+                  style={{ aspectRatio: '3/4' }}
+                  loading="lazy"
+                />
+                <p className="text-center leading-tight" style={{ fontSize: '9px', color: '#6B7280' }}>{book.name}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
 
       {/* ══════════════════════════════════════════════
-          8. SHIPPING INFO — nền xanh lá kem premium
+          8. THÔNG TIN NHANH 4 CUỐN SÁCH
       ══════════════════════════════════════════════ */}
-      <div className="px-4 py-3" style={{ background: '#FFFBF5', borderBottom: '1px solid #f0f0f0' }}>
-        <div
-          className="rounded-lg p-3 space-y-1.5"
-          style={{ background: '#F0FDF4', border: '1px solid #BBF7D0' }}
-        >
-          <div className="flex items-start gap-2">
-            {/* Icon xe tải — vòng tròn nền vàng nhạt */}
+      <div className="px-3 py-3" style={{ background: '#FFFBF5', borderBottom: '1px solid #f0f0f0' }}>
+        <p className="font-bold mb-2.5" style={{ fontSize: '11px', color: '#92400E' }}>📖 Thông tin nhanh</p>
+        <div className="flex flex-col gap-2">
+          {[
+            {
+              src: sach1,
+              name: 'Học Ít Nhớ Nhiều',
+              author: 'Hoàng Văn Đặt · NXB Văn Học',
+              tag: 'Ghi nhớ',
+              tagColor: '#DC2626',
+              desc: 'Kỹ thuật ghi nhớ siêu tốc — học ít mà nhớ lâu, áp dụng ngay từ lớp 1.',
+            },
+            {
+              src: sach2,
+              name: 'Định Luật Murphy',
+              author: 'Truyện tranh · 28 bài học',
+              tag: 'Tư duy',
+              tagColor: '#2563EB',
+              desc: 'Giúp trẻ hiểu bản thân, quản lý cảm xúc và giao tiếp tự tin qua truyện tranh.',
+            },
+            {
+              src: sach3,
+              name: 'Đắc Nhân Tâm Cho Trẻ',
+              author: 'Dale Carnegie · Bản trẻ em',
+              tag: 'Giao tiếp',
+              tagColor: '#D97706',
+              desc: 'Dạy bé cách lắng nghe, kết bạn chân thành và ứng xử khéo léo mọi tình huống.',
+            },
+            {
+              src: sach4,
+              name: 'Kỷ Luật Tự Giác',
+              author: 'Kỹ năng sống · Thói quen tốt',
+              tag: 'Thói quen',
+              tagColor: '#16A34A',
+              desc: 'Giúp trẻ làm chủ thời gian, vượt lười biếng và xây dựng thói quen tốt từ sớm.',
+            },
+          ].map((book, i) => (
             <div
-              className="flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center"
-              style={{ background: '#FFF7E6' }}
+              key={i}
+              className="flex gap-2.5 p-2.5 rounded-xl"
+              style={{ background: '#fff', border: '1px solid #F3F4F6', boxShadow: '0 1px 4px rgba(0,0,0,0.05)' }}
             >
-              <span style={{ fontSize: '13px' }}>🚚</span>
+              <img
+                src={book.src}
+                alt={book.name}
+                className="flex-shrink-0 rounded-lg object-cover shadow-sm"
+                style={{ width: '44px', height: '60px' }}
+                loading="lazy"
+              />
+              <div className="flex-1 min-w-0">
+                <div className="flex items-center gap-1.5 mb-0.5">
+                  <span
+                    className="text-white font-bold rounded-sm px-1.5 py-0.5 flex-shrink-0"
+                    style={{ fontSize: '8px', background: book.tagColor }}
+                  >
+                    {book.tag}
+                  </span>
+                  <p className="font-bold text-gray-900 truncate" style={{ fontSize: '11px' }}>{book.name}</p>
+                </div>
+                <p className="text-gray-400 mb-1" style={{ fontSize: '9px' }}>{book.author}</p>
+                <p className="text-gray-600 leading-snug" style={{ fontSize: '10px' }}>{book.desc}</p>
+              </div>
             </div>
-            <div className="flex-1 min-w-0">
-              <p className="text-gray-700 font-medium leading-snug" style={{ fontSize: '11px' }}>
-                Miễn phí vận chuyển · Khi mua 2 cuốn trở lên
-              </p>
-              <p className="text-gray-400 leading-snug mt-0.5" style={{ fontSize: '10px' }}>
-                Đảm bảo giao hàng trong 2–4 ngày
-              </p>
-            </div>
-            <svg className="w-4 h-4 text-gray-300 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-            </svg>
-          </div>
-          <div className="flex items-center gap-1.5 pl-8">
-            <span className="text-green-600" style={{ fontSize: '10px' }}>Nhận voucher bồi hoàn nếu giao trễ</span>
-            <svg className="w-3 h-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-          </div>
-          <p className="text-gray-400 pl-8" style={{ fontSize: '10px' }}>Phí vận chuyển: 0đ (2 cuốn) · 25.000đ (1 cuốn)</p>
+          ))}
         </div>
       </div>
 
@@ -602,12 +717,14 @@ export default function Hero() {
           </button>
 
           <button
-            onClick={scrollToForm}
+            onClick={() => scrollToForm(null)}
             className="flex-1 flex flex-col items-center justify-center py-2 px-3 active:opacity-90 transition-opacity"
             style={{ background: 'linear-gradient(135deg, #DC2626 0%, #EF4444 100%)', borderLeft: '1px solid #f3f3f3' }}
           >
             <span className="text-white font-semibold leading-snug" style={{ fontSize: '13px' }}>Mua ngay</span>
-            <span className="text-white/80 leading-snug" style={{ fontSize: '10px' }}>-37% · 129.000đ</span>
+            <span className="text-white/80 leading-snug" style={{ fontSize: '10px' }}>
+              Freeship · {({ 1: '179.000đ', 2: '250.000đ', 3: '350.000đ', 4: '450.000đ' })[selectedQty] || '179.000đ'}
+            </span>
           </button>
         </div>
       </div>

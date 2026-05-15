@@ -4,8 +4,16 @@ export async function submitOrder({ name, phone, address, quantity }) {
     day: '2-digit', month: '2-digit', year: 'numeric',
     hour: '2-digit', minute: '2-digit'
   });
-  const total = quantity === 2 ? 258000 : 149000;
-  const shipNote = quantity === 2 ? 'FREESHIP' : '+ 20K ship';
+  const PRICE_MAP = { 1: 179000, 2: 250000, 3: 350000, 4: 450000 };
+  const total = PRICE_MAP[quantity] || 179000;
+  const shipNote = 'FREESHIP';
+  const COMBO_NAMES = {
+    1: '1 cuốn Học Ít Nhớ Nhiều',
+    2: '2 cuốn Học Ít Nhớ Nhiều',
+    3: 'Combo 3: HNNN + Định Luật Murphy + Đắc Nhân Tâm Cho Trẻ',
+    4: 'Combo 4: HNNN + Murphy + Đắc Nhân Tâm Cho Trẻ + Kỷ Luật Tự Giác',
+  };
+  const comboLabel = COMBO_NAMES[quantity] || `${quantity} cuốn`;
 
   const telegramMsg =
     `🔔 *ĐƠN HÀNG MỚI - OpenBook*\n\n` +
@@ -14,7 +22,7 @@ export async function submitOrder({ name, phone, address, quantity }) {
     `👤 *Khách:* ${name}\n` +
     `📞 *SĐT:* ${phone}\n` +
     `📍 *Địa chỉ:* ${address}\n\n` +
-    `📦 Số lượng: *${quantity} cuốn*\n` +
+    `📦 *${comboLabel}*\n` +
     `💰 Tổng: *${total.toLocaleString('vi-VN')}đ* (${shipNote})`;
 
   const payload = { orderId, name, phone, address, quantity, total, note: shipNote, timestamp };
@@ -65,7 +73,7 @@ export async function submitOrder({ name, phone, address, quantity }) {
           item_name: 'Sách Học Ít Nhớ Nhiều',
           item_category: 'Sách giáo dục',
           quantity: quantity,
-          price: 129000
+          price: 179000
         }]
       });
       window.gtag('event', 'generate_lead', {
