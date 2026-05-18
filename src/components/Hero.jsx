@@ -352,8 +352,21 @@ export default function Hero() {
               }}
             >
               {slide.type === 'video' ? (
-                <div className="w-full h-full bg-amber-50 flex items-center justify-center">
-                  <span className="text-amber-400 text-sm">▶</span>
+                <div className="relative w-full h-full bg-amber-50">
+                  <img
+                    src={`https://img.youtube.com/vi/${slide.ytId}/hqdefault.jpg`}
+                    alt=""
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                    onError={(e) => {
+                      e.currentTarget.src = `https://img.youtube.com/vi/${slide.ytId}/mqdefault.jpg`
+                    }}
+                  />
+                  <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                    <span className="bg-red-600 text-white rounded-full flex items-center justify-center shadow-md" style={{ width: '18px', height: '18px', fontSize: '8px', paddingLeft: '2px' }}>
+                      ▶
+                    </span>
+                  </div>
                 </div>
               ) : (
                 <img src={slide.src} alt="" className="w-full h-full object-cover" loading="lazy" />
