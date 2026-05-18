@@ -1,5 +1,8 @@
 export async function submitOrder({ name, phone, address, quantity }) {
-  const orderId = `HHA-${Date.now()}`;
+  // Đếm số thứ tự đơn hàng trên browser này: EXB-1, EXB-2, EXB-3, ...
+  const nextNum = (parseInt(localStorage.getItem('exb_order_counter') || '0', 10) || 0) + 1;
+  localStorage.setItem('exb_order_counter', String(nextNum));
+  const orderId = `EXB-${nextNum}`;
   const timestamp = new Date().toLocaleString('vi-VN', {
     day: '2-digit', month: '2-digit', year: 'numeric',
     hour: '2-digit', minute: '2-digit'
@@ -32,21 +35,33 @@ export async function submitOrder({ name, phone, address, quantity }) {
   const SHEET_URL = import.meta.env.VITE_APPS_SCRIPT_URL;
 
   try {
-    const results = await Promise.allSettled([
-      fetch(`https://api.telegram.org/bot${TG_TOKEN}/sendMessage`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ chat_id: TG_CHAT, text: telegramMsg, parse_mode: 'Markdown' })
-      }),
-      fetch(SHEET_URL, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-        body: JSON.stringify(payload)
-      })
-    ]);
-    const telegramOk = results[0].status === 'fulfilled';
-    if (!telegramOk) throw new Error('Telegram failed');
+    const tasks = [];
+    if (TG_TOKEN && TG_CHAT) {
+      tasks.push(
+        fetch(`https://api.telegram.org/bot${TG_TOKEN}/sendMessage`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ chat_id: TG_CHAT, text: telegramMsg, parse_mode: 'Markdown' })
+        })
+      );
+    }
+    if (SHEET_URL) {
+      tasks.push(
+        fetch(SHEET_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify(payload)
+        })
+      );
+    }
+    if (tasks.length === 0) {
+      console.warn('[submitOrder] Không có VITE_APPS_SCRIPT_URL hoặc VITE_TELEGRAM_BOT_TOKEN — chỉ chạy ở chế độ dev, đơn hàng không được lưu.');
+    } else {
+      const results = await Promise.allSettled(tasks);
+      const anyFulfilled = results.some((r) => r.status === 'fulfilled');
+      if (!anyFulfilled) throw new Error('Tất cả kênh gửi đơn đều thất bại');
+    }
     if (typeof window !== 'undefined' && window.fbq) {
       window.fbq('track', 'Lead', {
         content_name: 'Sách Học Ít Nhớ Nhiều',

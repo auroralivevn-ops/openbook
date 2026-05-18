@@ -94,14 +94,6 @@ export default function Hero() {
     return () => clearInterval(t)
   }, [])
 
-  // ── Selected quantity (để sticky bottom hiện đúng giá) ──
-  const [selectedQty, setSelectedQty] = useState(1)
-  useEffect(() => {
-    const handler = (e) => setSelectedQty(e.detail)
-    window.addEventListener('openbook:selectQty', handler)
-    return () => window.removeEventListener('openbook:selectQty', handler)
-  }, [])
-
   // ── Countdown (localStorage-persisted) ──
   // Số phụ huynh còn lại — đếm ngược từ 99 với nhịp ngẫu nhiên (1s, 3s, hoặc 10s)
   // để tạo cảm giác đang có người mua liên tục
@@ -819,13 +811,13 @@ export default function Hero() {
           </button>
 
           <button
-            onClick={() => scrollToForm(null)}
+            onClick={() => scrollToForm(1)}
             className="flex-1 flex flex-col items-center justify-center py-2 px-3 active:opacity-90 transition-opacity"
             style={{ background: 'linear-gradient(135deg, #DC2626 0%, #EF4444 100%)', borderLeft: '1px solid #f3f3f3' }}
           >
             <span className="text-white font-semibold leading-snug" style={{ fontSize: '13px' }}>Mua ngay</span>
             <span className="text-white/80 leading-snug" style={{ fontSize: '10px' }}>
-              Freeship · {({ 1: '179.000đ', 2: '250.000đ', 3: '350.000đ', 4: '450.000đ' })[selectedQty] || '179.000đ'}
+              Freeship · 179.000đ
             </span>
           </button>
         </div>

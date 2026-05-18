@@ -284,7 +284,7 @@ export default function FormCOD() {
               onClick={() => setQuantity(2)}
               className={`relative flex items-center justify-between p-3 transition-all duration-150${quantity === 2 ? ' card-active-glow' : ''}`}
               style={{
-                border: '2px solid #DC2626',
+                border: quantity === 2 ? '2px solid #DC2626' : '2px solid #E5E5E5',
                 borderRadius: '12px',
                 background: quantity === 2 ? 'linear-gradient(135deg, #FFFBEA 0%, #FEF2F2 100%)' : 'white',
                 boxShadow: quantity === 2 ? '0 4px 12px rgba(220,38,38,0.2)' : 'none',
@@ -681,7 +681,7 @@ export default function FormCOD() {
               style={{ background: '#F0FDF4', border: '1px solid #BBF7D0' }}
             >
               <p style={{ fontSize: '12px', color: '#166534' }}>
-                🚚 Shop sẽ liên hệ anh/chị trong <strong>30 phút</strong> để xác nhận đơn và giao hàng trong 2–4 ngày.
+                🚚 Nhà Sách sẽ liên hệ anh/chị trong <strong>30 phút</strong> để xác nhận đơn và giao hàng trong 2–4 ngày.
               </p>
             </div>
             <div className="flex gap-2">
@@ -697,7 +697,7 @@ export default function FormCOD() {
                 className="flex-1 flex items-center justify-center font-bold py-2.5 rounded-xl text-white"
                 style={{ background: 'linear-gradient(90deg, #DC2626 0%, #F77F00 100%)', fontSize: '13px' }}
               >
-                Gọi shop ngay
+                Gọi Nhà Sách ngay
               </a>
             </div>
           </div>
