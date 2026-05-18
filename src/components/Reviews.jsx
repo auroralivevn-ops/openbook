@@ -83,9 +83,6 @@ export default function Reviews() {
           >
             12.247 phụ huynh đã tin chọn
           </h2>
-          <p className="text-[14px] text-[#6B5D54]">
-            Đánh giá thật từ khách đã mua, không qua kiểm duyệt
-          </p>
         </RevealItem>
 
         {/* Rating summary */}
@@ -99,7 +96,7 @@ export default function Reviews() {
             </span>
             <div>
               <Stars size={18} />
-              <p className="text-xs text-[#6B5D54] mt-1.5">4.092 đánh giá · 12.247 lượt mua</p>
+              <p className="text-xs text-[#6B5D54] mt-1.5">11.534 đánh giá · 12.247 lượt mua</p>
             </div>
           </div>
         </RevealItem>

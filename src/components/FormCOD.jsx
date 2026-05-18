@@ -3,14 +3,8 @@ import biaSach from '../assets/sach-images/bia-hocit.png'
 import biaSach2 from '../assets/sach-images/bia-murphy.jpg'
 import biaSach3 from '../assets/sach-images/bia-dacnhantam.jpg'
 import biaSach4 from '../assets/sach-images/bia-kyluat.webp'
+import biaMeoUngXu from '../assets/sach-images/BÌA MẸO ỨNG XỬ LỊCH SỰ.webp'
 import { submitOrder, validatePhone, validateName, validateAddress } from '../lib/submitOrder'
-
-const BOOK_COVERS = [
-  { src: biaSach,  alt: 'Học Ít Nhớ Nhiều' },
-  { src: biaSach2, alt: 'Định Luật Murphy' },
-  { src: biaSach3, alt: 'Đắc Nhân Tâm Cho Trẻ' },
-  { src: biaSach4, alt: 'Kỷ Luật Tự Giác' },
-]
 
 const StarIcon = () => (
   <svg className="w-3.5 h-3.5" viewBox="0 0 20 20" fill="#F59E0B">
@@ -28,16 +22,24 @@ const StepBadge = ({ n }) => (
 )
 
 const COMBO_BOOKS = {
+  1: [
+    { title: 'Học Ít Nhớ Nhiều', desc: 'Kỹ thuật ghi nhớ siêu tốc giúp con học nhanh, nhớ lâu hơn.', img: biaSach },
+  ],
+  2: [
+    { title: 'Học Ít Nhớ Nhiều', desc: 'Kỹ thuật ghi nhớ siêu tốc giúp con học nhanh, nhớ lâu hơn.', img: biaSach },
+    { title: 'Mẹo Ứng Xử Lịch Sự', desc: 'Cẩm nang vàng cho trẻ tự tin giao tiếp — 50+ tình huống thực tế giúp con biết chào hỏi, cảm ơn, xin lỗi đúng lúc và ứng xử khéo léo ở trường, ở nhà, nơi công cộng.', img: biaMeoUngXu },
+  ],
   3: [
     { title: 'Học Ít Nhớ Nhiều', desc: 'Kỹ thuật ghi nhớ siêu tốc giúp con học nhanh, nhớ lâu hơn.', img: biaSach },
     { title: 'Định Luật Murphy', desc: '28 bài học truyện tranh giúp trẻ hiểu bản thân, quản lý cảm xúc và giao tiếp tự tin. Rèn tư duy thông minh và nhân cách vững vàng cho trẻ 6–15 tuổi.', img: biaSach2 },
-    { title: 'Đắc Nhân Tâm Cho Trẻ', desc: 'Phiên bản đặc biệt từ kiệt tác của Dale Carnegie — dạy bé cách lắng nghe, kết bạn chân thành và ứng xử khéo léo trong mọi tình huống từ trường học đến gia đình.', img: biaSach3 },
+    { title: 'Mẹo Ứng Xử Lịch Sự', desc: 'Cẩm nang vàng cho trẻ tự tin giao tiếp — 50+ tình huống thực tế giúp con biết chào hỏi, cảm ơn, xin lỗi đúng lúc và ứng xử khéo léo ở trường, ở nhà, nơi công cộng.', img: biaMeoUngXu },
   ],
   4: [
     { title: 'Học Ít Nhớ Nhiều', desc: 'Kỹ thuật ghi nhớ siêu tốc giúp con học nhanh, nhớ lâu hơn.', img: biaSach },
     { title: 'Định Luật Murphy', desc: '28 bài học truyện tranh giúp trẻ hiểu bản thân, quản lý cảm xúc và giao tiếp tự tin. Rèn tư duy thông minh và nhân cách vững vàng cho trẻ 6–15 tuổi.', img: biaSach2 },
     { title: 'Đắc Nhân Tâm Cho Trẻ', desc: 'Phiên bản đặc biệt từ kiệt tác của Dale Carnegie — dạy bé cách lắng nghe, kết bạn chân thành và ứng xử khéo léo trong mọi tình huống từ trường học đến gia đình.', img: biaSach3 },
-    { title: 'Kỷ Luật Tự Giác', desc: 'Giúp trẻ làm chủ thời gian, vượt qua sự lười biếng và xây dựng thói quen tốt qua những câu chuyện thực tế. Hành trình từ kỷ luật bị ép buộc đến tự nguyện!', img: biaSach4 },
+    { title: 'Mẹo Ứng Xử Lịch Sự', desc: 'Cẩm nang vàng cho trẻ tự tin giao tiếp — 50+ tình huống thực tế giúp con biết chào hỏi, cảm ơn, xin lỗi đúng lúc và ứng xử khéo léo ở trường, ở nhà, nơi công cộng.', img: biaMeoUngXu },
+    { title: 'Kỷ Luật Tự Giác', desc: 'Giúp trẻ làm chủ thời gian, vượt qua sự lười biếng và xây dựng thói quen tốt qua những câu chuyện thực tế. Hành trình từ kỷ luật bị ép buộc đến tự nguyện!', img: biaSach4, sectionTitle: '🎁 QUÀ TẶNG ĐẶC BIỆT' },
   ],
 }
 
@@ -178,37 +180,37 @@ export default function FormCOD() {
         {/* Card sản phẩm tóm tắt — hiển thị ảnh bìa theo combo */}
         <div className="mx-4 mt-4 mb-4 backdrop-blur-md bg-white/60 border border-white/50 rounded-2xl shadow-[0_8px_32px_rgba(220,38,38,0.08)] p-3">
           <div className="flex gap-3 items-center">
-            {/* Ảnh bìa sách — hiện đủ số cuốn theo combo */}
+            {/* Ảnh bìa sách — hiện đủ bìa thật theo combo */}
             <div className="flex items-end flex-shrink-0">
-              {(quantity === 2
-                ? [BOOK_COVERS[0], BOOK_COVERS[0]]
-                : BOOK_COVERS.slice(0, quantity === 1 ? 1 : quantity)
-              ).map((book, i) => (
-                <img
-                  key={i}
-                  src={book.src}
-                  alt={book.alt}
-                  className="rounded-md object-cover"
-                  style={{
-                    width: quantity === 1 ? '60px' : quantity === 2 ? '52px' : quantity === 3 ? '44px' : '38px',
-                    height: quantity === 1 ? '80px' : quantity === 2 ? '70px' : quantity === 3 ? '60px' : '52px',
-                    marginLeft: i > 0 ? '-12px' : '0',
-                    zIndex: i,
-                    position: 'relative',
-                    boxShadow: '2px 2px 6px rgba(0,0,0,0.2)',
-                    borderRadius: '6px',
-                  }}
-                />
-              ))}
+              {(COMBO_BOOKS[quantity] || [{ img: biaSach, title: 'Học Ít Nhớ Nhiều' }]).map((book, i, arr) => {
+                const count = arr.length
+                return (
+                  <img
+                    key={i}
+                    src={book.img}
+                    alt={book.title}
+                    className="object-cover"
+                    style={{
+                      width: count === 1 ? '60px' : count === 2 ? '48px' : count === 3 ? '42px' : count === 4 ? '38px' : '34px',
+                      height: count === 1 ? '80px' : count === 2 ? '66px' : count === 3 ? '58px' : count === 4 ? '52px' : '46px',
+                      marginLeft: i > 0 ? '-12px' : '0',
+                      zIndex: i,
+                      position: 'relative',
+                      boxShadow: '2px 2px 6px rgba(0,0,0,0.2)',
+                      borderRadius: '6px',
+                    }}
+                  />
+                )
+              })}
             </div>
 
             {/* Thông tin sản phẩm */}
             <div className="flex-1 min-w-0">
               <div className="text-sm font-bold text-gray-900">
-                {quantity <= 2 ? 'Học Ít Nhớ Nhiều' : quantity === 3 ? 'Combo 3 cuốn sách' : 'Combo 4 cuốn sách'}
+                {quantity === 1 ? 'Học Ít Nhớ Nhiều' : `Combo ${quantity} cuốn sách`}
               </div>
               <div className="text-[10px] text-gray-500 mt-0.5">
-                {quantity <= 2 ? 'Hoàng Văn Đặt · NXB Văn Học' : 'Bộ sách Gieo Mầm Nhân Cách'}
+                {quantity === 1 ? 'Hoàng Văn Đặt · NXB Văn Học' : 'Bộ sách Gieo Mầm Nhân Cách'}
               </div>
               <div className="flex items-center gap-2 mt-1">
                 <span className="text-base font-extrabold bg-gradient-to-r from-red-600 to-orange-500 bg-clip-text text-transparent">
@@ -248,48 +250,71 @@ export default function FormCOD() {
             <span className="font-bold text-gray-900 text-sm">Chọn số lượng</span>
           </div>
 
-          <div className="grid grid-cols-2 gap-3">
-            {/* 1 cuốn */}
+          <div className="flex flex-col gap-3">
+            {/* 1 cuốn — full width */}
             <button
               onClick={() => setQuantity(1)}
-              className={`text-center p-3 transition-all duration-150${quantity === 1 ? ' card-active-glow' : ''}`}
+              className={`relative flex items-center justify-between p-3 transition-all duration-150${quantity === 1 ? ' card-active-glow' : ''}`}
               style={{
                 border: quantity === 1 ? '2px solid #DC2626' : '2px solid #E5E5E5',
                 borderRadius: '12px',
                 background: quantity === 1 ? 'linear-gradient(135deg, #FFFBEA 0%, #FEF2F2 100%)' : 'white',
                 boxShadow: quantity === 1 ? '0 4px 12px rgba(220,38,38,0.2)' : 'none',
                 cursor: 'pointer',
+                textAlign: 'left',
               }}
             >
-              <p style={{ fontSize: '11px', color: '#6B7280' }}>📚 1 CUỐN</p>
-              <p className="font-extrabold leading-none mt-1" style={{ fontSize: '20px', color: '#DC2626' }}>179.000đ</p>
-              <p className="mt-1 font-semibold" style={{ fontSize: '10px', color: '#16A34A' }}>✓ FREESHIP</p>
+              <div className="flex-1 min-w-0">
+                <p className="font-bold" style={{ fontSize: '11px', color: '#DC2626' }}>📚 1 CUỐN</p>
+                <p className="mt-1" style={{ fontSize: '12px', color: '#374151', lineHeight: 1.5, fontWeight: 500 }}>
+                  · Học Ít Nhớ Nhiều
+                </p>
+              </div>
+              <div className="text-right flex-shrink-0 ml-3">
+                <p className="font-extrabold leading-none" style={{ fontSize: '20px', color: '#DC2626' }}>179.000đ</p>
+                <p className="italic mt-0.5 font-medium" style={{ fontSize: '12px', color: '#374151' }}>
+                  (Giá Gốc <span className="line-through">250.000đ</span>)
+                </p>
+                <p className="mt-1 font-semibold" style={{ fontSize: '10px', color: '#16A34A' }}>✓ FREESHIP · Tiết kiệm 108.000đ</p>
+              </div>
             </button>
 
-            {/* Combo 2 */}
+            {/* Combo 2 — full width */}
             <button
               onClick={() => setQuantity(2)}
-              className={`relative text-center p-3 transition-all duration-150${quantity === 2 ? ' card-active-glow' : ''}`}
+              className={`relative flex items-center justify-between p-3 transition-all duration-150${quantity === 2 ? ' card-active-glow' : ''}`}
               style={{
                 border: '2px solid #DC2626',
                 borderRadius: '12px',
                 background: quantity === 2 ? 'linear-gradient(135deg, #FFFBEA 0%, #FEF2F2 100%)' : 'white',
                 boxShadow: quantity === 2 ? '0 4px 12px rgba(220,38,38,0.2)' : 'none',
                 cursor: 'pointer',
+                textAlign: 'left',
               }}
             >
-              <span className="absolute -top-2 right-2 text-white font-bold" style={{ background: 'linear-gradient(90deg, #DC2626, #F77F00)', padding: '2px 6px', borderRadius: '4px', fontSize: '8px' }}>
+              <span className="absolute -top-2 left-3 text-white font-bold" style={{ background: 'linear-gradient(90deg, #DC2626, #F77F00)', padding: '2px 8px', borderRadius: '4px', fontSize: '8px' }}>
                 ⭐ TIẾT KIỆM
               </span>
-              <p className="font-bold" style={{ fontSize: '11px', color: '#DC2626' }}>📚📚 COMBO 2</p>
-              <p className="font-extrabold leading-none mt-1 bg-gradient-to-r from-red-600 to-orange-500 bg-clip-text text-transparent" style={{ fontSize: '20px' }}>250.000đ</p>
-              <p className="mt-1 font-semibold" style={{ fontSize: '10px', color: '#16A34A' }}>✓ FREESHIP · Tiết kiệm 108K</p>
+              <div className="flex-1 min-w-0">
+                <p className="font-bold" style={{ fontSize: '11px', color: '#DC2626' }}>📚📚 COMBO 2</p>
+                <p className="mt-1" style={{ fontSize: '12px', color: '#374151', lineHeight: 1.5, fontWeight: 500 }}>
+                  · Học Ít Nhớ Nhiều<br />
+                  · Mẹo Ứng Xử Lịch Sự
+                </p>
+              </div>
+              <div className="text-right flex-shrink-0 ml-3">
+                <p className="font-extrabold leading-none bg-gradient-to-r from-red-600 to-orange-500 bg-clip-text text-transparent" style={{ fontSize: '20px' }}>250.000đ</p>
+                <p className="italic mt-0.5 font-medium" style={{ fontSize: '12px', color: '#374151' }}>
+                  (Giá Gốc <span className="line-through">408.000đ</span>)
+                </p>
+                <p className="mt-1 font-semibold" style={{ fontSize: '10px', color: '#16A34A' }}>✓ FREESHIP · Tiết kiệm 158.000đ</p>
+              </div>
             </button>
 
             {/* Combo 3 — full width */}
             <button
               onClick={() => setQuantity(3)}
-              className={`relative col-span-2 flex items-center justify-between p-3 transition-all duration-150${quantity === 3 ? ' card-active-glow' : ''}`}
+              className={`relative flex items-center justify-between p-3 transition-all duration-150${quantity === 3 ? ' card-active-glow' : ''}`}
               style={{
                 border: quantity === 3 ? '2px solid #DC2626' : '2px solid #E5E5E5',
                 borderRadius: '12px',
@@ -304,22 +329,25 @@ export default function FormCOD() {
               </span>
               <div className="flex-1 min-w-0">
                 <p className="font-bold" style={{ fontSize: '11px', color: '#DC2626' }}>📚📚📚 COMBO 3</p>
-                <p className="mt-0.5" style={{ fontSize: '9px', color: '#6B7280', lineHeight: 1.5 }}>
+                <p className="mt-1" style={{ fontSize: '12px', color: '#374151', lineHeight: 1.5, fontWeight: 500 }}>
                   · Học Ít Nhớ Nhiều<br />
                   · Định Luật Murphy<br />
-                  · Đắc Nhân Tâm Cho Trẻ
+                  · Mẹo Ứng Xử Lịch Sự
                 </p>
               </div>
               <div className="text-right flex-shrink-0 ml-3">
                 <p className="font-extrabold bg-gradient-to-r from-red-600 to-orange-500 bg-clip-text text-transparent" style={{ fontSize: '20px', lineHeight: 1 }}>350.000đ</p>
-                <p className="mt-1 font-semibold" style={{ fontSize: '10px', color: '#16A34A' }}>✓ FREESHIP</p>
+                <p className="italic mt-0.5 font-medium" style={{ fontSize: '12px', color: '#374151' }}>
+                  (Giá Gốc <span className="line-through">558.000đ</span>)
+                </p>
+                <p className="mt-1 font-semibold" style={{ fontSize: '10px', color: '#16A34A' }}>✓ FREESHIP · Tiết kiệm 208.000đ</p>
               </div>
             </button>
 
             {/* Combo 4 — full width */}
             <button
               onClick={() => setQuantity(4)}
-              className={`relative col-span-2 flex items-center justify-between p-3 transition-all duration-150${quantity === 4 ? ' card-active-glow' : ''}`}
+              className={`relative flex items-center justify-between p-3 transition-all duration-150${quantity === 4 ? ' card-active-glow' : ''}`}
               style={{
                 border: quantity === 4 ? '2px solid #DC2626' : '2px solid #E5E5E5',
                 borderRadius: '12px',
@@ -334,37 +362,83 @@ export default function FormCOD() {
               </span>
               <div className="flex-1 min-w-0">
                 <p className="font-bold" style={{ fontSize: '11px', color: '#DC2626' }}>📚📚📚📚 COMBO 4</p>
-                <p className="mt-0.5" style={{ fontSize: '9px', color: '#6B7280', lineHeight: 1.5 }}>
+                <p className="mt-1" style={{ fontSize: '12px', color: '#374151', lineHeight: 1.5, fontWeight: 500 }}>
                   · Học Ít Nhớ Nhiều<br />
                   · Định Luật Murphy<br />
                   · Đắc Nhân Tâm Cho Trẻ<br />
-                  · Kỷ Luật Tự Giác
+                  · Mẹo Ứng Xử Lịch Sự<br />
+                  · Kỷ Luật Tự Giác{' '}
+                  <span
+                    className="text-white font-extrabold rounded"
+                    style={{
+                      background: 'linear-gradient(90deg, #DC2626, #F77F00)',
+                      fontSize: '9px',
+                      padding: '2px 6px',
+                      letterSpacing: '0.5px',
+                    }}
+                  >
+                    🎁 QUÀ TẶNG
+                  </span>
                 </p>
               </div>
               <div className="text-right flex-shrink-0 ml-3">
                 <p className="font-extrabold bg-gradient-to-r from-red-600 to-orange-500 bg-clip-text text-transparent" style={{ fontSize: '20px', lineHeight: 1 }}>450.000đ</p>
-                <p className="mt-1 font-semibold" style={{ fontSize: '10px', color: '#16A34A' }}>✓ FREESHIP</p>
+                <p className="italic mt-0.5 font-medium" style={{ fontSize: '12px', color: '#374151' }}>
+                  (Giá Gốc <span className="line-through">828.000đ</span>)
+                </p>
+                <p className="mt-1 font-semibold" style={{ fontSize: '10px', color: '#16A34A' }}>✓ FREESHIP · Tiết kiệm 378.000đ</p>
               </div>
             </button>
           </div>
 
-          {/* Panel thông tin sách trong combo — chỉ hiện cho Combo 3 và 4 */}
-          {quantity >= 3 && COMBO_BOOKS[quantity] && (
+          {/* Panel thông tin sách — hiện cho 1 cuốn, Combo 3 và 4 */}
+          {COMBO_BOOKS[quantity] && (
             <div
               className="mt-3 p-3"
               style={{ background: '#FFFBEA', border: '1px dashed #F5B700', borderRadius: '10px' }}
             >
               <p className="font-bold mb-3" style={{ fontSize: '11px', color: '#92400E' }}>
-                📦 Combo gồm {COMBO_BOOKS[quantity].length} cuốn:
+                {quantity === 1
+                  ? '📦 Sách bạn chọn:'
+                  : `📦 Combo gồm ${COMBO_BOOKS[quantity].length} cuốn:`}
               </p>
               <div className="flex flex-col">
                 {COMBO_BOOKS[quantity].map((book, i) => (
                   <div key={i}>
-                    {i > 0 && <div style={{ borderTop: '1px dashed #FDE68A', margin: '10px 0' }} />}
+                    {book.sectionTitle ? (
+                      <div
+                        className="mt-4 mb-3 py-2 px-3 text-center text-white font-extrabold rounded-lg"
+                        style={{
+                          background: 'linear-gradient(90deg, #DC2626 0%, #F77F00 100%)',
+                          fontSize: '16px',
+                          letterSpacing: '0.5px',
+                          boxShadow: '0 4px 12px rgba(220,38,38,0.25)',
+                        }}
+                      >
+                        {book.sectionTitle}
+                      </div>
+                    ) : (
+                      i > 0 && <div style={{ borderTop: '1px dashed #FDE68A', margin: '10px 0' }} />
+                    )}
                     <div className="flex items-center gap-2.5">
                       <img src={book.img} alt={book.title} className="flex-shrink-0 rounded object-cover shadow-sm" style={{ width: '38px', height: '52px' }} />
                       <div>
-                        <p className="font-bold text-gray-900" style={{ fontSize: '12px' }}>{book.title}</p>
+                        <p className="font-bold text-gray-900 flex items-center gap-1.5 flex-wrap" style={{ fontSize: '12px' }}>
+                          {book.title}
+                          {book.sectionTitle && (
+                            <span
+                              className="text-white font-extrabold rounded"
+                              style={{
+                                background: 'linear-gradient(90deg, #DC2626, #F77F00)',
+                                fontSize: '9px',
+                                padding: '2px 6px',
+                                letterSpacing: '0.5px',
+                              }}
+                            >
+                              🎁 QUÀ TẶNG
+                            </span>
+                          )}
+                        </p>
                         <p className="text-gray-500 mt-0.5 leading-snug" style={{ fontSize: '10px' }}>{book.desc}</p>
                       </div>
                     </div>
@@ -448,13 +522,51 @@ export default function FormCOD() {
               💰 TỔNG TIỀN
             </p>
 
+            {COMBO_BOOKS[quantity] && (
+              <p className="font-bold mb-2" style={{ fontSize: '12px', color: '#4A1B0C', lineHeight: 1.45 }}>
+                COMBO {quantity} cuốn{' '}
+                {COMBO_BOOKS[quantity]
+                  .filter((b) => !b.sectionTitle)
+                  .map((b) => `"${b.title}"`)
+                  .join(', ')}
+              </p>
+            )}
+
+            {COMBO_BOOKS[quantity]?.find((b) => b.sectionTitle) && (
+              <p
+                className="font-semibold mb-2 px-2 py-1.5 rounded-md"
+                style={{
+                  fontSize: '12px',
+                  color: '#92400E',
+                  background: 'linear-gradient(90deg, rgba(220,38,38,0.08), rgba(247,127,0,0.08))',
+                  border: '1px dashed #F77F00',
+                  lineHeight: 1.45,
+                }}
+              >
+                🎁 Quà Tặng Từ Nhà Sách: Cuốn{' '}
+                <span className="font-extrabold" style={{ color: '#DC2626' }}>
+                  {COMBO_BOOKS[quantity].find((b) => b.sectionTitle).title}
+                </span>{' '}
+                <span className="font-extrabold" style={{ color: '#16A34A' }}>0đ</span>
+              </p>
+            )}
+
             <div className="flex justify-between items-center">
-              <span style={{ fontSize: '12px', color: '#4A1B0C' }}>{quantity <= 2 ? `Sách x ${quantity}` : `Combo ${quantity} cuốn`}:</span>
+              <span style={{ fontSize: '12px', color: '#4A1B0C' }}>Giá Ưu Đãi Chỉ Hôm Nay:</span>
               <span className="font-medium" style={{ fontSize: '12px', color: '#4A1B0C' }}>{fmt(priceBook)}</span>
             </div>
             <div className="flex justify-between items-center mt-1">
               <span style={{ fontSize: '12px', color: '#4A1B0C' }}>Phí ship:</span>
-              <span className="font-semibold" style={{ fontSize: '12px', color: '#16A34A' }}>0đ ✓ Freeship</span>
+              <span className="font-semibold flex items-center gap-1" style={{ fontSize: '12px', color: '#16A34A' }}>
+                0đ
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="1" y="6" width="13" height="11" rx="1" />
+                  <path d="M14 9h4l3 4v4h-7" />
+                  <circle cx="5.5" cy="18.5" r="2" />
+                  <circle cx="17.5" cy="18.5" r="2" />
+                </svg>
+                Freeship
+              </span>
             </div>
 
             <div style={{ borderTop: '1px dashed #FDE68A', marginTop: '8px', paddingTop: '8px' }}>
@@ -469,9 +581,9 @@ export default function FormCOD() {
               </div>
               {quantity >= 2 && (
                 <p className="text-right font-medium mt-0.5" style={{ fontSize: '10px', color: '#16A34A' }}>
-                  {quantity === 2 && 'Tiết kiệm so với mua lẻ: 108.000đ'}
-                  {quantity === 3 && 'Tiết kiệm so với mua lẻ: 187.000đ'}
-                  {quantity === 4 && 'Tiết kiệm so với mua lẻ: 266.000đ'}
+                  {quantity === 2 && 'Tiết kiệm so với mua lẻ: 158.000đ'}
+                  {quantity === 3 && 'Tiết kiệm so với mua lẻ: 208.000đ'}
+                  {quantity === 4 && 'Tiết kiệm so với mua lẻ: 378.000đ'}
                 </p>
               )}
             </div>
@@ -483,7 +595,7 @@ export default function FormCOD() {
           <button
             onClick={handleSubmit}
             disabled={status === 'submitting'}
-            className="w-full flex items-center justify-center gap-2 text-white font-extrabold active:scale-[0.98] transition-transform"
+            className="w-full flex items-center justify-center gap-2 text-white font-extrabold active:scale-[0.98] transition-transform animate-pulse-zoom"
             style={{
               background: 'linear-gradient(90deg, #DC2626 0%, #F77F00 100%)',
               padding: '14px 0',
@@ -518,12 +630,12 @@ export default function FormCOD() {
         >
           <div className="flex items-center gap-1.5 mb-2">
             {[1,2,3,4,5].map(s => <StarIcon key={s} />)}
-            <span className="font-bold" style={{ fontSize: '11px', color: '#166534' }}>5.0 từ 4.092 phụ huynh</span>
+            <span className="font-bold" style={{ fontSize: '11px', color: '#166534' }}>5.0 từ 11.534 phụ huynh</span>
           </div>
           <div className="flex flex-col gap-1">
             {[
               '✅ Sách thật 100% - NXB Văn Học',
-              '✅ Đổi trả miễn phí trong 7 ngày',
+              '✅ Phụ huynh được kiểm tra sách, yên tâm thì mới nhận hàng',
               '✅ Cam kết bảo mật thông tin',
             ].map(t => (
               <p key={t} style={{ fontSize: '10px', color: '#166534' }}>{t}</p>
@@ -581,7 +693,7 @@ export default function FormCOD() {
                 Đóng
               </button>
               <a
-                href="tel:0932392195"
+                href="tel:0339604426"
                 className="flex-1 flex items-center justify-center font-bold py-2.5 rounded-xl text-white"
                 style={{ background: 'linear-gradient(90deg, #DC2626 0%, #F77F00 100%)', fontSize: '13px' }}
               >
@@ -620,7 +732,7 @@ export default function FormCOD() {
               Lỗi gửi đơn
             </h3>
             <p className="text-gray-500 mb-4" style={{ fontSize: '13px' }}>
-              Vui lòng gọi <strong className="text-red-600">0932 392 195</strong> để đặt trực tiếp.
+              Vui lòng gọi <strong className="text-red-600">0339 604 426</strong> để đặt trực tiếp.
             </p>
             <div className="flex gap-2">
               <button
@@ -631,7 +743,7 @@ export default function FormCOD() {
                 Đóng
               </button>
               <a
-                href="tel:0932392195"
+                href="tel:0339604426"
                 className="flex-1 flex items-center justify-center font-bold py-2.5 rounded-xl text-white"
                 style={{ background: 'linear-gradient(90deg, #DC2626 0%, #F77F00 100%)', fontSize: '13px' }}
               >

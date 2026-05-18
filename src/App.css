@@ -1,3 +1,16 @@
+@keyframes pulseZoom {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+}
+
+.animate-pulse-zoom {
+  animation: pulseZoom 2s ease-in-out infinite;
+}
+
+.animate-pulse-zoom:active {
+  animation: none;
+}
+
 .counter {
   font-size: 16px;
   padding: 5px 10px;

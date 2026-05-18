@@ -5,18 +5,24 @@ import sach1 from '../assets/sach-images/bia-hocit.png'
 import sach2 from '../assets/sach-images/bia-murphy.jpg'
 import sach3 from '../assets/sach-images/bia-dacnhantam.jpg'
 import sach4 from '../assets/sach-images/bia-kyluat.webp'
-import sach5 from '../assets/sach-images/sach-5.png'
+import sachMeoUngXu from '../assets/sach-images/BÌA MẸO ỨNG XỬ LỊCH SỰ.webp'
+import slide1 from '../assets/sach-images/SLIDE-1.jpg'
+import slide2 from '../assets/sach-images/SLIDE-2.jpg'
+import slide3 from '../assets/sach-images/SLIDE-3.jpg'
+import slide4 from '../assets/sach-images/SLIDE-4.jpg'
+import slide5 from '../assets/sach-images/SLIDE-5.jpg'
 
-const YT = ['V1085v8Vmvc', 'KAg0BD2_5Dg']
+const YT = ['9UqSOrkgAT8', 'tFh4E_ip2Hc']
 
 const SLIDES = [
   { type: 'video', ytId: YT[0] },
   { type: 'video', ytId: YT[1] },
   { type: 'image', src: sach1, alt: 'Bìa sách Học Ít Nhớ Nhiều' },
-  { type: 'image', src: sach2, alt: 'Nội dung cuốn sách' },
-  { type: 'image', src: sach3, alt: 'Chi tiết sách' },
-  { type: 'image', src: sach4, alt: 'Review sách' },
-  { type: 'image', src: sach5, alt: 'Combo sách' },
+  { type: 'image', src: slide1, alt: 'Liên tưởng & tưởng tượng — bộ đôi ghi nhớ hiệu quả' },
+  { type: 'image', src: slide2, alt: 'Trí nhớ cũng cần sự tự tin' },
+  { type: 'image', src: slide3, alt: 'Kiến thức đang bốc hơi như thế nào?' },
+  { type: 'image', src: slide4, alt: 'Phương pháp rút gọn — biến dài thành ngắn' },
+  { type: 'image', src: slide5, alt: 'Tái hiện câu chuyện — bí quyết để không quên lời' },
 ]
 
 const NOTIFICATIONS = [
@@ -97,6 +103,35 @@ export default function Hero() {
   }, [])
 
   // ── Countdown (localStorage-persisted) ──
+  // Số phụ huynh còn lại — đếm ngược từ 99 với nhịp ngẫu nhiên (1s, 3s, hoặc 10s)
+  // để tạo cảm giác đang có người mua liên tục
+  const [slotsLeft, setSlotsLeft] = useState(() => {
+    if (typeof window === 'undefined') return 99
+    const saved = parseInt(localStorage.getItem('bhh_slots_left'))
+    return Number.isFinite(saved) && saved >= 10 && saved <= 99 ? saved : 99
+  })
+  useEffect(() => {
+    // Xác suất: 1s = 65%, 3s = 25%, 10s = 10% (đã hiệu chỉnh để cảm giác thời gian
+    // các nhịp tương đương — vì 10s dài nên dù xác suất thấp vẫn chiếm phần lớn thời gian xem)
+    let timeoutId
+
+    const scheduleNext = () => {
+      const r = Math.random()
+      const delay = r < 0.65 ? 1000 : r < 0.90 ? 3000 : 10000
+      timeoutId = setTimeout(() => {
+        setSlotsLeft((prev) => {
+          const next = prev > 10 ? prev - 1 : prev
+          localStorage.setItem('bhh_slots_left', String(next))
+          return next
+        })
+        scheduleNext()
+      }, delay)
+    }
+
+    scheduleNext()
+    return () => clearTimeout(timeoutId)
+  }, [])
+
   const [countdown, setCountdown] = useState('23:59:59')
   useEffect(() => {
     let deadline = parseInt(localStorage.getItem('bhh_deadline'))
@@ -394,7 +429,7 @@ export default function Hero() {
             </div>
             {/* Giữa: tiêu đề */}
             <span className="text-white font-bold uppercase tracking-wide" style={{ fontSize: '10px' }}>
-              ƯU ĐÃI HÔM NAY
+              ƯU ĐÃI CHỈ TRONG HÔM NAY
             </span>
             {/* Phải: countdown */}
             <div className="flex items-center gap-1">
@@ -407,33 +442,41 @@ export default function Hero() {
 
           {/* Body */}
           <div className="p-3.5">
-            {/* Hàng giá — tất cả baseline, justify-start */}
-            <div className="flex items-baseline gap-2">
-              {/* Badge -37% lớn hơn */}
+            {/* Thông điệp khuyến mãi với điểm nhấn bo viền */}
+            <p
+              className="font-bold leading-snug text-center"
+              style={{ fontSize: '14px', color: '#4A1B0C' }}
+            >
+              Giảm giá{' '}
               <span
-                className="text-white font-bold flex-shrink-0"
+                className="text-white font-extrabold inline-block animate-pulse-zoom"
                 style={{
-                  background: 'linear-gradient(135deg, #DC2626, #B91C1C)',
-                  padding: '4px 10px',
-                  borderRadius: '6px',
-                  fontSize: '12px',
-                  boxShadow: '0 2px 4px rgba(220,38,38,0.3)',
+                  background: 'linear-gradient(135deg, #DC2626, #F77F00)',
+                  padding: '3px 10px',
+                  borderRadius: '999px',
+                  fontSize: '15px',
+                  boxShadow: '0 2px 6px rgba(220,38,38,0.35)',
+                  border: '2px solid #FFE082',
                 }}
               >
-                -37%
-              </span>
-              {/* Giá 179K gradient */}
+                50%
+              </span>{' '}
+              cho{' '}
               <span
-                className="font-extrabold leading-none bg-gradient-to-r from-red-600 to-orange-500 bg-clip-text text-transparent"
-                style={{ fontSize: '24px' }}
+                className="text-white font-extrabold inline-block animate-pulse-zoom"
+                style={{
+                  background: 'linear-gradient(135deg, #DC2626, #F77F00)',
+                  padding: '3px 10px',
+                  borderRadius: '999px',
+                  fontSize: '15px',
+                  boxShadow: '0 2px 6px rgba(220,38,38,0.35)',
+                  border: '2px solid #FFE082',
+                }}
               >
-                179.000đ
-              </span>
-              {/* Giá gốc sát bên phải 129K */}
-              <span className="line-through leading-none" style={{ fontSize: '11px', color: '#888' }}>
-                250.000đ
-              </span>
-            </div>
+                {slotsLeft}
+              </span>{' '}
+              phụ huynh mua trong hôm nay!
+            </p>
 
             {/* Dashed divider */}
             <div style={{ borderTop: '1px dashed #FDE68A', marginTop: '10px', paddingTop: '10px' }}>
@@ -461,32 +504,46 @@ export default function Hero() {
             {/* Nút MUA NGAY */}
             <button
               onClick={() => scrollToForm(1)}
-              className="w-full flex items-center justify-center gap-2 font-bold text-white active:scale-[0.98] transition-transform mt-2.5"
+              className="w-full flex flex-col items-center justify-center text-center text-white active:scale-[0.98] transition-transform mt-2.5"
               style={{
                 background: 'linear-gradient(90deg, #DC2626 0%, #F77F00 100%)',
-                padding: '10px 0',
-                borderRadius: '8px',
-                fontSize: '14px',
+                padding: '10px 14px',
+                borderRadius: '10px',
                 boxShadow: '0 4px 12px rgba(220,38,38,0.3)',
                 border: 'none',
               }}
             >
-              🛒 MUA NGAY · 179.000đ
+              <span className="font-extrabold leading-tight whitespace-nowrap" style={{ fontSize: '13px' }}>
+                🛒 MUA 1 CUỐN - 179.000đ{' '}
+                <span className="italic font-normal" style={{ fontSize: '11px' }}>
+                  (Giá Gốc <span className="line-through" style={{ fontSize: '13px' }}>250.000đ</span>)
+                </span>
+              </span>
+              <span className="font-semibold mt-1" style={{ fontSize: '12px', opacity: 0.95 }}>
+                Học Ít Nhớ Nhiều
+              </span>
             </button>
-            {/* Nút MUA 2 CUỐN */}
+            {/* Nút COMBO 2 CUỐN */}
             <button
               onClick={() => scrollToForm(2)}
-              className="w-full flex items-center justify-center gap-2 font-bold text-white active:scale-[0.98] transition-transform mt-2"
+              className="w-full flex flex-col items-center justify-center text-center text-white active:scale-[0.98] transition-transform mt-2"
               style={{
                 background: 'linear-gradient(90deg, #DC2626 0%, #F77F00 100%)',
-                padding: '10px 0',
+                padding: '10px 14px',
                 borderRadius: '8px',
-                fontSize: '14px',
                 boxShadow: '0 4px 12px rgba(220,38,38,0.3)',
                 border: 'none',
               }}
             >
-              📚📚 MUA 2 CUỐN · 250.000đ
+              <span className="font-extrabold leading-tight whitespace-nowrap" style={{ fontSize: '13px' }}>
+                📚📚 COMBO 2 CUỐN - 250.000đ{' '}
+                <span className="italic font-normal" style={{ fontSize: '11px' }}>
+                  (Giá Gốc <span className="line-through" style={{ fontSize: '13px' }}>408.000đ</span>)
+                </span>
+              </span>
+              <span className="font-semibold mt-1" style={{ fontSize: '12px', opacity: 0.95 }}>
+                Học Ít Nhớ Nhiều - Mẹo Ứng Xử Lịch Sự
+              </span>
             </button>
             {/* Nút COMBO 3 */}
             <button
@@ -501,8 +558,15 @@ export default function Hero() {
                 cursor: 'pointer',
               }}
             >
-              <span className="font-bold text-white" style={{ fontSize: '13px' }}>🔥 COMBO 3 CUỐN · 350.000đ</span>
-              <span className="text-white/80 mt-0.5" style={{ fontSize: '9px' }}>Học Ít Nhớ Nhiều · Định Luật Murphy · Đắc Nhân Tâm</span>
+              <span className="font-extrabold text-white leading-tight whitespace-nowrap" style={{ fontSize: '13px' }}>
+                🔥 COMBO 3 CUỐN - 350.000đ{' '}
+                <span className="italic font-normal" style={{ fontSize: '11px' }}>
+                  (Giá Gốc <span className="line-through" style={{ fontSize: '13px' }}>558.000đ</span>)
+                </span>
+              </span>
+              <span className="font-semibold text-white mt-1" style={{ fontSize: '12px', opacity: 0.95 }}>
+                Học Ít Nhớ Nhiều - Mẹo Ứng Xử Lịch Sự - Định Luật Murphy
+              </span>
             </button>
             {/* Nút COMBO 4 */}
             <button
@@ -517,8 +581,29 @@ export default function Hero() {
                 cursor: 'pointer',
               }}
             >
-              <span className="font-bold text-white" style={{ fontSize: '13px' }}>👑 COMBO 4 CUỐN · 450.000đ</span>
-              <span className="text-white/80 mt-0.5" style={{ fontSize: '9px' }}>+ Học Ít Nhớ Nhiều · Murphy · Đắc Nhân Tâm · Kỷ Luật Tự Giác</span>
+              <span className="font-extrabold text-white leading-tight whitespace-nowrap" style={{ fontSize: '13px' }}>
+                👑 COMBO 4 CUỐN - 450.000đ{' '}
+                <span className="italic font-normal" style={{ fontSize: '11px' }}>
+                  (Giá Gốc <span className="line-through" style={{ fontSize: '13px' }}>828.000đ</span>)
+                </span>
+              </span>
+              <span className="font-semibold text-white mt-1" style={{ fontSize: '12px', opacity: 0.95 }}>
+                Học Ít Nhớ Nhiều - Mẹo Ứng Xử Lịch Sự
+              </span>
+              <span className="font-semibold text-white" style={{ fontSize: '12px', opacity: 0.95 }}>
+                Định Luật Murphy - Đắc Nhân Tâm Cho Trẻ
+              </span>
+              <span
+                className="font-extrabold text-white mt-1 rounded"
+                style={{
+                  fontSize: '11px',
+                  background: 'rgba(255,255,255,0.15)',
+                  padding: '3px 8px',
+                  letterSpacing: '0.3px',
+                }}
+              >
+                🎁 TẶNG QUÀ ĐẶC BIỆT: Kỷ Luật Tự Giác
+              </span>
             </button>
           </div>
         </div>
@@ -580,30 +665,39 @@ export default function Hero() {
           </div>
           <span className="font-semibold text-gray-700 underline" style={{ fontSize: '11px' }}>5.0</span>
           <span className="text-gray-300" style={{ fontSize: '11px' }}>|</span>
-          <span className="text-gray-400" style={{ fontSize: '11px' }}>(4.092)</span>
+          <span className="text-gray-400" style={{ fontSize: '11px' }}>(11.534)</span>
           <span className="text-gray-300" style={{ fontSize: '11px' }}>|</span>
           <span className="text-gray-500" style={{ fontSize: '11px' }}>Đã bán <span className="font-medium text-gray-700">158.254</span></span>
         </div>
 
-        {/* Dải ảnh bìa 4 cuốn sách */}
+        {/* Dải ảnh bìa 5 cuốn sách — scroll ngang */}
         <div className="mt-3 pt-3" style={{ borderTop: '1px dashed #FDE68A' }}>
-          <p className="font-semibold mb-2" style={{ fontSize: '10px', color: '#92400E' }}>📚 Bộ sách gồm 4 cuốn:</p>
-          <div className="flex gap-2">
+          <p className="font-semibold mb-2" style={{ fontSize: '11px', color: '#92400E' }}>📚 Bộ sách gồm 5 cuốn:</p>
+          <style>{`.book-strip-scroll::-webkit-scrollbar{display:none}`}</style>
+          <div
+            className="book-strip-scroll flex gap-3 overflow-x-auto pb-1 snap-x snap-mandatory -mx-3 px-3"
+            style={{ scrollbarWidth: 'none', WebkitOverflowScrolling: 'touch' }}
+          >
             {[
               { src: sach1, name: 'Học Ít Nhớ Nhiều' },
+              { src: sachMeoUngXu, name: 'Mẹo Ứng Xử Lịch Sự' },
               { src: sach2, name: 'Định Luật Murphy' },
               { src: sach3, name: 'Đắc Nhân Tâm Cho Trẻ' },
               { src: sach4, name: 'Kỷ Luật Tự Giác' },
             ].map((book, i) => (
-              <div key={i} className="flex-1 flex flex-col items-center gap-1">
+              <div
+                key={i}
+                className="flex-shrink-0 flex flex-col items-center gap-1.5 snap-start"
+                style={{ width: '110px' }}
+              >
                 <img
                   src={book.src}
                   alt={book.name}
-                  className="w-full rounded-md shadow-md object-cover"
+                  className="w-full rounded-lg shadow-md object-cover"
                   style={{ aspectRatio: '3/4' }}
                   loading="lazy"
                 />
-                <p className="text-center leading-tight" style={{ fontSize: '9px', color: '#6B7280' }}>{book.name}</p>
+                <p className="text-center leading-tight font-medium" style={{ fontSize: '11px', color: '#4A1B0C' }}>{book.name}</p>
               </div>
             ))}
           </div>
@@ -640,6 +734,14 @@ export default function Hero() {
               tag: 'Giao tiếp',
               tagColor: '#D97706',
               desc: 'Dạy bé cách lắng nghe, kết bạn chân thành và ứng xử khéo léo mọi tình huống.',
+            },
+            {
+              src: sachMeoUngXu,
+              name: 'Mẹo Ứng Xử Lịch Sự',
+              author: 'Cẩm nang kỹ năng · 50+ tình huống',
+              tag: 'Lịch sự',
+              tagColor: '#7C3AED',
+              desc: 'Giúp trẻ tự tin chào hỏi, cảm ơn, xin lỗi đúng lúc và ứng xử văn minh ở mọi nơi.',
             },
             {
               src: sach4,

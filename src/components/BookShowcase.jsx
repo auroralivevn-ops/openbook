@@ -3,6 +3,8 @@ import sach2 from '../assets/sach-images/sach-2.png'
 import sach3 from '../assets/sach-images/sach-3.png'
 import sach4 from '../assets/sach-images/sach-4.png'
 import sach5 from '../assets/sach-images/sach-5.png'
+import sach6 from '../assets/sach-images/sach-6.png'
+import sach7 from '../assets/sach-images/sach-7.png'
 import { RevealItem } from '../hooks/RevealItem'
 
 const BulbIcon = () => (
@@ -43,6 +45,18 @@ const LESSONS = [
     story: 'Não bộ ghi nhớ những gì kỳ lạ, hài hước, kỳ quái dễ hơn 7 lần thông tin bình thường. Đây là bí mật của các nhà vô địch trí nhớ thế giới — họ không thông minh hơn, họ chỉ tưởng tượng buồn cười hơn.',
     apply: 'Để nhớ năm 1945 Việt Nam độc lập, hãy tưởng tượng 1 con voi mặc áo cờ đỏ sao vàng đứng trên 1.945 quả bóng bay. Nghe ngớ ngẩn nhưng nhớ cả đời.',
   },
+  {
+    n: '06', img: sach6,
+    title: 'Tự tin — vũ khí bí mật của trí nhớ',
+    story: 'Mỗi lần con nghe "sao học mãi không thuộc", niềm tin của con bị bào mòn dần. Sự thật là không ai "trí nhớ kém bẩm sinh" — chỉ có người chưa tìm đúng phương pháp, hoặc chưa tin vào bản thân. Khi não tin "mình có thể nhớ được", nó hoạt động tích cực hơn rõ rệt; ngược lại, càng tự ti thì càng học càng quên.',
+    apply: 'Bỏ ngay câu "sao học mãi không nhớ". Thay bằng "lần này con đã nhớ được X điều rồi đó". Khen sự cố gắng thay vì kết quả. Cùng con thử nhiều cách học — vẽ, kể chuyện, hát thành bài — đến khi tìm được cách phù hợp nhất. Tuyệt đối không so sánh con với bạn khác.',
+  },
+  {
+    n: '07', img: sach7,
+    title: 'Sơ đồ tư duy — chiếc "máy nén" thông tin',
+    story: 'Khi con học thuộc một danh sách dài (6 triều đại, 10 nguyên tố, 20 sự kiện...), não bộ rất nhanh "quá tải" và đoạn nào cũng nhớ mờ mờ. Sơ đồ tư duy là cách "nén" thông tin thành các Từ Khóa gắn với Hình Ảnh — não chỉ cần nhìn hình là từ khóa tự bật ra, kéo theo cả đoạn nội dung dài.',
+    apply: 'Đưa con tờ A4. Vẽ một vòng tròn ở giữa với tên bài học, các nhánh tỏa ra như cây — mỗi nhánh chỉ 1–2 từ khóa kèm 1 hình minh họa (hoa sen, thanh gươm, con thuyền...). 5 phút vẽ thay vì 30 phút học vẹt, mà nhớ gấp 5 lần.',
+  },
 ]
 
 export default function BookShowcase() {
@@ -80,7 +94,7 @@ export default function BookShowcase() {
                   <img
                     src={lesson.img}
                     alt={lesson.title}
-                    className="w-full aspect-[4/5] object-cover rounded-2xl shadow-[0_8px_32px_rgba(245,183,0,0.18)] hover:scale-[1.03] transition-transform duration-300"
+                    className="w-full h-auto rounded-2xl shadow-[0_8px_32px_rgba(245,183,0,0.18)] hover:scale-[1.03] transition-transform duration-300"
                   />
                 </div>
 

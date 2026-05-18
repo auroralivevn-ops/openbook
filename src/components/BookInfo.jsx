@@ -19,12 +19,12 @@ export default function BookInfo() {
             </div>
             <div className="min-w-0">
               <div className="text-[11px] text-[#C8102E] tracking-[0.12em] font-medium">Hotline đặt sách</div>
-              <a href="tel:0932392195" className="block text-xl font-medium text-[#C8102E] tracking-tight whitespace-nowrap leading-tight">0932 392 195</a>
+              <a href="tel:0339604426" className="block text-xl font-medium text-[#C8102E] tracking-tight whitespace-nowrap leading-tight">0339 604 426</a>
             </div>
           </div>
           {/* Right: CTA + hours */}
           <div className="flex flex-col items-start md:items-end gap-1 flex-shrink-0">
-            <a href="tel:0932392195" className="inline-flex items-center gap-1.5 bg-[#C8102E] text-white text-sm font-medium px-4 py-2 rounded-full hover:scale-[1.05] transition-transform">
+            <a href="tel:0339604426" className="inline-flex items-center gap-1.5 bg-[#C8102E] text-white text-sm font-medium px-4 py-2 rounded-full hover:scale-[1.05] transition-transform">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
               Gọi ngay
             </a>
@@ -51,8 +51,8 @@ export default function BookInfo() {
             <div className="text-[17px] font-medium text-[#1F1B16] mb-0.5">Học ít nhớ nhiều</div>
             <div className="text-xs text-[#6B5D54] mb-3">Hoàng Văn Đặt — Tổng hợp &amp; sưu tầm</div>
             <div className="flex flex-wrap gap-1.5">
-              <span className="bg-[#FFF8E1] text-[#854F0B] text-[11px] px-2.5 py-1 rounded-full font-medium">109 trang</span>
-              <span className="bg-[#FFF8E1] text-[#854F0B] text-[11px] px-2.5 py-1 rounded-full font-medium">16 × 24 cm</span>
+              <span className="bg-[#FFF8E1] text-[#854F0B] text-[11px] px-2.5 py-1 rounded-full font-medium">116 trang</span>
+              <span className="bg-[#FFF8E1] text-[#854F0B] text-[11px] px-2.5 py-1 rounded-full font-medium">18 × 26 cm</span>
               <span className="bg-[#FFF8E1] text-[#854F0B] text-[11px] px-2.5 py-1 rounded-full font-medium">NXB Văn Học</span>
               <span className="bg-[#FFF8E1] text-[#854F0B] text-[11px] px-2.5 py-1 rounded-full font-medium">4 - 13 tuổi</span>
             </div>
@@ -85,7 +85,7 @@ export default function BookInfo() {
 
         {/* COPYRIGHT */}
         <div className="text-center pt-3.5 border-t border-dashed border-[#FDE68A]">
-          <div className="text-[11px] text-[#B4B2A9]">© 2026 OpenBook · Hotline 0932 392 195</div>
+          <div className="text-[11px] text-[#B4B2A9]">© 2026 OpenBook · Hotline 0339 604 426</div>
         </div>
 
       </div>
