@@ -272,7 +272,7 @@ export default function Hero() {
           3. CAROUSEL — gradient bình minh + glow vàng
       ══════════════════════════════════════════════ */}
       <div
-        className="relative"
+        className="relative overflow-hidden"
         style={{ background: 'linear-gradient(180deg, #FFF8EC 0%, #FFF0E8 100%)' }}
       >
         {/* Gold glow — góc trên phải */}
