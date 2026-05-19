@@ -94,6 +94,29 @@ export default function Hero() {
     return () => clearInterval(t)
   }, [])
 
+  // ── Ẩn thanh sticky bottom khi cuộn tới form đăng ký ──
+  const [hideBottomBar, setHideBottomBar] = useState(false)
+  useEffect(() => {
+    // Theo dõi form-cod bằng IntersectionObserver. Vì FormCOD render sau Hero,
+    // dùng setTimeout để chắc chắn DOM đã có sẵn element.
+    let observer
+    const tryAttach = () => {
+      const form = document.getElementById('form-cod')
+      if (!form) return false
+      observer = new IntersectionObserver(
+        ([entry]) => setHideBottomBar(entry.isIntersecting),
+        { threshold: 0.05 }
+      )
+      observer.observe(form)
+      return true
+    }
+    if (!tryAttach()) {
+      const t = setTimeout(tryAttach, 300)
+      return () => { clearTimeout(t); observer?.disconnect() }
+    }
+    return () => observer?.disconnect()
+  }, [])
+
   // ── Countdown (localStorage-persisted) ──
   // Số phụ huynh còn lại — đếm ngược từ 99 với nhịp ngẫu nhiên (1s, 3s, hoặc 10s)
   // để tạo cảm giác đang có người mua liên tục
@@ -794,9 +817,16 @@ export default function Hero() {
       <div className="h-6" style={{ background: '#f9f9f9' }} />
 
       {/* ══════════════════════════════════════════════
-          10. STICKY BOTTOM — 4 cột
+          10. STICKY BOTTOM — 4 cột (ẩn khi cuộn tới form)
       ══════════════════════════════════════════════ */}
-      <div className="fixed bottom-0 left-0 right-0 z-50">
+      <div
+        className="fixed bottom-0 left-0 right-0 z-50 transition-all duration-300"
+        style={{
+          transform: hideBottomBar ? 'translateY(100%)' : 'translateY(0)',
+          opacity: hideBottomBar ? 0 : 1,
+          pointerEvents: hideBottomBar ? 'none' : 'auto',
+        }}
+      >
         <div
           className="max-w-[430px] mx-auto flex items-stretch bg-white"
           style={{ borderTop: '1px solid #f0f0f0', boxShadow: '0 -2px 12px rgba(0,0,0,0.08)' }}
