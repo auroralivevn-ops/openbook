@@ -1,8 +1,4 @@
 export async function submitOrder({ name, phone, address, quantity }) {
-  // Đếm số thứ tự đơn hàng trên browser này: EXB-1, EXB-2, EXB-3, ...
-  const nextNum = (parseInt(localStorage.getItem('exb_order_counter') || '0', 10) || 0) + 1;
-  localStorage.setItem('exb_order_counter', String(nextNum));
-  const orderId = `EXB-${nextNum}`;
   const timestamp = new Date().toLocaleString('vi-VN', {
     day: '2-digit', month: '2-digit', year: 'numeric',
     hour: '2-digit', minute: '2-digit'
@@ -12,94 +8,110 @@ export async function submitOrder({ name, phone, address, quantity }) {
   const shipNote = 'FREESHIP';
   const COMBO_NAMES = {
     1: '1 cuốn Học Ít Nhớ Nhiều',
-    2: '2 cuốn Học Ít Nhớ Nhiều',
-    3: 'Combo 3: HNNN + Định Luật Murphy + Đắc Nhân Tâm Cho Trẻ',
-    4: 'Combo 4: HNNN + Murphy + Đắc Nhân Tâm Cho Trẻ + Kỷ Luật Tự Giác',
+    2: 'Combo 2: Học Ít Nhớ Nhiều + Mẹo Ứng Xử Lịch Sự',
+    3: 'Combo 3: HÍNN + Định Luật Murphy + Mẹo Ứng Xử Lịch Sự',
+    4: 'Combo 4: HÍNN + Murphy + Đắc Nhân Tâm + Mẹo Ứng Xử Lịch Sự (+ Kỷ Luật Tự Giác QUÀ TẶNG)',
   };
   const comboLabel = COMBO_NAMES[quantity] || `${quantity} cuốn`;
 
-  const telegramMsg =
-    `🔔 *ĐƠN HÀNG MỚI - OpenBook*\n\n` +
-    `📋 Mã đơn: \`${orderId}\`\n` +
-    `🕐 ${timestamp}\n\n` +
-    `👤 *Khách:* ${name}\n` +
-    `📞 *SĐT:* ${phone}\n` +
-    `📍 *Địa chỉ:* ${address}\n\n` +
-    `📦 *${comboLabel}*\n` +
-    `💰 Tổng: *${total.toLocaleString('vi-VN')}đ* (${shipNote})`;
-
-  const payload = { orderId, name, phone, address, quantity, total, note: shipNote, timestamp };
-
+  const SHEET_URL = import.meta.env.VITE_APPS_SCRIPT_URL;
   const TG_TOKEN = import.meta.env.VITE_TELEGRAM_BOT_TOKEN;
   const TG_CHAT = import.meta.env.VITE_TELEGRAM_CHAT_ID;
-  const SHEET_URL = import.meta.env.VITE_APPS_SCRIPT_URL;
 
-  try {
-    const tasks = [];
-    if (TG_TOKEN && TG_CHAT) {
-      tasks.push(
-        fetch(`https://api.telegram.org/bot${TG_TOKEN}/sendMessage`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ chat_id: TG_CHAT, text: telegramMsg, parse_mode: 'Markdown' })
-        })
-      );
-    }
-    if (SHEET_URL) {
-      tasks.push(
-        fetch(SHEET_URL, {
-          method: 'POST',
-          mode: 'no-cors',
-          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-          body: JSON.stringify(payload)
-        })
-      );
-    }
-    if (tasks.length === 0) {
-      console.warn('[submitOrder] Không có VITE_APPS_SCRIPT_URL hoặc VITE_TELEGRAM_BOT_TOKEN — chỉ chạy ở chế độ dev, đơn hàng không được lưu.');
-    } else {
-      const results = await Promise.allSettled(tasks);
-      const anyFulfilled = results.some((r) => r.status === 'fulfilled');
-      if (!anyFulfilled) throw new Error('Tất cả kênh gửi đơn đều thất bại');
-    }
-    if (typeof window !== 'undefined' && window.fbq) {
-      window.fbq('track', 'Lead', {
-        content_name: 'Sách Học Ít Nhớ Nhiều',
-        content_category: 'Sách giáo dục',
-        value: total,
-        currency: 'VND',
-        num_items: quantity
+  // ── BƯỚC 1: POST tới Apps Script, nhận lại orderId server-side ──
+  let orderId = `EXB-FB-${Date.now()}`; // fallback nếu Sheet fail
+  let sheetOk = false;
+
+  if (SHEET_URL) {
+    try {
+      const payload = { name, phone, address, quantity, total, note: shipNote, timestamp };
+      const res = await fetch(SHEET_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify(payload),
+        redirect: 'follow',
       });
-      window.fbq('track', 'Purchase', {
-        value: total,
-        currency: 'VND',
-        content_ids: [orderId],
-        content_type: 'product',
-        num_items: quantity
-      });
+      const data = await res.json();
+      if (data.success && data.orderId) {
+        orderId = data.orderId;
+        sheetOk = true;
+      } else {
+        console.error('[submitOrder] Apps Script báo lỗi:', data.error);
+      }
+    } catch (err) {
+      console.error('[submitOrder] Không gọi được Apps Script:', err);
     }
-    if (typeof window !== 'undefined' && window.gtag) {
-      window.gtag('event', 'purchase', {
-        transaction_id: orderId,
-        value: total,
-        currency: 'VND',
-        items: [{
-          item_id: 'sach-hoc-it-nho-nhieu',
-          item_name: 'Sách Học Ít Nhớ Nhiều',
-          item_category: 'Sách giáo dục',
-          quantity: quantity,
-          price: 179000
-        }]
-      });
-      window.gtag('event', 'generate_lead', {
-        currency: 'VND',
-        value: total
-      });
-    }
-    return { success: true, orderId, total };
-  } catch (err) {
-    return { success: false, error: err.message };
   }
+
+  // ── BƯỚC 2: Gửi Telegram (backup, dùng orderId từ bước 1) ──
+  let telegramOk = false;
+  if (TG_TOKEN && TG_CHAT) {
+    const telegramMsg =
+      `🔔 *ĐƠN HÀNG MỚI - OpenBook*\n\n` +
+      `📋 Mã đơn: \`${orderId}\`${sheetOk ? '' : ' ⚠️ (Sheet fail — chỉ có Telegram)'}\n` +
+      `🕐 ${timestamp}\n\n` +
+      `👤 *Khách:* ${name}\n` +
+      `📞 *SĐT:* ${phone}\n` +
+      `📍 *Địa chỉ:* ${address}\n\n` +
+      `📦 *${comboLabel}*\n` +
+      `💰 Tổng: *${total.toLocaleString('vi-VN')}đ* (${shipNote})`;
+
+    try {
+      const res = await fetch(`https://api.telegram.org/bot${TG_TOKEN}/sendMessage`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ chat_id: TG_CHAT, text: telegramMsg, parse_mode: 'Markdown' }),
+      });
+      telegramOk = res.ok;
+      if (!res.ok) console.error('[submitOrder] Telegram trả lỗi:', await res.text());
+    } catch (err) {
+      console.error('[submitOrder] Không gọi được Telegram:', err);
+    }
+  }
+
+  // ── BƯỚC 3: Phân tích kết quả ──
+  if (!SHEET_URL && !TG_TOKEN) {
+    console.warn('[submitOrder] Không có Apps Script URL hoặc Telegram token — dev mode, đơn không được lưu.');
+    // Cho phép qua để dev test UI
+  } else if (!sheetOk && !telegramOk) {
+    // Cả 2 đều fail — thực sự thất bại
+    return { success: false, error: 'Không gửi được đơn — cả Sheet và Telegram đều lỗi' };
+  }
+
+  // ── BƯỚC 4: Tracking pixel ──
+  if (typeof window !== 'undefined' && window.fbq) {
+    window.fbq('track', 'Lead', {
+      content_name: 'Sách Học Ít Nhớ Nhiều',
+      content_category: 'Sách giáo dục',
+      value: total,
+      currency: 'VND',
+      num_items: quantity,
+    });
+    window.fbq('track', 'Purchase', {
+      value: total,
+      currency: 'VND',
+      content_ids: [orderId],
+      content_type: 'product',
+      num_items: quantity,
+    });
+  }
+  if (typeof window !== 'undefined' && window.gtag) {
+    window.gtag('event', 'purchase', {
+      transaction_id: orderId,
+      value: total,
+      currency: 'VND',
+      items: [{
+        item_id: 'sach-hoc-it-nho-nhieu',
+        item_name: 'Sách Học Ít Nhớ Nhiều',
+        item_category: 'Sách giáo dục',
+        quantity,
+        price: 179000,
+      }],
+    });
+    window.gtag('event', 'generate_lead', { currency: 'VND', value: total });
+  }
+
+  return { success: true, orderId, total, sheetOk, telegramOk };
 }
 
 export const validatePhone = (p) => /^(03|05|07|08|09)\d{8}$/.test(p.replace(/\s/g, ''));
