@@ -4,3 +4,12 @@
 
 [build.environment]
   NODE_VERSION = "20"
+
+# Khi deploy với VITE_BASE_PATH=/hocitnhonhieu/, asset URLs có prefix /hocitnhonhieu/
+# Rule này rewrite request /hocitnhonhieu/* về root để serve file thật.
+# Nếu deploy site KHÔNG dùng subpath (vd exisbook.site Vercel), rule này không có hiệu lực
+# vì Vercel không đọc netlify.toml.
+[[redirects]]
+  from = "/hocitnhonhieu/*"
+  to = "/:splat"
+  status = 200
