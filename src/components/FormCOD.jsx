@@ -681,7 +681,7 @@ export default function FormCOD() {
               style={{ background: '#F0FDF4', border: '1px solid #BBF7D0' }}
             >
               <p style={{ fontSize: '12px', color: '#166534' }}>
-                🚚 Nhà Sách sẽ liên hệ anh/chị trong <strong>30 phút</strong> để xác nhận đơn và giao hàng trong 2–4 ngày.
+                🚚 Cảm ơn phụ huynh đã đặt mua. Nhà Sách sẽ lên đơn và giao hàng trong <strong>2–4 ngày</strong> cho mình ạ!
               </p>
             </div>
             <div className="flex gap-2">
