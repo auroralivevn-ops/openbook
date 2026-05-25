@@ -183,6 +183,19 @@ export default function Hero() {
         }]
       })
     }
+    if (typeof window !== 'undefined' && window.ttq) {
+      window.ttq.track('InitiateCheckout', {
+        contents: [{
+          content_id: 'sach-hoc-it-nho-nhieu',
+          content_name: 'Sách Học Ít Nhớ Nhiều',
+          content_type: 'product',
+          quantity: qty || 1,
+          price: 179000,
+        }],
+        value: 179000,
+        currency: 'VND',
+      })
+    }
     if (qty !== null) {
       window.dispatchEvent(new CustomEvent('openbook:selectQty', { detail: qty }))
     }

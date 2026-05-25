@@ -110,6 +110,32 @@ export async function submitOrder({ name, phone, address, quantity }) {
     });
     window.gtag('event', 'generate_lead', { currency: 'VND', value: total });
   }
+  if (typeof window !== 'undefined' && window.ttq) {
+    window.ttq.track('PlaceAnOrder', {
+      contents: [{
+        content_id: 'sach-hoc-it-nho-nhieu',
+        content_name: 'Sách Học Ít Nhớ Nhiều',
+        content_type: 'product',
+        quantity,
+        price: 179000,
+      }],
+      value: total,
+      currency: 'VND',
+      order_id: orderId,
+    });
+    window.ttq.track('CompletePayment', {
+      contents: [{
+        content_id: 'sach-hoc-it-nho-nhieu',
+        content_name: 'Sách Học Ít Nhớ Nhiều',
+        content_type: 'product',
+        quantity,
+        price: 179000,
+      }],
+      value: total,
+      currency: 'VND',
+      order_id: orderId,
+    });
+  }
 
   return { success: true, orderId, total, sheetOk, telegramOk };
 }
