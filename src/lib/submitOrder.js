@@ -109,6 +109,11 @@ export async function submitOrder({ name, phone, address, quantity }) {
       }],
     });
     window.gtag('event', 'generate_lead', { currency: 'VND', value: total });
+    // Google Ads conversion — Lượt mua hàng
+    window.gtag('event', 'conversion', {
+      send_to: 'AW-18072732291/VSggCOv8trMcEIOF4KlD',
+      transaction_id: orderId,
+    });
   }
   if (typeof window !== 'undefined' && window.ttq) {
     window.ttq.track('PlaceAnOrder', {

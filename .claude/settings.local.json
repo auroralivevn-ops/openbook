@@ -1,0 +1,24 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(start \"\" \"https://app.netlify.com/signup\")",
+      "Bash(netlify --version)",
+      "Bash(npx netlify-cli *)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(git push *)",
+      "Bash(MSYS_NO_PATHCONV=1 npx netlify-cli env:set VITE_BASE_PATH \"/hocitnhonhieu/\")",
+      "Bash(MSYS_NO_PATHCONV=1 VITE_BASE_PATH=\"/hocitnhonhieu/\" npm run build)",
+      "Bash(curl -s \"https://openbook-hocitnhonhieu.netlify.app/hocitnhonhieu/\" -L)",
+      "Bash(cat ~/.config/netlify/config.json 2>/dev/null | grep -oE '\"access_token\":\\\\s*\"[^\"]+\"' | head -1 | sed 's/.*\"access_token\":\\\\s*\"\\\\\\([^\"]*\\\\\\)\".*/\\\\1/' | head -c 30; echo \"...\")",
+      "Read(//c/Users/dung1/.config/netlify/**)",
+      "Bash(find ~/.config/netlify ~/AppData/Roaming/netlify ~/.netlify \"/c/Users/dung1/AppData/Roaming/netlify\" 2>/dev/null | head -10; echo \"---\"; ls \"/c/Users/dung1/.config/\" 2>/dev/null | head -10)",
+      "Read(//c/Users/dung1/AppData/Roaming/netlify/**)",
+      "Read(//c/Users/dung1/.config//**)",
+      "Bash(python -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\(list\\(d.keys\\(\\)\\)[:10]\\)\")",
+      "Bash(node -e \"let d=''; process.stdin.on\\('data',c=>d+=c\\); process.stdin.on\\('end',\\(\\)=>{const j=JSON.parse\\(d\\); const u=Object.values\\(j.users\\)[0]; console.log\\('token:',u.auth.token.slice\\(0,15\\)+'...'\\)}\\)\")",
+      "Bash(curl -sIL \"https://hocitnhonhieu.openbook.vn/\" --max-time 15)",
+      "Bash(curl -s \"https://hocitnhonhieu.openbook.vn/\" --max-time 15 -L)"
+    ]
+  }
+}
