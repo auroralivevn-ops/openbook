@@ -2,10 +2,6 @@ import { useState, useEffect, useCallback, useRef } from 'react'
 import useEmblaCarousel from 'embla-carousel-react'
 import Autoplay from 'embla-carousel-autoplay'
 import sach1 from '../assets/sach-images/bia-hocit.png'
-import sach2 from '../assets/sach-images/bia-murphy.jpg'
-import sach3 from '../assets/sach-images/bia-dacnhantam.jpg'
-import sach4 from '../assets/sach-images/bia-kyluat.webp'
-import sachMeoUngXu from '../assets/sach-images/BÌA MẸO ỨNG XỬ LỊCH SỰ.webp'
 import slide1 from '../assets/sach-images/SLIDE-1.jpg'
 import slide2 from '../assets/sach-images/SLIDE-2.jpg'
 import slide3 from '../assets/sach-images/SLIDE-3.jpg'
@@ -17,7 +13,7 @@ const YT = ['9UqSOrkgAT8', 'tFh4E_ip2Hc']
 const SLIDES = [
   { type: 'video', ytId: YT[0] },
   { type: 'video', ytId: YT[1] },
-  { type: 'image', src: sach1, alt: 'Bìa sách Học Ít Nhớ Nhiều' },
+  { type: 'image', src: sach1, alt: 'Bìa sách Nếu Con Làm Bố Mẹ Một Ngày' },
   { type: 'image', src: slide1, alt: 'Liên tưởng & tưởng tượng — bộ đôi ghi nhớ hiệu quả' },
   { type: 'image', src: slide2, alt: 'Trí nhớ cũng cần sự tự tin' },
   { type: 'image', src: slide3, alt: 'Kiến thức đang bốc hơi như thế nào?' },
@@ -174,25 +170,25 @@ export default function Hero() {
     if (typeof window !== 'undefined' && window.gtag) {
       window.gtag('event', 'begin_checkout', {
         currency: 'VND',
-        value: 179000,
+        value: 199000,
         items: [{
-          item_id: 'sach-hoc-it-nho-nhieu',
-          item_name: 'Sách Học Ít Nhớ Nhiều',
+          item_id: 'sach-neu-con-lam-cha-me',
+          item_name: 'Sách Nếu Con Làm Bố Mẹ Một Ngày',
           quantity: qty || 1,
-          price: 179000
+          price: 199000
         }]
       })
     }
     if (typeof window !== 'undefined' && window.ttq) {
       window.ttq.track('InitiateCheckout', {
         contents: [{
-          content_id: 'sach-hoc-it-nho-nhieu',
-          content_name: 'Sách Học Ít Nhớ Nhiều',
+          content_id: 'sach-neu-con-lam-cha-me',
+          content_name: 'Sách Nếu Con Làm Bố Mẹ Một Ngày',
           content_type: 'product',
           quantity: qty || 1,
-          price: 179000,
+          price: 199000,
         }],
-        value: 179000,
+        value: 199000,
         currency: 'VND',
       })
     }
@@ -221,7 +217,7 @@ export default function Hero() {
           <svg className="w-3.5 h-3.5 text-gray-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z" />
           </svg>
-          <span className="text-[11px] text-gray-400 truncate">Sách Học Ít Nhớ Nhiều - OpenBook</span>
+          <span className="text-[11px] text-gray-400 truncate">Nếu Con Làm Bố Mẹ Một Ngày - OpenBook</span>
         </div>
 
         <button className="flex-shrink-0 w-8 h-8 flex items-center justify-center">
@@ -533,7 +529,7 @@ export default function Hero() {
                     fontSize: '10px',
                   }}
                 >
-                  ✓ Tiết kiệm 71K
+                  ✓ Tiết kiệm 151K
                 </span>
                 {/* Trust info */}
                 <span style={{ fontSize: '10px', color: '#4A1B0C' }}>
@@ -555,95 +551,13 @@ export default function Hero() {
               }}
             >
               <span className="font-extrabold leading-tight whitespace-nowrap" style={{ fontSize: '13px' }}>
-                🛒 MUA 1 CUỐN - 179.000đ{' '}
+                🛒 MUA 1 CUỐN - 199.000đ{' '}
                 <span className="italic font-normal" style={{ fontSize: '11px' }}>
-                  (Giá Gốc <span className="line-through" style={{ fontSize: '13px' }}>250.000đ</span>)
+                  (Giá Gốc <span className="line-through" style={{ fontSize: '13px' }}>350.000đ</span>)
                 </span>
               </span>
               <span className="font-semibold mt-1" style={{ fontSize: '12px', opacity: 0.95 }}>
-                Học Ít Nhớ Nhiều
-              </span>
-            </button>
-            {/* Nút COMBO 2 CUỐN */}
-            <button
-              onClick={() => scrollToForm(2)}
-              className="w-full flex flex-col items-center justify-center text-center text-white active:scale-[0.98] transition-transform mt-2"
-              style={{
-                background: 'linear-gradient(90deg, #DC2626 0%, #F77F00 100%)',
-                padding: '10px 14px',
-                borderRadius: '8px',
-                boxShadow: '0 4px 12px rgba(220,38,38,0.3)',
-                border: 'none',
-              }}
-            >
-              <span className="font-extrabold leading-tight whitespace-nowrap" style={{ fontSize: '13px' }}>
-                📚📚 COMBO 2 CUỐN - 250.000đ{' '}
-                <span className="italic font-normal" style={{ fontSize: '11px' }}>
-                  (Giá Gốc <span className="line-through" style={{ fontSize: '13px' }}>408.000đ</span>)
-                </span>
-              </span>
-              <span className="font-semibold mt-1" style={{ fontSize: '12px', opacity: 0.95 }}>
-                Học Ít Nhớ Nhiều - Mẹo Ứng Xử Lịch Sự
-              </span>
-            </button>
-            {/* Nút COMBO 3 */}
-            <button
-              onClick={() => scrollToForm(3)}
-              className="w-full flex flex-col items-center justify-center active:scale-[0.98] transition-transform mt-2"
-              style={{
-                background: 'linear-gradient(90deg, #F77F00 0%, #EF4444 100%)',
-                padding: '9px 12px',
-                borderRadius: '8px',
-                boxShadow: '0 4px 12px rgba(247,127,0,0.3)',
-                border: 'none',
-                cursor: 'pointer',
-              }}
-            >
-              <span className="font-extrabold text-white leading-tight whitespace-nowrap" style={{ fontSize: '13px' }}>
-                🔥 COMBO 3 CUỐN - 350.000đ{' '}
-                <span className="italic font-normal" style={{ fontSize: '11px' }}>
-                  (Giá Gốc <span className="line-through" style={{ fontSize: '13px' }}>558.000đ</span>)
-                </span>
-              </span>
-              <span className="font-semibold text-white mt-1" style={{ fontSize: '12px', opacity: 0.95 }}>
-                Học Ít Nhớ Nhiều - Mẹo Ứng Xử Lịch Sự - Định Luật Murphy
-              </span>
-            </button>
-            {/* Nút COMBO 4 */}
-            <button
-              onClick={() => scrollToForm(4)}
-              className="w-full flex flex-col items-center justify-center active:scale-[0.98] transition-transform mt-2"
-              style={{
-                background: 'linear-gradient(90deg, #7C3AED 0%, #DC2626 100%)',
-                padding: '9px 12px',
-                borderRadius: '8px',
-                boxShadow: '0 4px 12px rgba(124,58,237,0.3)',
-                border: 'none',
-                cursor: 'pointer',
-              }}
-            >
-              <span className="font-extrabold text-white leading-tight whitespace-nowrap" style={{ fontSize: '13px' }}>
-                👑 COMBO 4 CUỐN - 450.000đ{' '}
-                <span className="italic font-normal" style={{ fontSize: '11px' }}>
-                  (Giá Gốc <span className="line-through" style={{ fontSize: '13px' }}>828.000đ</span>)
-                </span>
-              </span>
-              <span className="font-semibold text-white mt-1" style={{ fontSize: '12px', opacity: 0.95 }}>
-                Học Ít Nhớ Nhiều - Mẹo Ứng Xử Lịch Sự
-              </span>
-              <span className="font-semibold text-white" style={{ fontSize: '12px', opacity: 0.95 }}>
-                Định Luật Murphy - Đắc Nhân Tâm Cho Trẻ
-              </span>
-              <span
-                className="font-extrabold text-white mt-1 rounded"
-                style={{
-                  fontSize: '11px',
-                  background: 'rgba(255,255,255,0.15)',
-                  padding: '3px 8px',
-                  letterSpacing: '0.3px',
-                }}
-              >
-                🎁 TẶNG QUÀ ĐẶC BIỆT: Kỷ Luật Tự Giác
+                Nếu Con Làm Bố Mẹ Một Ngày
               </span>
             </button>
           </div>
@@ -691,7 +605,7 @@ export default function Hero() {
             Mall
           </span>
           <h1 className="text-gray-900 leading-snug flex-1" style={{ fontSize: '13px', fontWeight: 500 }}>
-            OpenBook · Sách Học Ít Nhớ Nhiều – Kích hoạt trí não, đánh thức tiềm năng · NXB Văn Học
+            OpenBook · Nếu Con Làm Bố Mẹ Một Ngày – Câu chuyện giúp con hiểu nỗi lòng bố mẹ · NXB Văn Học
           </h1>
           <button className="flex-shrink-0 mt-0.5">
             <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -709,117 +623,6 @@ export default function Hero() {
           <span className="text-gray-400" style={{ fontSize: '11px' }}>(11.534)</span>
           <span className="text-gray-300" style={{ fontSize: '11px' }}>|</span>
           <span className="text-gray-500" style={{ fontSize: '11px' }}>Đã bán <span className="font-medium text-gray-700">158.254</span></span>
-        </div>
-
-        {/* Dải ảnh bìa 5 cuốn sách — scroll ngang */}
-        <div className="mt-3 pt-3" style={{ borderTop: '1px dashed #FDE68A' }}>
-          <p className="font-semibold mb-2" style={{ fontSize: '11px', color: '#92400E' }}>📚 Bộ sách gồm 5 cuốn:</p>
-          <style>{`.book-strip-scroll::-webkit-scrollbar{display:none}`}</style>
-          <div
-            className="book-strip-scroll flex gap-3 overflow-x-auto pb-1 snap-x snap-mandatory -mx-3 px-3"
-            style={{ scrollbarWidth: 'none', WebkitOverflowScrolling: 'touch' }}
-          >
-            {[
-              { src: sach1, name: 'Học Ít Nhớ Nhiều' },
-              { src: sachMeoUngXu, name: 'Mẹo Ứng Xử Lịch Sự' },
-              { src: sach2, name: 'Định Luật Murphy' },
-              { src: sach3, name: 'Đắc Nhân Tâm Cho Trẻ' },
-              { src: sach4, name: 'Kỷ Luật Tự Giác' },
-            ].map((book, i) => (
-              <div
-                key={i}
-                className="flex-shrink-0 flex flex-col items-center gap-1.5 snap-start"
-                style={{ width: '110px' }}
-              >
-                <img
-                  src={book.src}
-                  alt={book.name}
-                  className="w-full rounded-lg shadow-md object-cover"
-                  style={{ aspectRatio: '3/4' }}
-                  loading="lazy"
-                />
-                <p className="text-center leading-tight font-medium" style={{ fontSize: '11px', color: '#4A1B0C' }}>{book.name}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* ══════════════════════════════════════════════
-          8. THÔNG TIN NHANH 4 CUỐN SÁCH
-      ══════════════════════════════════════════════ */}
-      <div className="px-3 py-3" style={{ background: '#FFFBF5', borderBottom: '1px solid #f0f0f0' }}>
-        <p className="font-bold mb-2.5" style={{ fontSize: '11px', color: '#92400E' }}>📖 Thông tin nhanh</p>
-        <div className="flex flex-col gap-2">
-          {[
-            {
-              src: sach1,
-              name: 'Học Ít Nhớ Nhiều',
-              author: 'Hoàng Văn Đặt · NXB Văn Học',
-              tag: 'Ghi nhớ',
-              tagColor: '#DC2626',
-              desc: 'Kỹ thuật ghi nhớ siêu tốc — học ít mà nhớ lâu, áp dụng ngay từ lớp 1.',
-            },
-            {
-              src: sach2,
-              name: 'Định Luật Murphy',
-              author: 'Truyện tranh · 28 bài học',
-              tag: 'Tư duy',
-              tagColor: '#2563EB',
-              desc: 'Giúp trẻ hiểu bản thân, quản lý cảm xúc và giao tiếp tự tin qua truyện tranh.',
-            },
-            {
-              src: sach3,
-              name: 'Đắc Nhân Tâm Cho Trẻ',
-              author: 'Dale Carnegie · Bản trẻ em',
-              tag: 'Giao tiếp',
-              tagColor: '#D97706',
-              desc: 'Dạy bé cách lắng nghe, kết bạn chân thành và ứng xử khéo léo mọi tình huống.',
-            },
-            {
-              src: sachMeoUngXu,
-              name: 'Mẹo Ứng Xử Lịch Sự',
-              author: 'Cẩm nang kỹ năng · 50+ tình huống',
-              tag: 'Lịch sự',
-              tagColor: '#7C3AED',
-              desc: 'Giúp trẻ tự tin chào hỏi, cảm ơn, xin lỗi đúng lúc và ứng xử văn minh ở mọi nơi.',
-            },
-            {
-              src: sach4,
-              name: 'Kỷ Luật Tự Giác',
-              author: 'Kỹ năng sống · Thói quen tốt',
-              tag: 'Thói quen',
-              tagColor: '#16A34A',
-              desc: 'Giúp trẻ làm chủ thời gian, vượt lười biếng và xây dựng thói quen tốt từ sớm.',
-            },
-          ].map((book, i) => (
-            <div
-              key={i}
-              className="flex gap-2.5 p-2.5 rounded-xl"
-              style={{ background: '#fff', border: '1px solid #F3F4F6', boxShadow: '0 1px 4px rgba(0,0,0,0.05)' }}
-            >
-              <img
-                src={book.src}
-                alt={book.name}
-                className="flex-shrink-0 rounded-lg object-cover shadow-sm"
-                style={{ width: '44px', height: '60px' }}
-                loading="lazy"
-              />
-              <div className="flex-1 min-w-0">
-                <div className="flex items-center gap-1.5 mb-0.5">
-                  <span
-                    className="text-white font-bold rounded-sm px-1.5 py-0.5 flex-shrink-0"
-                    style={{ fontSize: '8px', background: book.tagColor }}
-                  >
-                    {book.tag}
-                  </span>
-                  <p className="font-bold text-gray-900 truncate" style={{ fontSize: '11px' }}>{book.name}</p>
-                </div>
-                <p className="text-gray-400 mb-1" style={{ fontSize: '9px' }}>{book.author}</p>
-                <p className="text-gray-600 leading-snug" style={{ fontSize: '10px' }}>{book.desc}</p>
-              </div>
-            </div>
-          ))}
         </div>
       </div>
 
@@ -873,7 +676,7 @@ export default function Hero() {
           >
             <span className="text-white font-semibold leading-snug" style={{ fontSize: '13px' }}>Mua ngay</span>
             <span className="text-white/80 leading-snug" style={{ fontSize: '10px' }}>
-              Freeship · 179.000đ
+              Freeship · 199.000đ
             </span>
           </button>
         </div>

@@ -1,7 +1,6 @@
 import './App.css'
 import Hero from './components/Hero'
 import FormCOD from './components/FormCOD'
-import Benefits from './components/Benefits'
 import BookShowcase from './components/BookShowcase'
 import Reviews from './components/Reviews'
 import BookInfo from './components/BookInfo'
@@ -13,7 +12,6 @@ function App() {
       <Hero />
       <BookShowcase />
       <FormCOD />
-      <Benefits />
       <Reviews />
       <BookInfo />
       <DiscountCode />

@@ -23,19 +23,19 @@ const StepBadge = ({ n }) => (
 
 const COMBO_BOOKS = {
   1: [
-    { title: 'Học Ít Nhớ Nhiều', desc: 'Kỹ thuật ghi nhớ siêu tốc giúp con học nhanh, nhớ lâu hơn.', img: biaSach },
+    { title: 'Nếu Con Làm Bố Mẹ Một Ngày', desc: 'Câu chuyện cảm động giúp con hiểu nỗi lòng bố mẹ, kết nối tình cảm gia đình.', img: biaSach },
   ],
   2: [
-    { title: 'Học Ít Nhớ Nhiều', desc: 'Kỹ thuật ghi nhớ siêu tốc giúp con học nhanh, nhớ lâu hơn.', img: biaSach },
+    { title: 'Nếu Con Làm Bố Mẹ Một Ngày', desc: 'Câu chuyện cảm động giúp con hiểu nỗi lòng bố mẹ, kết nối tình cảm gia đình.', img: biaSach },
     { title: 'Mẹo Ứng Xử Lịch Sự', desc: 'Cẩm nang vàng cho trẻ tự tin giao tiếp — 50+ tình huống thực tế giúp con biết chào hỏi, cảm ơn, xin lỗi đúng lúc và ứng xử khéo léo ở trường, ở nhà, nơi công cộng.', img: biaMeoUngXu },
   ],
   3: [
-    { title: 'Học Ít Nhớ Nhiều', desc: 'Kỹ thuật ghi nhớ siêu tốc giúp con học nhanh, nhớ lâu hơn.', img: biaSach },
+    { title: 'Nếu Con Làm Bố Mẹ Một Ngày', desc: 'Câu chuyện cảm động giúp con hiểu nỗi lòng bố mẹ, kết nối tình cảm gia đình.', img: biaSach },
     { title: 'Định Luật Murphy', desc: '28 bài học truyện tranh giúp trẻ hiểu bản thân, quản lý cảm xúc và giao tiếp tự tin. Rèn tư duy thông minh và nhân cách vững vàng cho trẻ 6–15 tuổi.', img: biaSach2 },
     { title: 'Mẹo Ứng Xử Lịch Sự', desc: 'Cẩm nang vàng cho trẻ tự tin giao tiếp — 50+ tình huống thực tế giúp con biết chào hỏi, cảm ơn, xin lỗi đúng lúc và ứng xử khéo léo ở trường, ở nhà, nơi công cộng.', img: biaMeoUngXu },
   ],
   4: [
-    { title: 'Học Ít Nhớ Nhiều', desc: 'Kỹ thuật ghi nhớ siêu tốc giúp con học nhanh, nhớ lâu hơn.', img: biaSach },
+    { title: 'Nếu Con Làm Bố Mẹ Một Ngày', desc: 'Câu chuyện cảm động giúp con hiểu nỗi lòng bố mẹ, kết nối tình cảm gia đình.', img: biaSach },
     { title: 'Định Luật Murphy', desc: '28 bài học truyện tranh giúp trẻ hiểu bản thân, quản lý cảm xúc và giao tiếp tự tin. Rèn tư duy thông minh và nhân cách vững vàng cho trẻ 6–15 tuổi.', img: biaSach2 },
     { title: 'Đắc Nhân Tâm Cho Trẻ', desc: 'Phiên bản đặc biệt từ kiệt tác của Dale Carnegie — dạy bé cách lắng nghe, kết bạn chân thành và ứng xử khéo léo trong mọi tình huống từ trường học đến gia đình.', img: biaSach3 },
     { title: 'Mẹo Ứng Xử Lịch Sự', desc: 'Cẩm nang vàng cho trẻ tự tin giao tiếp — 50+ tình huống thực tế giúp con biết chào hỏi, cảm ơn, xin lỗi đúng lúc và ứng xử khéo léo ở trường, ở nhà, nơi công cộng.', img: biaMeoUngXu },
@@ -51,7 +51,6 @@ export default function FormCOD() {
   const [errors, setErrors] = useState({ name: '', phone: '', address: '' })
   const [status, setStatus] = useState('idle') // 'idle' | 'submitting' | 'success' | 'error'
   const [successData, setSuccessData] = useState(null) // { orderId, total }
-  const [errorMsg, setErrorMsg] = useState('')
 
   // Countdown — dùng chung deadline với Hero qua localStorage
   const [timeLeft, setTimeLeft] = useState({ hours: 23, minutes: 59, seconds: 59 })
@@ -83,8 +82,8 @@ export default function FormCOD() {
 
   const { hours, minutes, seconds } = timeLeft
 
-  const PRICE_MAP = { 1: 179000, 2: 250000, 3: 350000, 4: 450000 }
-  const priceBook = PRICE_MAP[quantity] || 179000
+  const PRICE_MAP = { 1: 199000, 2: 250000, 3: 350000, 4: 450000 }
+  const priceBook = PRICE_MAP[quantity] || 199000
   const priceShip = 0
   const total = priceBook + priceShip
   const fmt = (n) => n.toLocaleString('vi-VN') + 'đ'
@@ -121,7 +120,6 @@ export default function FormCOD() {
       setAddress('')
       setQuantity(2)
     } else {
-      setErrorMsg(res.error)
       setStatus('error')
     }
   }
@@ -182,7 +180,7 @@ export default function FormCOD() {
           <div className="flex gap-3 items-center">
             {/* Ảnh bìa sách — hiện đủ bìa thật theo combo */}
             <div className="flex items-end flex-shrink-0">
-              {(COMBO_BOOKS[quantity] || [{ img: biaSach, title: 'Học Ít Nhớ Nhiều' }]).map((book, i, arr) => {
+              {(COMBO_BOOKS[quantity] || [{ img: biaSach, title: 'Nếu Con Làm Bố Mẹ Một Ngày' }]).map((book, i, arr) => {
                 const count = arr.length
                 return (
                   <img
@@ -207,10 +205,10 @@ export default function FormCOD() {
             {/* Thông tin sản phẩm */}
             <div className="flex-1 min-w-0">
               <div className="text-sm font-bold text-gray-900">
-                {quantity === 1 ? 'Học Ít Nhớ Nhiều' : `Combo ${quantity} cuốn sách`}
+                {quantity === 1 ? 'Nếu Con Làm Bố Mẹ Một Ngày' : `Combo ${quantity} cuốn sách`}
               </div>
               <div className="text-[10px] text-gray-500 mt-0.5">
-                {quantity === 1 ? 'Hoàng Văn Đặt · NXB Văn Học' : 'Bộ sách Gieo Mầm Nhân Cách'}
+                {quantity === 1 ? 'OpenBook · NXB Văn Học' : 'Bộ sách Gieo Mầm Nhân Cách'}
               </div>
               <div className="flex items-center gap-2 mt-1">
                 <span className="text-base font-extrabold bg-gradient-to-r from-red-600 to-orange-500 bg-clip-text text-transparent">
@@ -267,15 +265,15 @@ export default function FormCOD() {
               <div className="flex-1 min-w-0">
                 <p className="font-bold" style={{ fontSize: '11px', color: '#DC2626' }}>📚 1 CUỐN</p>
                 <p className="mt-1" style={{ fontSize: '12px', color: '#374151', lineHeight: 1.5, fontWeight: 500 }}>
-                  · Học Ít Nhớ Nhiều
+                  · Nếu Con Làm Bố Mẹ Một Ngày
                 </p>
               </div>
               <div className="text-right flex-shrink-0 ml-3">
-                <p className="font-extrabold leading-none" style={{ fontSize: '20px', color: '#DC2626' }}>179.000đ</p>
+                <p className="font-extrabold leading-none" style={{ fontSize: '20px', color: '#DC2626' }}>199.000đ</p>
                 <p className="italic mt-0.5 font-medium" style={{ fontSize: '12px', color: '#374151' }}>
-                  (Giá Gốc <span className="line-through">250.000đ</span>)
+                  (Giá Gốc <span className="line-through">350.000đ</span>)
                 </p>
-                <p className="mt-1 font-semibold" style={{ fontSize: '10px', color: '#16A34A' }}>✓ FREESHIP · Tiết kiệm 108.000đ</p>
+                <p className="mt-1 font-semibold" style={{ fontSize: '10px', color: '#16A34A' }}>✓ FREESHIP · Tiết kiệm 151.000đ</p>
               </div>
             </button>
 
@@ -298,7 +296,7 @@ export default function FormCOD() {
               <div className="flex-1 min-w-0">
                 <p className="font-bold" style={{ fontSize: '11px', color: '#DC2626' }}>📚📚 COMBO 2</p>
                 <p className="mt-1" style={{ fontSize: '12px', color: '#374151', lineHeight: 1.5, fontWeight: 500 }}>
-                  · Học Ít Nhớ Nhiều<br />
+                  · Nếu Con Làm Bố Mẹ Một Ngày<br />
                   · Mẹo Ứng Xử Lịch Sự
                 </p>
               </div>
@@ -330,7 +328,7 @@ export default function FormCOD() {
               <div className="flex-1 min-w-0">
                 <p className="font-bold" style={{ fontSize: '11px', color: '#DC2626' }}>📚📚📚 COMBO 3</p>
                 <p className="mt-1" style={{ fontSize: '12px', color: '#374151', lineHeight: 1.5, fontWeight: 500 }}>
-                  · Học Ít Nhớ Nhiều<br />
+                  · Nếu Con Làm Bố Mẹ Một Ngày<br />
                   · Định Luật Murphy<br />
                   · Mẹo Ứng Xử Lịch Sự
                 </p>
@@ -363,7 +361,7 @@ export default function FormCOD() {
               <div className="flex-1 min-w-0">
                 <p className="font-bold" style={{ fontSize: '11px', color: '#DC2626' }}>📚📚📚📚 COMBO 4</p>
                 <p className="mt-1" style={{ fontSize: '12px', color: '#374151', lineHeight: 1.5, fontWeight: 500 }}>
-                  · Học Ít Nhớ Nhiều<br />
+                  · Nếu Con Làm Bố Mẹ Một Ngày<br />
                   · Định Luật Murphy<br />
                   · Đắc Nhân Tâm Cho Trẻ<br />
                   · Mẹo Ứng Xử Lịch Sự<br />

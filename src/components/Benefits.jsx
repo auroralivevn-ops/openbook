@@ -1,87 +1,76 @@
 import { useEffect, useRef } from 'react'
 
-/* ── Icons (inline SVG, hand-drawn style, stroke #C8102E, accent fill #F5B700) ── */
-
-const IconBrain = () => (
+/* ── Icons ── */
+const IconHeart = () => (
   <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C8102E" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M9.5 2A2.5 2.5 0 0 1 12 4.5M14.5 2A2.5 2.5 0 0 0 12 4.5M12 4.5V20" />
-    <path d="M9.5 2A2.5 2.5 0 0 0 7 4.5 3 3 0 0 0 5 10a2.5 2.5 0 0 0 0 5A2.5 2.5 0 0 0 7.5 17.5" />
-    <path d="M14.5 2A2.5 2.5 0 0 1 17 4.5 3 3 0 0 1 19 10a2.5 2.5 0 0 1 0 5A2.5 2.5 0 0 1 16.5 17.5" />
-    <circle cx="9" cy="8.5" r="1.2" fill="#F5B700" stroke="none" />
-    <circle cx="15.5" cy="11.5" r="0.9" fill="#F5B700" stroke="none" />
+    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z" />
+    <circle cx="12" cy="12" r="1.5" fill="#F5B700" stroke="none" />
   </svg>
 )
 
-const IconBook = () => (
+const IconFamily = () => (
   <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C8102E" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
-    <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
-    <path d="M12 14v-4" stroke="#F5B700" strokeWidth="1.6" />
-    <path d="M10.5 12c.4-1.4 1-2.2 1.5-2.2s1.1.8 1.5 2.2" stroke="#F5B700" strokeWidth="1.6" fill="none" />
+    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+    <circle cx="9" cy="7" r="4" />
+    <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+    <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+    <circle cx="15" cy="9" r="1" fill="#F5B700" stroke="none" />
   </svg>
 )
 
-const IconCloud = () => (
+const IconChat = () => (
   <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C8102E" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z" />
-    <circle cx="9.5" cy="12.5" r="1" fill="#F5B700" stroke="none" />
-    <circle cx="14.5" cy="12.5" r="1" fill="#F5B700" stroke="none" />
-    <path d="M10 15.5c.5.7 1.2 1 2 1s1.5-.3 2-1" />
+    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+    <circle cx="9" cy="10" r="1" fill="#F5B700" stroke="none" />
+    <circle cx="15" cy="10" r="1" fill="#F5B700" stroke="none" />
   </svg>
 )
 
-const IconTrending = () => (
+const IconEye = () => (
   <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C8102E" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-    <polyline points="22 8 13.5 16.5 8.5 11.5 2 18" />
-    <polyline points="16 8 22 8 22 14" />
-    <path d="M18.5 3l.65 1.85L21 5.5l-1.85.65L18.5 8l-.65-1.85L16 5.5l1.85-.65z" fill="#F5B700" stroke="none" />
+    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+    <circle cx="12" cy="12" r="3" />
+    <circle cx="12" cy="12" r="1.2" fill="#F5B700" stroke="none" />
   </svg>
 )
 
-const IconSun = () => (
+const IconStar = () => (
   <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C8102E" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-    <circle cx="12" cy="9" r="3.5" />
-    <line x1="12" y1="1.5" x2="12" y2="3.5" />
-    <line x1="12" y1="14.5" x2="12" y2="16.5" />
-    <line x1="4.93" y1="3.93" x2="6.34" y2="5.34" />
-    <line x1="17.66" y1="3.93" x2="19.07" y2="5.34" />
-    <line x1="1.5" y1="9" x2="3.5" y2="9" />
-    <line x1="20.5" y1="9" x2="22.5" y2="9" />
-    <path d="M3 20h18" />
-    <circle cx="12" cy="9" r="1.5" fill="#F5B700" stroke="none" />
+    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+    <circle cx="12" cy="10" r="1.5" fill="#F5B700" stroke="none" />
   </svg>
 )
 
 /* ── Card data ── */
 const CARDS = [
   {
-    id: '01', title: 'Ghi nhớ dễ dàng',
-    desc: 'Con thuộc bài cũ trong 5 phút thay vì 30 phút mỗi tối',
-    stat: '+47% tốc độ học', Icon: IconBrain, highlight: false,
-    bgColor: '#F0F9F7', borderColor: '#2D8659', iconBg: '#D4F3ED', textColor: '#2D8659',
+    id: '01', title: 'Hiểu nỗi lòng bố mẹ',
+    desc: 'Con nhận ra bố mẹ yêu con qua từng hành động nhỏ — bữa cơm, giấc ngủ, lời nói dối nhẹ nhàng',
+    stat: '9/10 con thay đổi cách nhìn', Icon: IconHeart, highlight: false,
+    bgColor: '#FEF2F2', borderColor: '#E74C3C', iconBg: '#FECACA', textColor: '#C0392B',
   },
   {
-    id: '02', title: 'Hiểu sâu nhớ lâu',
-    desc: 'Kiến thức ghi sâu trong não, không quên sau 1 tuần',
-    stat: 'Nhớ 90% sau 30 ngày', Icon: IconBook, highlight: false,
+    id: '02', title: 'Gắn kết gia đình',
+    desc: 'Cả nhà đọc cùng nhau, chia sẻ cảm xúc và thấu hiểu lẫn nhau hơn mỗi ngày',
+    stat: '8/10 gia đình gần gũi hơn', Icon: IconFamily, highlight: false,
     bgColor: '#EEF5F9', borderColor: '#1B4D7C', iconBg: '#D9EBF7', textColor: '#1B4D7C',
   },
   {
-    id: '03', title: 'Học nhẹ nhàng thoải mái',
-    desc: 'Con thấy học là vui, không còn căng thẳng cuối tuần',
-    stat: '8/10 phụ huynh khen', Icon: IconCloud, highlight: false,
+    id: '03', title: 'Con biết mở lòng',
+    desc: 'Từ giận dỗi, con chuyển sang nói "Con yêu bố mẹ" và biết lắng nghe',
+    stat: 'Thay đổi sau 3 ngày đọc', Icon: IconChat, highlight: false,
     bgColor: '#FFF5E6', borderColor: '#F77F00', iconBg: '#FFE8CC', textColor: '#F77F00',
   },
   {
-    id: '04', title: 'Tăng tốc kết quả',
-    desc: 'Điểm số tăng rõ rệt sau 2 tuần áp dụng',
-    stat: '+1.5 điểm trung bình', Icon: IconTrending, highlight: false,
+    id: '04', title: 'Nhìn thấy sự hy sinh',
+    desc: 'Con hiểu tại sao bố mẹ hay mệt, hay cáu — vì mỗi phút đều dành cho con',
+    stat: 'Bài học cảm động nhất', Icon: IconEye, highlight: false,
     bgColor: '#F5E8F5', borderColor: '#D946A6', iconBg: '#F0D9F0', textColor: '#D946A6',
   },
   {
-    id: '05', title: 'Tự tin mỗi ngày',
-    desc: 'Con dám phát biểu, tự xung phong giải bài, không sợ sai trước bạn bè',
-    stat: '9/10 con tự tin hơn rõ rệt', Icon: IconSun, highlight: true,
+    id: '05', title: 'Trưởng thành từ trái tim',
+    desc: 'Con biết ơn, trân trọng và tự nguyện trở thành phiên bản tốt hơn — không cần bố mẹ nhắc nhở',
+    stat: '100% phụ huynh xúc động', Icon: IconStar, highlight: true,
     bgColor: '#FFF8E1', borderColor: '#F5B700', iconBg: '#FFECB3', textColor: '#C8102E',
   },
 ]
@@ -102,7 +91,6 @@ function BenefitCard({ card, index, cardRef }) {
         boxShadow: `0 4px 12px rgba(${parseInt(borderColor.slice(1, 3), 16)}, ${parseInt(borderColor.slice(3, 5), 16)}, ${parseInt(borderColor.slice(5, 7), 16)}, 0.12)`,
       }}
     >
-      {/* Badge trên card 5 */}
       {highlight && (
         <span
           className="absolute -top-3 left-3 text-white font-bold px-2.5 py-0.5 rounded-full"
@@ -112,7 +100,6 @@ function BenefitCard({ card, index, cardRef }) {
         </span>
       )}
 
-      {/* Icon + số thứ tự */}
       <div className="flex items-center gap-2.5 mb-2.5">
         <div
           className="w-10 h-10 flex items-center justify-center rounded-[10px] flex-shrink-0"
@@ -123,7 +110,6 @@ function BenefitCard({ card, index, cardRef }) {
         <span style={{ fontSize: '11px', color: textColor, fontWeight: 600 }}>{id}</span>
       </div>
 
-      {/* Title */}
       <p
         className="font-semibold mb-1 leading-snug"
         style={{ fontSize: highlight ? '15px' : '14px', color: textColor }}
@@ -131,19 +117,13 @@ function BenefitCard({ card, index, cardRef }) {
         {title}
       </p>
 
-      {/* Description */}
       <p className="leading-relaxed mb-3" style={{ fontSize: '12px', color: '#6B5D54' }}>
         {desc}
       </p>
 
-      {/* Stat badge */}
       <span
         className="inline-flex items-center px-2.5 py-1 rounded-full font-semibold"
-        style={{
-          fontSize: '10px',
-          background: iconBg,
-          color: textColor,
-        }}
+        style={{ fontSize: '10px', background: iconBg, color: textColor }}
       >
         {stat}
       </span>
@@ -162,7 +142,6 @@ export default function Benefits() {
           if (entry.isIntersecting) {
             const el = entry.target
             el.classList.add('visible')
-            // Reset stagger delay sau khi reveal xong để hover không bị chậm
             const staggerMs = (parseFloat(el.style.getPropertyValue('--stagger-delay')) || 0) * 1000
             setTimeout(() => el.style.setProperty('--stagger-delay', '0s'), staggerMs + 600)
             observer.unobserve(el)
@@ -200,13 +179,12 @@ export default function Benefits() {
           5 thay đổi sau khi con đọc sách
         </h2>
         <p className="text-[#6B5D54]" style={{ fontSize: '14px' }}>
-          Không phải lý thuyết — đây là kết quả phụ huynh báo về
+          Không phải lý thuyết — đây là chia sẻ thật từ phụ huynh
         </p>
       </div>
 
       {/* Cards */}
       <div className="max-w-[720px] mx-auto">
-        {/* Row 1: 3 cards */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-3">
           {CARDS.slice(0, 3).map((card, i) => (
             <BenefitCard
@@ -215,7 +193,6 @@ export default function Benefits() {
             />
           ))}
         </div>
-        {/* Row 2: 2 cards — card 5 rộng hơn 40% trên desktop */}
         <div className="grid grid-cols-1 benefits-row2 gap-3">
           {CARDS.slice(3).map((card, i) => (
             <BenefitCard
@@ -246,7 +223,7 @@ export default function Benefits() {
             cursor: 'pointer',
           }}
         >
-          Xem giá ưu đãi 179K →
+          Xem giá ưu đãi 199K →
         </button>
       </div>
 

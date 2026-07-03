@@ -3,14 +3,14 @@ export async function submitOrder({ name, phone, address, quantity }) {
     day: '2-digit', month: '2-digit', year: 'numeric',
     hour: '2-digit', minute: '2-digit'
   });
-  const PRICE_MAP = { 1: 179000, 2: 250000, 3: 350000, 4: 450000 };
-  const total = PRICE_MAP[quantity] || 179000;
+  const PRICE_MAP = { 1: 199000, 2: 250000, 3: 350000, 4: 450000 };
+  const total = PRICE_MAP[quantity] || 199000;
   const shipNote = 'FREESHIP';
   const COMBO_NAMES = {
-    1: '1 cuốn Học Ít Nhớ Nhiều',
-    2: 'Combo 2: Học Ít Nhớ Nhiều + Mẹo Ứng Xử Lịch Sự',
-    3: 'Combo 3: HÍNN + Định Luật Murphy + Mẹo Ứng Xử Lịch Sự',
-    4: 'Combo 4: HÍNN + Murphy + Đắc Nhân Tâm + Mẹo Ứng Xử Lịch Sự (+ Kỷ Luật Tự Giác QUÀ TẶNG)',
+    1: '1 cuốn Nếu Con Làm Bố Mẹ Một Ngày',
+    2: 'Combo 2: Nếu Con Làm Bố Mẹ Một Ngày + Mẹo Ứng Xử Lịch Sự',
+    3: 'Combo 3: NCLBMMN + Định Luật Murphy + Mẹo Ứng Xử Lịch Sự',
+    4: 'Combo 4: NCLBMMN + Murphy + Đắc Nhân Tâm + Mẹo Ứng Xử Lịch Sự (+ Kỷ Luật Tự Giác QUÀ TẶNG)',
   };
   const comboLabel = COMBO_NAMES[quantity] || `${quantity} cuốn`;
 
@@ -81,7 +81,7 @@ export async function submitOrder({ name, phone, address, quantity }) {
   // ── BƯỚC 4: Tracking pixel ──
   if (typeof window !== 'undefined' && window.fbq) {
     window.fbq('track', 'Lead', {
-      content_name: 'Sách Học Ít Nhớ Nhiều',
+      content_name: 'Sách Nếu Con Làm Bố Mẹ Một Ngày',
       content_category: 'Sách giáo dục',
       value: total,
       currency: 'VND',
@@ -101,11 +101,11 @@ export async function submitOrder({ name, phone, address, quantity }) {
       value: total,
       currency: 'VND',
       items: [{
-        item_id: 'sach-hoc-it-nho-nhieu',
-        item_name: 'Sách Học Ít Nhớ Nhiều',
+        item_id: 'sach-neu-con-lam-bo-me',
+        item_name: 'Sách Nếu Con Làm Bố Mẹ Một Ngày',
         item_category: 'Sách giáo dục',
         quantity,
-        price: 179000,
+        price: 199000,
       }],
     });
     window.gtag('event', 'generate_lead', { currency: 'VND', value: total });
@@ -118,11 +118,11 @@ export async function submitOrder({ name, phone, address, quantity }) {
   if (typeof window !== 'undefined' && window.ttq) {
     window.ttq.track('PlaceAnOrder', {
       contents: [{
-        content_id: 'sach-hoc-it-nho-nhieu',
-        content_name: 'Sách Học Ít Nhớ Nhiều',
+        content_id: 'sach-neu-con-lam-bo-me',
+        content_name: 'Sách Nếu Con Làm Bố Mẹ Một Ngày',
         content_type: 'product',
         quantity,
-        price: 179000,
+        price: 199000,
       }],
       value: total,
       currency: 'VND',
@@ -130,11 +130,11 @@ export async function submitOrder({ name, phone, address, quantity }) {
     });
     window.ttq.track('CompletePayment', {
       contents: [{
-        content_id: 'sach-hoc-it-nho-nhieu',
-        content_name: 'Sách Học Ít Nhớ Nhiều',
+        content_id: 'sach-neu-con-lam-bo-me',
+        content_name: 'Sách Nếu Con Làm Bố Mẹ Một Ngày',
         content_type: 'product',
         quantity,
-        price: 179000,
+        price: 199000,
       }],
       value: total,
       currency: 'VND',
