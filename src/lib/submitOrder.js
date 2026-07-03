@@ -24,7 +24,7 @@ export async function submitOrder({ name, phone, address, quantity }) {
 
   if (SHEET_URL) {
     try {
-      const payload = { name, phone, address, quantity, total, note: shipNote, timestamp };
+      const payload = { name, phone, address, quantity, total, note: shipNote, timestamp, product: comboLabel };
       const res = await fetch(SHEET_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'text/plain;charset=utf-8' },
