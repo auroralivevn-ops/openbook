@@ -29,12 +29,12 @@ const SLIDES = [
 
 const NOTIFICATIONS = [
   'Nguyễn Tuấn Anh vừa đặt mua sách',
-  'Trần Thị Hoa đánh giá 5 sao: "Sách rất hay!"',
-  'Lê Văn Bình vừa đặt 2 cuốn',
-  'Phạm Minh Châu: "Con tôi rất thích!"',
+  'Trần Thị Hoa đánh giá 5 sao: "Sách rất cảm động!"',
+  'Lê Văn Bình vừa đặt combo 2 cuốn',
+  'Phạm Minh Châu: "Con đọc xong biết thương bố mẹ hơn!"',
   'Hoàng Văn Tùng vừa đặt mua sách',
-  'Vũ Thị Mai: "Phương pháp hay, hiệu quả"',
-  'Đỗ Tiến Dũng vừa đặt 3 cuốn',
+  'Vũ Thị Mai: "Cả nhà đọc cùng nhau rất ý nghĩa"',
+  'Đỗ Tiến Dũng vừa đặt mua sách',
   'Bùi Thanh Hà: "Đáng đồng tiền lắm!"',
 ]
 
