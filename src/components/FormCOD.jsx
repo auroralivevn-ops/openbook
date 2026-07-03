@@ -397,7 +397,7 @@ export default function FormCOD() {
                   placeholder="Họ và tên *"
                   value={name}
                   onChange={e => { setName(e.target.value); setErrors(p => ({ ...p, name: '' })) }}
-                  className="flex-1 bg-transparent text-sm text-gray-900 placeholder-gray-400"
+                  className="flex-1 bg-transparent text-base text-gray-900 placeholder-gray-400"
                   style={{ border: 'none', outline: 'none' }}
                 />
               </div>
@@ -412,7 +412,7 @@ export default function FormCOD() {
                   placeholder="Số điện thoại *"
                   value={phone}
                   onChange={e => { setPhone(e.target.value); setErrors(p => ({ ...p, phone: '' })) }}
-                  className="flex-1 bg-transparent text-sm text-gray-900 placeholder-gray-400"
+                  className="flex-1 bg-transparent text-base text-gray-900 placeholder-gray-400"
                   style={{ border: 'none', outline: 'none' }}
                 />
               </div>
@@ -426,7 +426,7 @@ export default function FormCOD() {
                   placeholder="Địa chỉ giao hàng * (ghi theo địa chỉ trước sáp nhập)"
                   value={address}
                   onChange={e => { setAddress(e.target.value); setErrors(p => ({ ...p, address: '' })) }}
-                  className="flex-1 bg-transparent text-sm text-gray-900 placeholder-gray-400 resize-none"
+                  className="flex-1 bg-transparent text-base text-gray-900 placeholder-gray-400 resize-none"
                   style={{ border: 'none', outline: 'none', minHeight: '60px', fontFamily: 'inherit' }}
                 />
               </div>
