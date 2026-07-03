@@ -4,6 +4,7 @@ import biaSach2 from '../assets/sach-images/bia-murphy.jpg'
 import biaSach3 from '../assets/sach-images/bia-dacnhantam.jpg'
 import biaSach4 from '../assets/sach-images/bia-kyluat.webp'
 import biaMeoUngXu from '../assets/sach-images/BÌA MẸO ỨNG XỬ LỊCH SỰ.webp'
+import biaNCLBM from '../assets/sach-images/bìa.png'
 import { submitOrder, validatePhone, validateName, validateAddress } from '../lib/submitOrder'
 
 const StarIcon = () => (
@@ -23,11 +24,11 @@ const StepBadge = ({ n }) => (
 
 const COMBO_BOOKS = {
   1: [
-    { title: 'Nếu Con Làm Bố Mẹ Một Ngày', desc: 'Câu chuyện cảm động giúp con hiểu nỗi lòng bố mẹ, kết nối tình cảm gia đình.', img: biaSach },
+    { title: 'Nếu Con Làm Bố Mẹ Một Ngày', desc: 'Câu chuyện cảm động giúp con hiểu nỗi lòng bố mẹ, kết nối tình cảm gia đình.', img: biaNCLBM },
   ],
   2: [
-    { title: 'Nếu Con Làm Bố Mẹ Một Ngày', desc: 'Câu chuyện cảm động giúp con hiểu nỗi lòng bố mẹ, kết nối tình cảm gia đình.', img: biaSach },
-    { title: 'Mẹo Ứng Xử Lịch Sự', desc: 'Cẩm nang vàng cho trẻ tự tin giao tiếp — 50+ tình huống thực tế giúp con biết chào hỏi, cảm ơn, xin lỗi đúng lúc và ứng xử khéo léo ở trường, ở nhà, nơi công cộng.', img: biaMeoUngXu },
+    { title: 'Nếu Con Làm Bố Mẹ Một Ngày', desc: 'Câu chuyện cảm động giúp con hiểu nỗi lòng bố mẹ, kết nối tình cảm gia đình.', img: biaNCLBM },
+    { title: 'Học Ít Nhớ Nhiều', desc: 'Phương pháp ghi nhớ thông minh giúp con học ít mà nhớ lâu, rèn thói quen học tập hiệu quả và tự tin hơn mỗi ngày.', img: biaSach },
   ],
   3: [
     { title: 'Nếu Con Làm Bố Mẹ Một Ngày', desc: 'Câu chuyện cảm động giúp con hiểu nỗi lòng bố mẹ, kết nối tình cảm gia đình.', img: biaSach },
@@ -82,7 +83,7 @@ export default function FormCOD() {
 
   const { hours, minutes, seconds } = timeLeft
 
-  const PRICE_MAP = { 1: 199000, 2: 250000, 3: 350000, 4: 450000 }
+  const PRICE_MAP = { 1: 199000, 2: 350000, 3: 350000, 4: 450000 }
   const priceBook = PRICE_MAP[quantity] || 199000
   const priceShip = 0
   const total = priceBook + priceShip
@@ -297,94 +298,15 @@ export default function FormCOD() {
                 <p className="font-bold" style={{ fontSize: '11px', color: '#DC2626' }}>📚📚 COMBO 2</p>
                 <p className="mt-1" style={{ fontSize: '12px', color: '#374151', lineHeight: 1.5, fontWeight: 500 }}>
                   · Nếu Con Làm Bố Mẹ Một Ngày<br />
-                  · Mẹo Ứng Xử Lịch Sự
+                  · Học Ít Nhớ Nhiều
                 </p>
               </div>
               <div className="text-right flex-shrink-0 ml-3">
-                <p className="font-extrabold leading-none bg-gradient-to-r from-red-600 to-orange-500 bg-clip-text text-transparent" style={{ fontSize: '20px' }}>250.000đ</p>
+                <p className="font-extrabold leading-none bg-gradient-to-r from-red-600 to-orange-500 bg-clip-text text-transparent" style={{ fontSize: '20px' }}>350.000đ</p>
                 <p className="italic mt-0.5 font-medium" style={{ fontSize: '12px', color: '#374151' }}>
-                  (Giá Gốc <span className="line-through">408.000đ</span>)
+                  (Giá Gốc <span className="line-through">600.000đ</span>)
                 </p>
-                <p className="mt-1 font-semibold" style={{ fontSize: '10px', color: '#16A34A' }}>✓ FREESHIP · Tiết kiệm 158.000đ</p>
-              </div>
-            </button>
-
-            {/* Combo 3 — full width */}
-            <button
-              onClick={() => setQuantity(3)}
-              className={`relative flex items-center justify-between p-3 transition-all duration-150${quantity === 3 ? ' card-active-glow' : ''}`}
-              style={{
-                border: quantity === 3 ? '2px solid #DC2626' : '2px solid #E5E5E5',
-                borderRadius: '12px',
-                background: quantity === 3 ? 'linear-gradient(135deg, #FFFBEA 0%, #FEF2F2 100%)' : 'white',
-                boxShadow: quantity === 3 ? '0 4px 12px rgba(220,38,38,0.2)' : 'none',
-                cursor: 'pointer',
-                textAlign: 'left',
-              }}
-            >
-              <span className="absolute -top-2 left-3 text-white font-bold" style={{ background: 'linear-gradient(90deg, #F77F00, #EF4444)', padding: '2px 8px', borderRadius: '4px', fontSize: '8px' }}>
-                🔥 COMBO KHUYẾN HỌC
-              </span>
-              <div className="flex-1 min-w-0">
-                <p className="font-bold" style={{ fontSize: '11px', color: '#DC2626' }}>📚📚📚 COMBO 3</p>
-                <p className="mt-1" style={{ fontSize: '12px', color: '#374151', lineHeight: 1.5, fontWeight: 500 }}>
-                  · Nếu Con Làm Bố Mẹ Một Ngày<br />
-                  · Định Luật Murphy<br />
-                  · Mẹo Ứng Xử Lịch Sự
-                </p>
-              </div>
-              <div className="text-right flex-shrink-0 ml-3">
-                <p className="font-extrabold bg-gradient-to-r from-red-600 to-orange-500 bg-clip-text text-transparent" style={{ fontSize: '20px', lineHeight: 1 }}>350.000đ</p>
-                <p className="italic mt-0.5 font-medium" style={{ fontSize: '12px', color: '#374151' }}>
-                  (Giá Gốc <span className="line-through">558.000đ</span>)
-                </p>
-                <p className="mt-1 font-semibold" style={{ fontSize: '10px', color: '#16A34A' }}>✓ FREESHIP · Tiết kiệm 208.000đ</p>
-              </div>
-            </button>
-
-            {/* Combo 4 — full width */}
-            <button
-              onClick={() => setQuantity(4)}
-              className={`relative flex items-center justify-between p-3 transition-all duration-150${quantity === 4 ? ' card-active-glow' : ''}`}
-              style={{
-                border: quantity === 4 ? '2px solid #DC2626' : '2px solid #E5E5E5',
-                borderRadius: '12px',
-                background: quantity === 4 ? 'linear-gradient(135deg, #FFFBEA 0%, #FEF2F2 100%)' : 'white',
-                boxShadow: quantity === 4 ? '0 4px 12px rgba(220,38,38,0.2)' : 'none',
-                cursor: 'pointer',
-                textAlign: 'left',
-              }}
-            >
-              <span className="absolute -top-2 left-3 text-white font-bold" style={{ background: 'linear-gradient(90deg, #7C3AED, #DC2626)', padding: '2px 8px', borderRadius: '4px', fontSize: '8px' }}>
-                👑 COMBO TOÀN DIỆN
-              </span>
-              <div className="flex-1 min-w-0">
-                <p className="font-bold" style={{ fontSize: '11px', color: '#DC2626' }}>📚📚📚📚 COMBO 4</p>
-                <p className="mt-1" style={{ fontSize: '12px', color: '#374151', lineHeight: 1.5, fontWeight: 500 }}>
-                  · Nếu Con Làm Bố Mẹ Một Ngày<br />
-                  · Định Luật Murphy<br />
-                  · Đắc Nhân Tâm Cho Trẻ<br />
-                  · Mẹo Ứng Xử Lịch Sự<br />
-                  · Kỷ Luật Tự Giác{' '}
-                  <span
-                    className="text-white font-extrabold rounded"
-                    style={{
-                      background: 'linear-gradient(90deg, #DC2626, #F77F00)',
-                      fontSize: '9px',
-                      padding: '2px 6px',
-                      letterSpacing: '0.5px',
-                    }}
-                  >
-                    🎁 QUÀ TẶNG
-                  </span>
-                </p>
-              </div>
-              <div className="text-right flex-shrink-0 ml-3">
-                <p className="font-extrabold bg-gradient-to-r from-red-600 to-orange-500 bg-clip-text text-transparent" style={{ fontSize: '20px', lineHeight: 1 }}>450.000đ</p>
-                <p className="italic mt-0.5 font-medium" style={{ fontSize: '12px', color: '#374151' }}>
-                  (Giá Gốc <span className="line-through">828.000đ</span>)
-                </p>
-                <p className="mt-1 font-semibold" style={{ fontSize: '10px', color: '#16A34A' }}>✓ FREESHIP · Tiết kiệm 378.000đ</p>
+                <p className="mt-1 font-semibold" style={{ fontSize: '10px', color: '#16A34A' }}>✓ FREESHIP · Tiết kiệm 250.000đ</p>
               </div>
             </button>
           </div>
@@ -451,8 +373,8 @@ export default function FormCOD() {
             style={{ background: '#FEF3C7', border: '1px dashed #F5B700', borderRadius: '8px' }}
           >
             <p className="font-medium" style={{ fontSize: '11px', color: '#92400E' }}>
-              {quantity === 1 && '💡 Mua combo 2 cuốn chỉ 250K – tiết kiệm thêm 108K so với mua lẻ!'}
-              {quantity === 2 && '🎉 Bạn tiết kiệm 108K so với mua 2 cuốn lẻ!'}
+              {quantity === 1 && '💡 Mua combo 2 cuốn chỉ 350K – tiết kiệm thêm 250K so với mua lẻ!'}
+              {quantity === 2 && '🎉 Bạn tiết kiệm 250K so với mua lẻ!'}
               {quantity === 3 && '🔥 Combo 3 cuốn — bộ kỹ năng học tập hoàn chỉnh!'}
               {quantity === 4 && '👑 Combo 4 cuốn — bộ toàn diện, giá tốt nhất!'}
             </p>
@@ -501,7 +423,7 @@ export default function FormCOD() {
               <div className={`input-magic${errors.address ? ' border-red-500' : ''}`} style={{ alignItems: 'flex-start' }}>
                 <span className="input-icon flex-shrink-0 text-base leading-none mt-0.5">📍</span>
                 <textarea
-                  placeholder="Địa chỉ giao hàng *"
+                  placeholder="Địa chỉ giao hàng * (ghi theo địa chỉ trước sáp nhập)"
                   value={address}
                   onChange={e => { setAddress(e.target.value); setErrors(p => ({ ...p, address: '' })) }}
                   className="flex-1 bg-transparent text-sm text-gray-900 placeholder-gray-400 resize-none"
@@ -579,7 +501,7 @@ export default function FormCOD() {
               </div>
               {quantity >= 2 && (
                 <p className="text-right font-medium mt-0.5" style={{ fontSize: '10px', color: '#16A34A' }}>
-                  {quantity === 2 && 'Tiết kiệm so với mua lẻ: 158.000đ'}
+                  {quantity === 2 && 'Tiết kiệm so với mua lẻ: 250.000đ'}
                   {quantity === 3 && 'Tiết kiệm so với mua lẻ: 208.000đ'}
                   {quantity === 4 && 'Tiết kiệm so với mua lẻ: 378.000đ'}
                 </p>

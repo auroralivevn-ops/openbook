@@ -51,10 +51,9 @@ export default function BookInfo() {
             <div className="text-[17px] font-medium text-[#1F1B16] mb-0.5">Nếu Con Làm Bố Mẹ Một Ngày</div>
             <div className="text-xs text-[#6B5D54] mb-3">OpenBook — Tổng hợp &amp; biên soạn</div>
             <div className="flex flex-wrap gap-1.5">
-              <span className="bg-[#FFF8E1] text-[#854F0B] text-[11px] px-2.5 py-1 rounded-full font-medium">116 trang</span>
-              <span className="bg-[#FFF8E1] text-[#854F0B] text-[11px] px-2.5 py-1 rounded-full font-medium">18 × 26 cm</span>
+              <span className="bg-[#FFF8E1] text-[#854F0B] text-[11px] px-2.5 py-1 rounded-full font-medium">180 trang</span>
+              <span className="bg-[#FFF8E1] text-[#854F0B] text-[11px] px-2.5 py-1 rounded-full font-medium">17 × 24 cm</span>
               <span className="bg-[#FFF8E1] text-[#854F0B] text-[11px] px-2.5 py-1 rounded-full font-medium">NXB Văn Học</span>
-              <span className="bg-[#FFF8E1] text-[#854F0B] text-[11px] px-2.5 py-1 rounded-full font-medium">4 - 13 tuổi</span>
             </div>
           </div>
 
