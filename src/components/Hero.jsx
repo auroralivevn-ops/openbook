@@ -195,9 +195,12 @@ export default function Hero() {
     if (qty !== null) {
       window.dispatchEvent(new CustomEvent('openbook:selectQty', { detail: qty }))
     }
-    setTimeout(() => {
+    // Cuộn tới form. Cuộn lại lần 2 sau khi layout ổn định (ảnh/font tải xong)
+    // để tránh trường hợp lần đầu vào trang, vị trí form bị xê dịch.
+    const scrollToOrderBtn = () =>
       document.getElementById('order-btn')?.scrollIntoView({ behavior: 'smooth', block: 'end' })
-    }, 50)
+    setTimeout(scrollToOrderBtn, 50)
+    setTimeout(scrollToOrderBtn, 550)
   }
 
   return (

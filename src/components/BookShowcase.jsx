@@ -234,6 +234,7 @@ export default function BookShowcase() {
                   src={biaSach}
                   alt="Bìa sách Nếu Con Làm Bố Mẹ Một Ngày"
                   className="w-full h-auto rounded-2xl shadow-[0_8px_24px_rgba(231,76,60,0.15)]"
+                  style={{ aspectRatio: '1080 / 1456' }}
                   loading="lazy"
                 />
               </div>
@@ -377,6 +378,7 @@ export default function BookShowcase() {
                       src={story.img}
                       alt={story.title}
                       className="w-full h-auto block"
+                      style={{ aspectRatio: '2008 / 2835' }}
                       loading="lazy"
                     />
                     <div
