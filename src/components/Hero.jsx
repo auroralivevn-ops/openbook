@@ -1,24 +1,30 @@
 import { useState, useEffect, useCallback, useRef } from 'react'
 import useEmblaCarousel from 'embla-carousel-react'
 import Autoplay from 'embla-carousel-autoplay'
-import sach1 from '../assets/sach-images/bia-hocit.png'
-import slide1 from '../assets/sach-images/SLIDE-1.jpg'
-import slide2 from '../assets/sach-images/SLIDE-2.jpg'
-import slide3 from '../assets/sach-images/SLIDE-3.jpg'
-import slide4 from '../assets/sach-images/SLIDE-4.jpg'
-import slide5 from '../assets/sach-images/SLIDE-5.jpg'
-
-const YT = ['9UqSOrkgAT8', 'tFh4E_ip2Hc']
+import L1 from '../assets/sach-images/bia-chuan.webp'
+import L2 from '../assets/sach-images/L2.webp'
+import L3 from '../assets/sach-images/L3.webp'
+import L4 from '../assets/sach-images/L4.webp'
+import L5 from '../assets/sach-images/L5.webp'
+import L6 from '../assets/sach-images/L6.webp'
+import L7 from '../assets/sach-images/L7.webp'
+import L8 from '../assets/sach-images/L8.webp'
+import L9 from '../assets/sach-images/L9.webp'
+import L10 from '../assets/sach-images/L10.webp'
+import L11 from '../assets/sach-images/L11.webp'
 
 const SLIDES = [
-  { type: 'video', ytId: YT[0] },
-  { type: 'video', ytId: YT[1] },
-  { type: 'image', src: sach1, alt: 'Bìa sách Nếu Con Làm Bố Mẹ Một Ngày' },
-  { type: 'image', src: slide1, alt: 'Liên tưởng & tưởng tượng — bộ đôi ghi nhớ hiệu quả' },
-  { type: 'image', src: slide2, alt: 'Trí nhớ cũng cần sự tự tin' },
-  { type: 'image', src: slide3, alt: 'Kiến thức đang bốc hơi như thế nào?' },
-  { type: 'image', src: slide4, alt: 'Phương pháp rút gọn — biến dài thành ngắn' },
-  { type: 'image', src: slide5, alt: 'Tái hiện câu chuyện — bí quyết để không quên lời' },
+  { type: 'image', src: L1, alt: 'Nếu Con Làm Bố Mẹ Một Ngày — minh họa 1' },
+  { type: 'image', src: L2, alt: 'Nếu Con Làm Bố Mẹ Một Ngày — minh họa 2' },
+  { type: 'image', src: L3, alt: 'Nếu Con Làm Bố Mẹ Một Ngày — minh họa 3' },
+  { type: 'image', src: L4, alt: 'Nếu Con Làm Bố Mẹ Một Ngày — minh họa 4' },
+  { type: 'image', src: L5, alt: 'Nếu Con Làm Bố Mẹ Một Ngày — minh họa 5' },
+  { type: 'image', src: L6, alt: 'Nếu Con Làm Bố Mẹ Một Ngày — minh họa 6' },
+  { type: 'image', src: L7, alt: 'Nếu Con Làm Bố Mẹ Một Ngày — minh họa 7' },
+  { type: 'image', src: L8, alt: 'Nếu Con Làm Bố Mẹ Một Ngày — minh họa 8' },
+  { type: 'image', src: L9, alt: 'Nếu Con Làm Bố Mẹ Một Ngày — minh họa 9' },
+  { type: 'image', src: L10, alt: 'Nếu Con Làm Bố Mẹ Một Ngày — minh họa 10' },
+  { type: 'image', src: L11, alt: 'Nếu Con Làm Bố Mẹ Một Ngày — minh họa 11' },
 ]
 
 const NOTIFICATIONS = [
@@ -66,8 +72,6 @@ export default function Hero() {
     const idx = emblaApi.selectedScrollSnap()
     setSelectedIndex(idx)
     thumbApi.scrollTo(idx)
-    if (idx < 2) emblaApi.plugins().autoplay?.stop()
-    else emblaApi.plugins().autoplay?.play()
   }, [emblaApi, thumbApi])
 
   useEffect(() => {
@@ -315,7 +319,7 @@ export default function Hero() {
         <div className="overflow-hidden" ref={emblaRef}>
           <div className="flex">
             {SLIDES.map((slide, i) => (
-              <div key={i} className="flex-none w-full relative" style={{ aspectRatio: '1 / 1' }}>
+              <div key={i} className="flex-none w-full relative" style={{ aspectRatio: '1000 / 1412' }}>
                 {slide.type === 'video' ? (
                   <>
                     <iframe

@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react'
-import biaSach from '../assets/sach-images/bia-hocit.png'
-import biaSach2 from '../assets/sach-images/bia-murphy.jpg'
-import biaSach3 from '../assets/sach-images/bia-dacnhantam.jpg'
+import biaSach from '../assets/sach-images/bia-hocit.webp'
+import biaSach2 from '../assets/sach-images/bia-murphy.webp'
+import biaSach3 from '../assets/sach-images/bia-dacnhantam.webp'
 import biaSach4 from '../assets/sach-images/bia-kyluat.webp'
 import biaMeoUngXu from '../assets/sach-images/BÌA MẸO ỨNG XỬ LỊCH SỰ.webp'
-import biaNCLBM from '../assets/sach-images/bìa.png'
+import biaNCLBM from '../assets/sach-images/bia-chuan.webp'
 import { submitOrder, validatePhone, validateName, validateAddress } from '../lib/submitOrder'
 
 const StarIcon = () => (

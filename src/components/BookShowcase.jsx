@@ -1,12 +1,12 @@
-import sach1 from '../assets/sach-images/1.png'
-import sach2 from '../assets/sach-images/2.png'
-import sach3 from '../assets/sach-images/3.png'
-import sach4 from '../assets/sach-images/4.png'
-import sach5 from '../assets/sach-images/5.png'
-import sach6 from '../assets/sach-images/6.png'
-import sach7 from '../assets/sach-images/7.png'
-import sach8 from '../assets/sach-images/8.png'
-import biaSach from '../assets/sach-images/bìa.png'
+import sach1 from '../assets/sach-images/1.webp'
+import sach2 from '../assets/sach-images/2.webp'
+import sach3 from '../assets/sach-images/3.webp'
+import sach4 from '../assets/sach-images/4.webp'
+import sach5 from '../assets/sach-images/5.webp'
+import sach6 from '../assets/sach-images/6.webp'
+import sach7 from '../assets/sach-images/7.webp'
+import sach8 from '../assets/sach-images/8.webp'
+import biaSach from '../assets/sach-images/bia-chuan.webp'
 import { RevealItem } from '../hooks/RevealItem'
 
 /* ── Icons ── */
@@ -234,7 +234,7 @@ export default function BookShowcase() {
                   src={biaSach}
                   alt="Bìa sách Nếu Con Làm Bố Mẹ Một Ngày"
                   className="w-full h-auto rounded-2xl shadow-[0_8px_24px_rgba(231,76,60,0.15)]"
-                  style={{ aspectRatio: '1080 / 1456' }}
+                  style={{ aspectRatio: '1054 / 1492' }}
                   loading="lazy"
                 />
               </div>
