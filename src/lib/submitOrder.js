@@ -3,7 +3,7 @@ export async function submitOrder({ name, phone, address, quantity }) {
     day: '2-digit', month: '2-digit', year: 'numeric',
     hour: '2-digit', minute: '2-digit'
   });
-  const PRICE_MAP = { 1: 199000, 2: 350000, 3: 350000, 4: 450000 };
+  const PRICE_MAP = { 1: 199000, 2: 299000, 3: 350000, 4: 450000 };
   const total = PRICE_MAP[quantity] || 199000;
   const shipNote = 'FREESHIP';
   const COMBO_NAMES = {
