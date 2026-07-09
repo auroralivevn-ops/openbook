@@ -661,7 +661,7 @@ export default function Hero() {
               border: '2px solid #FFE082',
             }}
           >
-            <span className="font-extrabold leading-none" style={{ fontSize: '15px' }}>🛒 Mua ngay</span>
+            <span className="font-extrabold leading-none" style={{ fontSize: '15px' }}>MUA NGAY</span>
             <span className="leading-none mt-0.5" style={{ fontSize: '10px', opacity: 0.95 }}>Freeship · 199.000đ</span>
           </button>
         </div>
