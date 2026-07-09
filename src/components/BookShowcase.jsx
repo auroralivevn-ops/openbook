@@ -226,6 +226,40 @@ export default function BookShowcase() {
       </section>
 
       {/* ═══════════════════════════════════════
+          SECTION 2: THÔNG ĐIỆP CUỐN SÁCH
+      ═══════════════════════════════════════ */}
+      <section className="px-4 py-6 bg-[#FFFBF5]">
+        <div className="max-w-3xl mx-auto">
+          {/* Closing message */}
+          <RevealItem>
+            <div className="text-center py-4 px-3 rounded-xl" style={{ background: '#FFF8E1', border: '1px dashed #FDE68A' }}>
+              <p className="text-[13px] font-medium" style={{ color: '#92400E' }}>
+                📖 Cuốn sách không bắt con phải nghĩ rằng bố mẹ hoàn hảo.<br /><br />
+                Cuốn sách chỉ mong con nhìn thấy: phía sau những điều con từng khó chịu, là rất nhiều <strong>lo lắng, hy sinh và tình thương</strong> mà bố mẹ chưa từng nói hết thành lời.
+              </p>
+            </div>
+          </RevealItem>
+
+          <RevealItem delay={100} className="mt-4">
+            <div
+              className="rounded-2xl p-5 text-center"
+              style={{
+                background: 'linear-gradient(135deg, #FFF0F0 0%, #FFEAEA 100%)',
+                border: '1px solid rgba(231,76,60,0.12)',
+              }}
+            >
+              <p className="text-[13px] text-[#4A1B0C] leading-relaxed">
+                Có những lời bố mẹ rất muốn nói với con, nhưng lại khó nói trực tiếp.
+              </p>
+              <p className="text-[13px] text-[#4A1B0C] leading-relaxed mt-3 font-medium">
+                Cuốn sách này <strong style={{ color: '#C0392B' }}>thay bố mẹ gửi đến con những nỗi lòng ấy</strong> — bằng những câu chuyện nhẹ nhàng, gần gũi, để con dễ lắng nghe hơn, dễ đặt mình vào vị trí của bố mẹ hơn.
+              </p>
+            </div>
+          </RevealItem>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════
           SECTION 4: CÂU CHUYỆN MINH HOẠ
       ═══════════════════════════════════════ */}
       <section className="bg-[#FFFBF5] py-6 px-4">
