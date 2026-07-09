@@ -1,9 +1,5 @@
 import sach1 from '../assets/sach-images/1.webp'
 import sach2 from '../assets/sach-images/2.webp'
-import sach3 from '../assets/sach-images/3.webp'
-import sach4 from '../assets/sach-images/4.webp'
-import sach5 from '../assets/sach-images/5.webp'
-import sach6 from '../assets/sach-images/6.webp'
 import sach7 from '../assets/sach-images/7.webp'
 import sach8 from '../assets/sach-images/8.webp'
 import biaSach from '../assets/sach-images/bia-chuan.webp'
@@ -31,37 +27,13 @@ const STORIES = [
     lesson: 'Con ngộ ra rằng thương cha mẹ không thể đợi đến lúc quá muộn. Không phải đợi cha mẹ ốm mới hỏi han, không phải đợi cha mẹ nằm viện mới biết lo. Từ hôm nay, con muốn dịu dàng hơn trong những ngày bình thường: biết phụ giúp, biết quan tâm, biết nói một lời thương trước khi những điều giản dị ấy trở thành điều con không còn kịp làm nữa.',
   },
   {
-    n: '03', img: sach3,
-    title: 'Con À, Vì Sao Cha Mẹ Từng Phải “Đánh” Con',
-    story: 'Có những lần con bị mắng, bị phạt, thậm chí bị đánh, rồi ôm trong lòng một nỗi tủi thân rất lớn: “Chắc bố mẹ chẳng thương mình đâu.” Nhưng con không biết rằng, có những khoảnh khắc cha mẹ nghiêm khắc không phải vì muốn làm con đau, mà vì quá sợ con đi sai đường. Bàn tay đặt xuống con cũng là bàn tay từng bế con, đút con ăn, lau nước mắt cho con từ thuở nhỏ.',
-    lesson: 'Cha mẹ không phải lúc nào cũng đúng trong cách yêu con. Nhưng có những lần nghiêm khắc bắt đầu từ nỗi sợ con lầm đường, chứ không phải từ sự hết thương. Khi hiểu điều ấy, con sẽ biết nhìn lại lỗi sai của mình, và cũng biết thương cả những vụng về của cha mẹ.',
-  },
-  {
-    n: '04', img: sach4,
-    title: 'Bố Mẹ Không Lo Cho Điểm Số Của Con, Bố Mẹ Lo Cho Những Gian Nan Con Sẽ Gặp',
-    story: 'Con từng nghĩ bố mẹ chỉ quan tâm đến điểm số. Một bài kiểm tra thấp, một lần thi không tốt, một câu mắng của mẹ cũng đủ khiến con thấy mình bị áp lực. Nhưng phía sau nỗi lo ấy không chỉ là con được mấy điểm, đứng thứ bao nhiêu. Bố mẹ lo xa hơn thế: lo con dễ bỏ cuộc, lo con gặp câu khó đã buông bút, lo sau này bước vào đời con không đủ bản lĩnh để đứng lên sau thất bại.',
-    lesson: 'Điểm số không quyết định giá trị của con. Điều bố mẹ thật sự mong không phải là con luôn hoàn hảo, mà là con đừng vì một lần chưa tốt mà xem nhẹ chính mình. Học hành không chỉ để lấy điểm, mà để con rèn sự kiên trì, trách nhiệm và lòng tin vào bản thân.',
-  },
-  {
-    n: '05', img: sach5,
-    title: 'Không Phải Cha Mẹ Chưa Từng Sai, Chỉ Là Cha Mẹ Cũng Đang Học Cách Làm Cha Mẹ Lần Đầu',
-    story: 'Có những câu nói của cha mẹ từng làm con buồn. Có những lần cha mẹ nóng giận, áp đặt, không lắng nghe con đủ nhiều. Nhưng rồi con sẽ hiểu: cha mẹ cũng không sinh ra đã biết làm cha mẹ. Họ cũng từng lúng túng, từng sợ hãi, từng thương con rất nhiều nhưng lại nói ra bằng những cách chưa dịu dàng.',
-    lesson: 'Cha mẹ có thể sai, có thể vụng về, có thể từng làm con tổn thương. Nhưng trưởng thành là khi con biết nhìn cha mẹ như những con người cũng đang học cách yêu thương. Hiểu điều đó không phải để quên hết nỗi buồn, mà để gia đình có thêm một cơ hội bước lại gần nhau.',
-  },
-  {
-    n: '06', img: sach6,
-    title: 'Người Đàn Ông Nhặt Ve Chai Nuôi Tôi Khôn Lớn',
-    story: 'Con từng xấu hổ vì nghề của cha. Sợ bạn bè nhìn thấy, sợ bị chê cười, sợ cha làm mình mất mặt. Nhưng rồi con hiểu: đôi bàn tay nhặt ve chai ấy chưa từng thấp kém. Chính đôi tay ấy đã nuôi con ăn học, che cho con qua những tháng ngày thiếu thốn, và lặng lẽ giữ lại cho con một tương lai tốt hơn.',
-    lesson: 'Con ngộ ra rằng không có nghề lương thiện nào là đáng xấu hổ. Điều đáng xấu hổ không phải là cha mẹ nghèo, mà là khi con vô tâm đến mức quên mất cha mẹ đã vất vả thế nào để nuôi mình khôn lớn.',
-  },
-  {
-    n: '07', img: sach7,
+    n: '03', img: sach7,
     title: 'Trước Khi Làm Sai, Hãy Nghĩ Đến Cha Mẹ',
     story: 'Có những lỗi lầm con tưởng chỉ là chuyện của riêng mình. Một phút bốc đồng, một lần nghe theo bạn xấu, một việc làm sai tưởng như nhỏ… nhưng phía sau đó có thể là nước mắt của mẹ, là dáng cha lặng đi, là cả gia đình đau đớn vì con.',
     lesson: 'Con ngộ ra rằng trước khi làm sai, con không chỉ đang đánh mất chính mình, mà còn làm đau những người thương con nhất. Từ nay, con muốn biết dừng lại trước cám dỗ, biết nghĩ đến cha mẹ, và biết chịu trách nhiệm với cuộc đời mình.',
   },
   {
-    n: '08', img: sach8,
+    n: '04', img: sach8,
     title: 'Đến Khi Không Còn Ai Nhắc Nữa, Con Mới Hiểu Đó Là Yêu Thương',
     story: 'Con từng thấy những lời nhắc của mẹ thật phiền: ăn cơm đi, mặc thêm áo vào, đừng thức khuya, đi đường cẩn thận. Con từng mong có một ngày không còn ai nhắc mình nữa. Nhưng đến khi căn nhà vắng đi một tiếng gọi quen thuộc, con mới hiểu: có những lời tưởng như cằn nhằn, thật ra là cách yêu thương ở lại bên con mỗi ngày.',
     lesson: 'Con ngộ ra rằng lời nhắc của cha mẹ không phải lúc nào cũng còn mãi. Từ nay, con muốn biết lắng nghe nhiều hơn, đáp lại dịu dàng hơn, và trân trọng những tiếng gọi thân quen khi vẫn còn có thể nghe thấy.',
