@@ -226,92 +226,6 @@ export default function BookShowcase() {
       </section>
 
       {/* ═══════════════════════════════════════
-          SECTION 2: NỖI LÒNG BỐ MẸ
-      ═══════════════════════════════════════ */}
-      <section className="px-4 py-6 bg-[#FFFBF5]">
-        <div className="max-w-3xl mx-auto">
-          <RevealItem className="text-center mb-5">
-            <p className="text-[11px] font-medium uppercase tracking-[0.15em] text-[#C0392B] mb-1">
-              Đằng sau những điều con từng khó chịu
-            </p>
-            <h2
-              className="font-bold text-[#1F1B16] leading-tight"
-              style={{ fontSize: 'clamp(18px, 5vw, 24px)' }}
-            >
-              Có những điều con từng nghĩ là <span style={{ color: '#C0392B' }}>bố mẹ làm quá.</span>
-            </h2>
-          </RevealItem>
-
-          <RevealItem delay={100}>
-            <div
-              className="rounded-2xl p-5"
-              style={{
-                background: 'linear-gradient(135deg, #FFF0F0 0%, #FFEAEA 100%)',
-                border: '1px solid rgba(231,76,60,0.12)',
-              }}
-            >
-              <p className="text-[14px] text-[#4A1B0C] leading-[1.9] mb-0">
-                Nhắc một chút cũng nhắc. Lo một chút cũng lo. Con sai thì mắng, con bướng thì phạt, có khi nghiêm đến mức khiến con tủi thân và bật khóc.
-              </p>
-
-              <p className="text-[14px] text-[#4A1B0C] leading-[1.9] mt-4 font-semibold">
-                Nhưng con à, bố mẹ không nghiêm khắc vì hết thương con.
-              </p>
-
-              <div className="mt-4 flex flex-col gap-3">
-                {[
-                  'Bố mẹ nhắc nhiều, vì sợ một ngày không còn ai ở bên nhắc con biết tự chăm sóc mình.',
-                  'Bố mẹ lo cho việc học, vì sợ sau này con bước vào đời mà chưa đủ bản lĩnh để đứng vững.',
-                  'Bố mẹ không dễ dàng bỏ qua lỗi sai, vì sợ con quen với điều sai rồi tự làm đau cuộc đời mình.',
-                ].map((text, i) => (
-                  <div key={i} className="flex items-start gap-2.5">
-                    <span className="text-[#C0392B] mt-0.5 flex-shrink-0">❤️</span>
-                    <p className="text-[13px] text-[#4A1B0C] leading-relaxed">{text}</p>
-                  </div>
-                ))}
-              </div>
-
-              <div
-                className="mt-5 pt-4"
-                style={{ borderTop: '1px dashed rgba(231,76,60,0.2)' }}
-              >
-                <p className="text-[13px] text-[#6B5D54] leading-relaxed italic">
-                  Và có những lần bố mẹ mắng con, phạt con, thậm chí làm con tổn thương… không phải vì bố mẹ luôn đúng, mà vì <strong style={{ color: '#C0392B' }}>bố mẹ cũng có lúc vụng về trong cách yêu thương.</strong>
-                </p>
-              </div>
-            </div>
-          </RevealItem>
-
-          {/* Closing message */}
-          <RevealItem delay={200} className="mt-5">
-            <div className="text-center py-4 px-3 rounded-xl" style={{ background: '#FFF8E1', border: '1px dashed #FDE68A' }}>
-              <p className="text-[13px] font-medium" style={{ color: '#92400E' }}>
-                📖 Cuốn sách không bắt con phải nghĩ rằng bố mẹ hoàn hảo.<br /><br />
-                Cuốn sách chỉ mong con nhìn thấy: phía sau những điều con từng khó chịu, là rất nhiều <strong>lo lắng, hy sinh và tình thương</strong> mà bố mẹ chưa từng nói hết thành lời.
-              </p>
-            </div>
-          </RevealItem>
-
-          <RevealItem delay={250} className="mt-4">
-            <div
-              className="rounded-2xl p-5 text-center"
-              style={{
-                background: 'linear-gradient(135deg, #FFF0F0 0%, #FFEAEA 100%)',
-                border: '1px solid rgba(231,76,60,0.12)',
-              }}
-            >
-              <p className="text-[13px] text-[#4A1B0C] leading-relaxed">
-                Có những lời bố mẹ rất muốn nói với con, nhưng lại khó nói trực tiếp.
-              </p>
-              <p className="text-[13px] text-[#4A1B0C] leading-relaxed mt-3 font-medium">
-                Cuốn sách này <strong style={{ color: '#C0392B' }}>thay bố mẹ gửi đến con những nỗi lòng ấy</strong> — bằng những câu chuyện nhẹ nhàng, gần gũi, để con dễ lắng nghe hơn, dễ đặt mình vào vị trí của bố mẹ hơn.
-              </p>
-            </div>
-          </RevealItem>
-        </div>
-      </section>
-
-      {/* ═══════════════════════════════════════
           SECTION 4: CÂU CHUYỆN MINH HOẠ
       ═══════════════════════════════════════ */}
       <section className="bg-[#FFFBF5] py-6 px-4">
@@ -442,72 +356,50 @@ export default function BookShowcase() {
       {/* ═══════════════════════════════════════
           SECTION 5: CON SẼ CẢM NGỘ GÌ (sau khi đọc)
       ═══════════════════════════════════════ */}
-      <section className="px-4 py-6" style={{ background: 'linear-gradient(180deg, #F0FDF4 0%, #FFFBF5 100%)' }}>
+      <section className="px-4 py-5" style={{ background: 'linear-gradient(180deg, #F0FDF4 0%, #FFFBF5 100%)' }}>
         <div className="max-w-3xl mx-auto">
-          <RevealItem className="text-center mb-4">
+          <RevealItem className="text-center mb-3">
             <p className="text-[11px] font-medium uppercase tracking-[0.15em] text-[#16A34A] mb-1">
               Sau khi đọc xong
             </p>
             <h2
-              className="font-bold text-[#1F1B16] leading-tight mb-2"
+              className="font-bold text-[#1F1B16] leading-tight"
               style={{ fontSize: 'clamp(18px, 5vw, 24px)' }}
             >
               Con không chỉ hiểu bố mẹ hơn,<br />
-              <span style={{ color: '#16A34A' }}>con sẽ bắt đầu muốn sống tốt hơn</span>
+              <span style={{ color: '#16A34A' }}>con sẽ muốn sống tốt hơn</span>
             </h2>
-            <p className="text-[13px] text-[#6B5D54] max-w-sm mx-auto">
-              Cuốn sách không ép con phải thay đổi ngay lập tức. Nhưng qua từng câu chuyện, con sẽ dần nhìn lại lời nhắc, sự nghiêm khắc và những hy sinh âm thầm của bố mẹ bằng một trái tim biết thương hơn.
-            </p>
           </RevealItem>
 
-          <div className="flex flex-col gap-3">
-            {[
-              {
-                icon: '👀',
-                title: 'Nhìn thấy tình thương phía sau lời nhắc',
-                desc: 'Con hiểu mẹ nhắc không phải để làm phiền, bố nghiêm không phải vì hết thương — mà vì bố mẹ lo con chưa biết tự chăm sóc mình.',
-              },
-              {
-                icon: '💪',
-                title: 'Tự giác hơn, không phải vì bị ép',
-                desc: 'Con nhận ra học bài, dọn phòng, rửa bát, ngủ sớm… không chỉ là việc bố mẹ bắt làm, mà là cách con học sống có trách nhiệm với chính mình.',
-              },
-              {
-                icon: '💬',
-                title: 'Bớt giận, bớt im lặng với bố mẹ',
-                desc: 'Khi hiểu được nỗi lòng cha mẹ, con sẽ dễ mở lòng hơn, biết lắng nghe hơn, và có thể bắt đầu nói: "Con hiểu rồi."',
-              },
-              {
-                icon: '🏠',
-                title: 'Biết trân trọng gia đình khi còn kịp',
-                desc: 'Con nhận ra bữa cơm, lời nhắc, dáng bố mẹ chờ ngoài cửa… đều là những yêu thương quý giá, không nên xem là điều hiển nhiên.',
-              },
-              {
-                icon: '⭐',
-                title: 'Muốn sống tốt hơn vì bản thân và vì bố mẹ',
-                desc: 'Con hiểu cuộc đời này là của con, nhưng phía sau con là bao nhiêu năm tháng bố mẹ đã lo lắng, hy sinh và chờ đợi.',
-              },
-            ].map((item, i) => (
-              <RevealItem key={i} delay={i * 80}>
+          <RevealItem delay={100}>
+            <div
+              className="rounded-2xl bg-white overflow-hidden"
+              style={{ border: '1px solid #BBF7D0', boxShadow: '0 2px 10px rgba(22,163,74,0.06)' }}
+            >
+              {[
+                { icon: '👀', title: 'Nhìn thấy tình thương phía sau lời nhắc' },
+                { icon: '💪', title: 'Tự giác hơn, không phải vì bị ép' },
+                { icon: '💬', title: 'Bớt giận, bớt im lặng với bố mẹ' },
+                { icon: '🏠', title: 'Biết trân trọng gia đình khi còn kịp' },
+                { icon: '⭐', title: 'Muốn sống tốt hơn vì bản thân và vì bố mẹ' },
+              ].map((item, i, arr) => (
                 <div
-                  className="flex items-start gap-3 rounded-xl p-4 hover:scale-[1.01] transition-transform duration-200"
-                  style={{
-                    background: 'white',
-                    border: '1px solid #BBF7D0',
-                    boxShadow: '0 2px 8px rgba(22,163,74,0.06)',
-                  }}
+                  key={i}
+                  className="flex items-center gap-3 px-4 py-2.5"
+                  style={i < arr.length - 1 ? { borderBottom: '1px solid #ECFDF5' } : undefined}
                 >
-                  <span className="text-2xl flex-shrink-0 mt-0.5">{item.icon}</span>
-                  <div>
-                    <p className="font-semibold text-[#1F1B16] mb-1" style={{ fontSize: '14px' }}>
-                      {item.title}
-                    </p>
-                    <p className="text-[12px] text-[#6B5D54] leading-relaxed">{item.desc}</p>
-                  </div>
+                  <span className="text-lg flex-shrink-0">{item.icon}</span>
+                  <p className="flex-1 font-medium text-[#1F1B16] leading-snug" style={{ fontSize: '13px' }}>
+                    {item.title}
+                  </p>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" className="flex-shrink-0">
+                    <circle cx="12" cy="12" r="10" fill="#DCFCE7" />
+                    <path d="M8 12l3 3 5-6" stroke="#16A34A" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
                 </div>
-              </RevealItem>
-            ))}
-          </div>
+              ))}
+            </div>
+          </RevealItem>
         </div>
       </section>
 

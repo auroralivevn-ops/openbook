@@ -643,48 +643,26 @@ export default function Hero() {
           10. STICKY BOTTOM — 4 cột (ẩn khi cuộn tới form)
       ══════════════════════════════════════════════ */}
       <div
-        className="fixed bottom-0 left-0 right-0 z-50 transition-all duration-300"
+        className="fixed bottom-0 left-0 right-0 z-50 pointer-events-none transition-all duration-300"
         style={{
-          transform: hideBottomBar ? 'translateY(100%)' : 'translateY(0)',
+          transform: hideBottomBar ? 'translateY(160%)' : 'translateY(0)',
           opacity: hideBottomBar ? 0 : 1,
-          pointerEvents: hideBottomBar ? 'none' : 'auto',
         }}
       >
-        <div
-          className="max-w-[430px] mx-auto flex items-stretch bg-white"
-          style={{ borderTop: '1px solid #f0f0f0', boxShadow: '0 -2px 12px rgba(0,0,0,0.08)' }}
-        >
-          <button className="flex flex-col items-center justify-center gap-0.5 py-2 flex-none w-[58px]">
-            <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" strokeWidth={1.7}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-              <polyline strokeLinecap="round" strokeLinejoin="round" points="9 22 9 12 15 12 15 22" />
-            </svg>
-            <span className="text-gray-400" style={{ fontSize: '9px' }}>Cửa hàng</span>
-          </button>
-
-          <button className="flex flex-col items-center justify-center gap-0.5 py-2 flex-none w-[58px]" style={{ borderLeft: '1px solid #f3f3f3' }}>
-            <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" strokeWidth={1.7}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 0 1-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-            </svg>
-            <span className="text-gray-400" style={{ fontSize: '9px' }}>Chat</span>
-          </button>
-
-          <button className="flex flex-col items-center justify-center gap-0.5 py-2 flex-none w-[58px]" style={{ borderLeft: '1px solid #f3f3f3' }}>
-            <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="#DC2626" strokeWidth={1.7}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-1.5 6h12M10 21a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm7 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
-            </svg>
-            <span className="font-medium" style={{ fontSize: '9px', color: '#DC2626' }}>Giỏ hàng</span>
-          </button>
-
+        <div className="max-w-[430px] mx-auto flex justify-end px-4 pb-4">
           <button
             onClick={() => scrollToForm(1)}
-            className="flex-1 flex flex-col items-center justify-center py-2 px-3 active:opacity-90 transition-opacity"
-            style={{ background: 'linear-gradient(135deg, #DC2626 0%, #EF4444 100%)', borderLeft: '1px solid #f3f3f3' }}
+            className="pointer-events-auto flex flex-col items-center justify-center text-white animate-pulse-zoom active:scale-95 transition-transform"
+            style={{
+              background: 'linear-gradient(135deg, #DC2626 0%, #EF4444 100%)',
+              padding: '11px 24px',
+              borderRadius: '999px',
+              boxShadow: '0 6px 20px rgba(220,38,38,0.45)',
+              border: '2px solid #FFE082',
+            }}
           >
-            <span className="text-white font-semibold leading-snug" style={{ fontSize: '13px' }}>Mua ngay</span>
-            <span className="text-white/80 leading-snug" style={{ fontSize: '10px' }}>
-              Freeship · 199.000đ
-            </span>
+            <span className="font-extrabold leading-none" style={{ fontSize: '15px' }}>🛒 Mua ngay</span>
+            <span className="leading-none mt-0.5" style={{ fontSize: '10px', opacity: 0.95 }}>Freeship · 199.000đ</span>
           </button>
         </div>
       </div>
