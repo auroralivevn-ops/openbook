@@ -83,7 +83,7 @@ export default function FormCOD() {
 
   const { hours, minutes, seconds } = timeLeft
 
-  const PRICE_MAP = { 1: 199000, 2: 299000, 3: 350000, 4: 450000 }
+  const PRICE_MAP = { 1: 199000, 2: 250000, 3: 350000, 4: 450000 }
   const priceBook = PRICE_MAP[quantity] || 199000
   const priceShip = 0
   const total = priceBook + priceShip
@@ -302,11 +302,11 @@ export default function FormCOD() {
                 </p>
               </div>
               <div className="text-right flex-shrink-0 ml-3">
-                <p className="font-extrabold leading-none bg-gradient-to-r from-red-600 to-orange-500 bg-clip-text text-transparent" style={{ fontSize: '20px' }}>299.000đ</p>
+                <p className="font-extrabold leading-none bg-gradient-to-r from-red-600 to-orange-500 bg-clip-text text-transparent" style={{ fontSize: '20px' }}>250.000đ</p>
                 <p className="italic mt-0.5 font-medium" style={{ fontSize: '12px', color: '#374151' }}>
                   (Giá Gốc <span className="line-through">600.000đ</span>)
                 </p>
-                <p className="mt-1 font-semibold" style={{ fontSize: '10px', color: '#16A34A' }}>✓ FREESHIP · Tiết kiệm 301.000đ</p>
+                <p className="mt-1 font-semibold" style={{ fontSize: '10px', color: '#16A34A' }}>✓ FREESHIP · Tiết kiệm 350.000đ</p>
               </div>
             </button>
           </div>
@@ -373,8 +373,8 @@ export default function FormCOD() {
             style={{ background: '#FEF3C7', border: '1px dashed #F5B700', borderRadius: '8px' }}
           >
             <p className="font-medium" style={{ fontSize: '11px', color: '#92400E' }}>
-              {quantity === 1 && '💡 Mua combo 2 cuốn chỉ 299K – tiết kiệm thêm 301K so với mua lẻ!'}
-              {quantity === 2 && '🎉 Bạn tiết kiệm 301K so với mua lẻ!'}
+              {quantity === 1 && '💡 Mua combo 2 cuốn chỉ 250K – tiết kiệm thêm 350K so với mua lẻ!'}
+              {quantity === 2 && '🎉 Bạn tiết kiệm 350K so với mua lẻ!'}
               {quantity === 3 && '🔥 Combo 3 cuốn — bộ kỹ năng học tập hoàn chỉnh!'}
               {quantity === 4 && '👑 Combo 4 cuốn — bộ toàn diện, giá tốt nhất!'}
             </p>
@@ -501,7 +501,7 @@ export default function FormCOD() {
               </div>
               {quantity >= 2 && (
                 <p className="text-right font-medium mt-0.5" style={{ fontSize: '10px', color: '#16A34A' }}>
-                  {quantity === 2 && 'Tiết kiệm so với mua lẻ: 301.000đ'}
+                  {quantity === 2 && 'Tiết kiệm so với mua lẻ: 350.000đ'}
                   {quantity === 3 && 'Tiết kiệm so với mua lẻ: 208.000đ'}
                   {quantity === 4 && 'Tiết kiệm so với mua lẻ: 378.000đ'}
                 </p>
