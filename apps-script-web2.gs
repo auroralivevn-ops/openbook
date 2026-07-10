@@ -19,14 +19,13 @@ const SHEET_NAME = 'Đơn hàng';  // tên tab chứa đơn — đổi nếu She
 // Thứ tự cột — "Tên sách / Combo" nằm ngay SAU "Địa chỉ"
 const HEADERS = [
   'Thời gian',          // 1
-  'Mã đơn',             // 2
-  'Họ tên',             // 3
-  'SĐT',                // 4  (ghi dạng text để giữ số 0 đầu)
-  'Địa chỉ',            // 5
-  'Tên sách / Combo',   // 6  <-- ngay sau Địa chỉ
-  'Số lượng',           // 7
-  'Tổng tiền',          // 8
-  'Ghi chú',            // 9
+  'Họ tên',             // 2
+  'SĐT',                // 3  (ghi dạng text để giữ số 0 đầu)
+  'Địa chỉ',            // 4
+  'Tên sách / Combo',   // 5  <-- ngay sau Địa chỉ
+  'Số lượng',           // 6
+  'Tổng tiền',          // 7
+  'Ghi chú',            // 8
 ];
 
 function getSheet_() {
@@ -38,7 +37,7 @@ function getSheet_() {
     sheet.appendRow(HEADERS);
     sheet.getRange(1, 1, 1, HEADERS.length).setFontWeight('bold');
     sheet.setFrozenRows(1);
-    sheet.getRange('D:D').setNumberFormat('@'); // cả cột SĐT là text
+    sheet.getRange('C:C').setNumberFormat('@'); // cả cột SĐT là text
   }
   return sheet;
 }
@@ -66,7 +65,6 @@ function doPost(e) {
 
     const row = [
       data.timestamp || Utilities.formatDate(now, 'GMT+7', 'dd/MM/yyyy HH:mm'),
-      orderId,
       data.name || '',
       String(data.phone || ''),   // giữ nguyên chuỗi, cột đã format text
       data.address || '',
@@ -77,8 +75,8 @@ function doPost(e) {
     ];
 
     const targetRow = sheet.getLastRow() + 1;
-    // Đặt định dạng TEXT cho ô SĐT (cột 4) TRƯỚC khi ghi -> giữ số 0 đầu
-    sheet.getRange(targetRow, 4).setNumberFormat('@');
+    // Đặt định dạng TEXT cho ô SĐT (cột 3) TRƯỚC khi ghi -> giữ số 0 đầu
+    sheet.getRange(targetRow, 3).setNumberFormat('@');
     sheet.getRange(targetRow, 1, 1, row.length).setValues([row]);
 
     return jsonOut_({ success: true, orderId: orderId });
