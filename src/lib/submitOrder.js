@@ -47,7 +47,7 @@ export async function submitOrder({ name, phone, address, quantity }) {
   let telegramOk = false;
   if (TG_TOKEN && TG_CHAT) {
     const telegramMsg =
-      `🔔 *ĐƠN HÀNG MỚI - OpenBook*\n\n` +
+      `🔔 *Nếu Con Làm Bố Mẹ*\n\n` +
       `📋 Mã đơn: \`${orderId}\`${sheetOk ? '' : ' ⚠️ (Sheet fail — chỉ có Telegram)'}\n` +
       `🕐 ${timestamp}\n\n` +
       `👤 *Khách:* ${name}\n` +
