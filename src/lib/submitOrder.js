@@ -1,3 +1,18 @@
+// Gửi đơn hàng: Google Sheet + Telegram chạy song song.
+// - Telegram nhận đơn là báo thành công ngay (khách chỉ chờ ~1–2 giây).
+// - Sheet vẫn gửi tiếp kể cả khi khách đóng trang (keepalive).
+// - Sheet lỗi → gửi thêm tin Telegram cảnh báo để nhập tay.
+// - Telegram lỗi → chờ Sheet tối đa 10 giây. Cả hai lỗi → báo khách gọi hotline.
+
+const pad = (n) => String(n).padStart(2, '0')
+const makeOrderId = () => {
+  const d = new Date()
+  const rand = Math.random().toString(36).slice(2, 6).toUpperCase()
+  return `EXB-${String(d.getFullYear()).slice(2)}${pad(d.getMonth() + 1)}${pad(d.getDate())}-${pad(d.getHours())}${pad(d.getMinutes())}-${rand}`
+}
+const withTimeout = (promise, ms) =>
+  Promise.race([promise, new Promise((resolve) => setTimeout(() => resolve('timeout'), ms))])
+
 export async function submitOrder({ name, phone, address, quantity }) {
   const timestamp = new Date().toLocaleString('vi-VN', {
     day: '2-digit', month: '2-digit', year: 'numeric',
@@ -18,62 +33,71 @@ export async function submitOrder({ name, phone, address, quantity }) {
   const TG_TOKEN = import.meta.env.VITE_TELEGRAM_BOT_TOKEN;
   const TG_CHAT = import.meta.env.VITE_TELEGRAM_CHAT_ID;
 
-  // ── BƯỚC 1: POST tới Apps Script, nhận lại orderId server-side ──
-  let orderId = `EXB-FB-${Date.now()}`; // fallback nếu Sheet fail
-  let sheetOk = false;
+  const orderId = makeOrderId();
 
-  if (SHEET_URL) {
-    try {
-      const payload = { name, phone, address, quantity, total, note: shipNote, timestamp, product: comboLabel };
-      const res = await fetch(SHEET_URL, {
+  const sendTelegram = (text) =>
+    fetch(`https://api.telegram.org/bot${TG_TOKEN}/sendMessage`, {
+      method: 'POST',
+      // form-urlencoded = "simple request", không cần preflight → keepalive hoạt động ổn định
+      body: new URLSearchParams({ chat_id: TG_CHAT, text, parse_mode: 'Markdown' }),
+      keepalive: true,
+    })
+
+  // ── BƯỚC 1: Google Sheet — chạy nền, không bị huỷ khi khách đóng trang ──
+  const sheetPromise = SHEET_URL
+    ? fetch(SHEET_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-        body: JSON.stringify(payload),
+        body: JSON.stringify({ name, phone, address, quantity, total, note: `${shipNote} | Mã web: ${orderId}`, timestamp, product: comboLabel }),
         redirect: 'follow',
-      });
-      const data = await res.json();
-      if (data.success && data.orderId) {
-        orderId = data.orderId;
-        sheetOk = true;
-      } else {
-        console.error('[submitOrder] Apps Script báo lỗi:', data.error);
-      }
-    } catch (err) {
-      console.error('[submitOrder] Không gọi được Apps Script:', err);
-    }
+        keepalive: true,
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (!data.success) console.error('[submitOrder] Apps Script báo lỗi:', data.error)
+          return !!data.success
+        })
+        .catch((err) => { console.error('[submitOrder] Không gọi được Apps Script:', err); return false })
+    : Promise.resolve(false)
+
+  // ── BƯỚC 2: Telegram — cùng lúc với Sheet ──
+  const telegramMsg =
+    `🔔 *Nếu Con Làm Bố Mẹ*\n\n` +
+    `📋 Mã đơn: \`${orderId}\`\n` +
+    `🕐 ${timestamp}\n\n` +
+    `👤 *Khách:* ${name}\n` +
+    `📞 *SĐT:* ${phone}\n` +
+    `📍 *Địa chỉ:* ${address}\n\n` +
+    `📦 *${comboLabel}*\n` +
+    `💰 Tổng: *${total.toLocaleString('vi-VN')}đ* (${shipNote})`;
+
+  const telegramPromise = TG_TOKEN && TG_CHAT
+    ? withTimeout(
+        sendTelegram(telegramMsg)
+          .then(async (res) => { if (!res.ok) console.error('[submitOrder] Telegram trả lỗi:', await res.text()); return res.ok })
+          .catch((err) => { console.error('[submitOrder] Không gọi được Telegram:', err); return false }),
+        8000,
+      ).then((r) => r === true)
+    : Promise.resolve(false)
+
+  // Sheet lỗi (sau khi Telegram đã nhận) → báo thêm để nhập tay
+  if (TG_TOKEN && TG_CHAT && SHEET_URL) {
+    sheetPromise.then((ok) => {
+      if (!ok) sendTelegram(`⚠️ Đơn \`${orderId}\` (${name} · ${phone}) *chưa vào Google Sheet* — vui lòng nhập tay.`).catch(() => {})
+    })
   }
 
-  // ── BƯỚC 2: Gửi Telegram (backup, dùng orderId từ bước 1) ──
-  let telegramOk = false;
-  if (TG_TOKEN && TG_CHAT) {
-    const telegramMsg =
-      `🔔 *Nếu Con Làm Bố Mẹ*\n\n` +
-      `📋 Mã đơn: \`${orderId}\`${sheetOk ? '' : ' ⚠️ (Sheet fail — chỉ có Telegram)'}\n` +
-      `🕐 ${timestamp}\n\n` +
-      `👤 *Khách:* ${name}\n` +
-      `📞 *SĐT:* ${phone}\n` +
-      `📍 *Địa chỉ:* ${address}\n\n` +
-      `📦 *${comboLabel}*\n` +
-      `💰 Tổng: *${total.toLocaleString('vi-VN')}đ* (${shipNote})`;
-
-    try {
-      const res = await fetch(`https://api.telegram.org/bot${TG_TOKEN}/sendMessage`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ chat_id: TG_CHAT, text: telegramMsg, parse_mode: 'Markdown' }),
-      });
-      telegramOk = res.ok;
-      if (!res.ok) console.error('[submitOrder] Telegram trả lỗi:', await res.text());
-    } catch (err) {
-      console.error('[submitOrder] Không gọi được Telegram:', err);
-    }
+  // ── BƯỚC 3: Quyết định báo khách ──
+  const telegramOk = await telegramPromise
+  let sheetOk = false
+  if (!telegramOk) {
+    sheetOk = (await withTimeout(sheetPromise, 10000)) === true
   }
 
-  // ── BƯỚC 3: Phân tích kết quả ──
   if (!SHEET_URL && !TG_TOKEN) {
     console.warn('[submitOrder] Không có Apps Script URL hoặc Telegram token — dev mode, đơn không được lưu.');
     // Cho phép qua để dev test UI
-  } else if (!sheetOk && !telegramOk) {
+  } else if (!telegramOk && !sheetOk) {
     // Cả 2 đều fail — thực sự thất bại
     return { success: false, error: 'Không gửi được đơn — cả Sheet và Telegram đều lỗi' };
   }
